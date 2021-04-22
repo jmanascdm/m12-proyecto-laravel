@@ -17,7 +17,7 @@
     </script>
 
 	<h2>Captcha</h2>
-    
+    <!-- https://www.bestjquery.com/2017/07/clientsidecaptcha-pure-client-side-javascript-captcha/ -->
 	<div id="captcha">
 		<div class="controls">
 			<input class="user-text" placeholder="Type here" type="text" />
@@ -28,10 +28,6 @@
     <script src="{{ asset('js/captcha/client_captcha.js') }}" defer></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.body.scrollTop; //force css repaint to ensure cssom is ready
-
-        var timeout; //global timout variable that holds reference to timer
-
         var captcha = new $.Captcha({
             onFailure: function() {
                 alert("WRONG!!!");

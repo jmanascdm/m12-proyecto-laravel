@@ -14,6 +14,6 @@ class TestController extends Controller
             $message->to("hiimdrakster@gmail.com", "Drakster")->subject('Test de correo');
         }); */
 
-        return view('test', compact('captchas'));
+        return view('test');
     }
 }

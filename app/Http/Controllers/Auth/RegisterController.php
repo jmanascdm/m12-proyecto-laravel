@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -64,10 +65,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'users'");
+        $nextId = $statement[0]->Auto_increment;
+
         return User::create([
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
+            'created_by' => $nextId,
+            'updated_by' => $nextId,
         ]);
     }
 }

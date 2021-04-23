@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>Test Page</h1>
+    {{ date("H:i:s") }}
     <script src="https://cdn.tiny.cloud/1/21wmjgvo3uldi678zp5poa3pc2pn0n8cu7rw8iwmp8c3r3n9/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
   

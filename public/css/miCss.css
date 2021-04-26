@@ -1,0 +1,27 @@
+:root{
+  --amarilloFlojo:rgb(246, 221, 126);
+  --naranjaFlojo:#f3ce54;
+  --azulFlojo:#01b1d7;
+  --azulFuerte:#013660;
+}
+.iniciarSesion{
+  color:#00365f;
+  padding-left: 10px!important;
+}
+
+a.iniciarSesion:hover{
+  color: #01b1d7!important;
+}
+
+.registro{
+    text-align: center;
+    padding-top: 5%;
+}
+
+.tituloCampo{
+  text-align: initial;
+}
+
+.botonForm:hover{
+  background-color: purple !important;
+}

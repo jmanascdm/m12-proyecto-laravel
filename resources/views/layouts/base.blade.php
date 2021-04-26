@@ -13,9 +13,9 @@
     <link href="{{ asset('img/favicon.png') }}" rel="icon">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
@@ -41,40 +41,6 @@
 </head>
 
 <body>
-
-    <!-- ======= Top Bar ======= -->
-    <section id="topbar" class="d-none d-lg-block" style="background-color:#f3ce54">
-        <div class="container d-flex">
-            <!-- Left side -->
-            <div class="contact-info mr-auto">
-                <i class="fas fa-reply" style="color:#00365f"></i><a href="https://www.inscamidemar.cat/">Tornar a INS
-                    Camí de Mar</a>
-            </div>
-            <!-- Right side -->
-            @guest
-            <div>
-                <i class="fas fa-user-alt iniciarSesion"></i><a href="{{ route('login') }}"
-                    class="iniciarSesion">Iniciar Sessió</a>
-            </div>
-            @else
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ Auth::user()->name }}
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar
-                        sessió</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </div>
-            @endguest
-        </div>
-    </section>
-
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center" style="background-color: #f6dd7e">
         <div class="container d-flex align-items-center">
@@ -82,17 +48,28 @@
             <div class="logo mr-auto">
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <a href="/"><img src="{{ asset('img/logo.jpg') }}" alt="Logo" class="img-fluid"
-                        style="height: 200p"></a>
+                        style="height: 200px"></a>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
-                <ul>
-                    <li><a href="#" style="color:grey">Inici</a></li>
-                    <li><a href="#">ESO</a></li>
-                    <li><a href="#">Batxillerat</a></li>
-                    <li><a href="#">Cicles formatius</a></li>
-                    <li><a href="#">Professorat</a></li>
-                </ul>
+                @guest
+                    <a href="{{ route('login') }}" class="iniciarSesion"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
+                @else
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar
+                            sessió</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+                @endguest
             </nav>
 
         </div>

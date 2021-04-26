@@ -4,9 +4,9 @@
   --azulFlojo:#01b1d7;
   --azulFuerte:#013660;
 }
+
 .iniciarSesion{
   color:#00365f;
-  padding-left: 10px!important;
 }
 
 a.iniciarSesion:hover{

@@ -16,6 +16,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CDN -->
     <script src="https://kit.fontawesome.com/a4df976903.js" crossorigin="anonymous"></script>
@@ -32,6 +34,10 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/miCss.css') }}" rel="stylesheet">
+
+    <!-- VENTANA DE LOGIN -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/login/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/login/main.css') }}">
 </head>
 
 <body>
@@ -47,8 +53,8 @@
             <!-- Right side -->
             @guest
             <div>
-                <i class="fas fa-user-alt iniciarSesion"></i><a href="https://www.inscamidemar.cat/"
-                    class="iniciarSesion" style=";">Iniciar Sessió</a>
+                <i class="fas fa-user-alt iniciarSesion"></i><a href="{{ route('login') }}"
+                    class="iniciarSesion">Iniciar Sessió</a>
             </div>
             @else
             <div class="dropdown">

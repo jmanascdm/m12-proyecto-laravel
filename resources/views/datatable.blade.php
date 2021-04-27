@@ -2,6 +2,7 @@
 
 @push('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="{{ asset('css/notifications/notifications.css') }}">
 <style type="text/css">
     #tablaAutomatica_wrapper {
         text-align: center;
@@ -190,11 +191,17 @@
         $('.deletebtn').click(function(e) {
             e.preventDefault();
 
-            $.simplyToast('success', 'This is a success message!');
-            $.simplyToast('warning', 'This is a warning message!');
-            $.simplyToast('info', 'This is a info message!');
-            $.simplyToast('danger', 'This is a danger message!');
-            /* if(confirm("Estas segur que vols eliminar el registre?")) {
+            const successNotf = window.createNotification({
+                theme: 'success',
+			    showDuration: 3000
+            });
+
+            const errorNotf = window.createNotification({
+                theme: 'error',
+			    showDuration: 3000
+            });
+            
+            if(confirm("Estas segur que vols eliminar el registre?")) {
                 var id = $(this).attr('dt-id');
                 if(isNaN(id)) console.log("ID invàlid: "+id);
                 else {
@@ -207,14 +214,19 @@
                         },
                         success: function(e) {
                             $('#'+e).remove();
-                            alert("Esborrat amb éxit");
-                            $.simplyToast('success', 'Esborrat amb éxit!');
+                            successNotf({
+                                title: 'Fet!',
+                                message: 'Registre eliminat correctament',
+                            });
                         }, error: function() {
-                            alert("No s'ha pogut eliminar");
+                            errorNotf({
+                                title: 'Error!',
+                                message: 'No s\'ha pogut eliminar el registre',
+                            });
                         }
                     })
                 }
-            } */
+            }
         })
     </script>
 </div>
@@ -229,6 +241,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+<script src="{{ asset('js/notifications/notifications.js') }}"></script>
 @endpush
 
 <script>
@@ -240,7 +253,7 @@
                 searchPlaceholder: 'Buscar per ID',
                 sSearch: '',
                 "decimal": "",
-                "emptyTable": "No hi ha informació",
+                "emptyTable": "No hi han registres",
                 "info": "Mostrant _START_ a _END_ de _TOTAL_ registres",
                 "infoEmpty": "Mostrant 0 a 0 de 0 registres",
                 "infoFiltered": "(Filtrat de _MAX_ total registres)",

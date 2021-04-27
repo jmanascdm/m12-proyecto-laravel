@@ -1,27 +1,62 @@
-:root{
-  --amarilloFlojo:rgb(246, 221, 126);
-  --naranjaFlojo:#f3ce54;
-  --azulFlojo:#01b1d7;
-  --azulFuerte:#013660;
+:root {
+    --amarilloFlojo: rgb(246, 221, 126);
+    --naranjaFlojo: #f3ce54;
+    --azulFlojo: #01b1d7;
+    --azulFuerte: #013660;
 }
 
-.iniciarSesion{
-  color:#00365f;
+.iniciarSesion {
+    color: #00365f;
 }
 
-a.iniciarSesion:hover{
-  color: #01b1d7!important;
+a.iniciarSesion:hover {
+    color: #01b1d7 !important;
 }
 
-.registro{
+.registro {
     text-align: center;
     padding-top: 5%;
 }
 
-.tituloCampo{
-  text-align: initial;
+.tituloCampo {
+    text-align: initial;
 }
 
-.botonForm:hover{
-  background-color: purple !important;
+.botonForm:hover {
+    background-color: purple !important;
+}
+
+#titolPagament {
+    text-align: center;
+    padding: 5%;
+    font-family: Montserrat-Medium;
+    font-size: 39px;
+    color: #555555;
+}
+
+.descripcionTitulo {
+    padding-top: 3%;
+}
+
+.descriptionP {
+    padding-top: 1%;
+}
+
+.import {
+    font-size: 40px;
+    padding-top: 5%;
+}
+
+.preu {
+    font-size: 60px;
+    padding-top: 2%;
+}
+
+.mainPagaments {
+    padding-bottom: 10%;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

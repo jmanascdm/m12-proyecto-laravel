@@ -10,7 +10,8 @@
 
     #tablaAutomatica_filter {
         text-align: center;
-        padding-right: 20%;
+        padding-right: 8.4%;
+        padding-top: 2.3%;
     }
 
     #tablaAutomatica_filter.label.input {
@@ -116,6 +117,7 @@
     }
 
     table {
+        text-align: center;
         width: 50%;
         padding: 1%;
         margin: 10px auto;
@@ -127,16 +129,60 @@
     }
 
     th {
-        text-align: left;
-        background-color: #333;
+        text-align: center;
+        background-color: #013660 ;
         color: #FFF;
     }
 
     .dataTables_wrapper .dataTables_filter input {
         padding: initial;
         width: 100%;
+        background-color:white;
     }
+    .dataTables_wrapper .dataTables_length select{
+        background-color:white;
+        width:100%;
+        text-align:center;
 
+    }
+    div#tablaAutomatica_length{
+        padding-left: 15%;
+        padding-bottom: 3%;
+    }
+    div#tablaAutomatica_filter label input{
+        text-align: center;
+        padding-right: 8.5%!important;
+    }
+    .odd{
+        background-color: #eff6fd;
+    }
+    button.buttons-excel{
+        width: 4.4%!important;
+        background-color: transparent;
+        border: none;
+    }
+    button.buttons-excel span{
+        font-size: 80px;
+        color: #013660;
+    }
+    button.buttons-excel span :hover{
+        color: orange
+    }
+    button.buttons-pdf{
+        width: 4.4%!important;
+        background-color: transparent;
+        border: none;
+    }
+    button.buttons-pdf span{
+        font-size: 80px;
+        color: #013660;
+    }
+    button.buttons-pdf span :hover{
+        color: orange
+    }
+    .buttons-collection{
+        width:5%;
+    }
 </style>
 @endpush
 
@@ -246,11 +292,12 @@
 
 <script>
     $(document).ready(function () {
+        $("tr:even").addClass("even");
         $('#tablaAutomatica').DataTable({
             lengthMenu: [5,10,25,50,100],
             responsive: true,
             language: {
-                searchPlaceholder: 'Buscar per ID',
+                searchPlaceholder: 'Buscar',
                 sSearch: '',
                 "decimal": "",
                 "emptyTable": "No hi han registres",
@@ -259,7 +306,7 @@
                 "infoFiltered": "(Filtrat de _MAX_ total registres)",
                 "infoPostFix": "",
                 "thousands": ",",
-                "lengthMenu": "Mostrar _MENU_ resgistres",
+                "lengthMenu": "Mostrar resgistres _MENU_",
                 "loadingRecords": "Carregant...",
                 "processing": "Processant...",
                 "search": "Buscar:",
@@ -271,27 +318,22 @@
                     "previous": "Anterior"
                 }
             },
-            dom: 'Bfrtrip',
+            dom: 'Bflrtrip',
             buttons: [{
-                    extend: 'collection',
-                    text: 'Descarregar',
-                    className: 'btn-outline-secondary',
-                    buttons: [{
                             extend: 'excelHtml5',
-                            className: 'btn-outline-secondary',
+                            text: '<i class="far fa-file-excel"></i>',
                             exportOptions: {
                                 columns: ':visible'
                             }
                         },
                         {
                             extend: 'pdfHtml5',
-                            className: 'btn-outline-secondary',
+                            text: '<i class="far fa-file-pdf"></i>',
                             exportOptions: {
                                 columns: ':visible'
                             }
                         }
-                    ]
-                },
+                        ,
                 {
                     extend: 'colvis',
                     className: 'btn-outline-secondary',

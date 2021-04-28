@@ -271,7 +271,7 @@
                     "previous": "Anterior"
                 }
             },
-            dom: 'Bfrtrip',
+            dom: 'Blfrtrip',
             buttons: [{
                     extend: 'collection',
                     text: 'Descarregar',

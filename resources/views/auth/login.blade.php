@@ -54,28 +54,12 @@
                     @enderror
                 </div>
 
-                <div class="p-t-13 p-b-9">
-                    <label for="captcha-inp" class="txt1">
-                        Captcha
-                    </label>
-                </div>
-                <div id="captcha" class="wrap-input100 text-center">
-                    <div class="controls">
-                        <div class="row">
-                            <input class="user-text input100" placeholder="Escriu aqui" id="captcha-inp" name="captcha" type="text" required/>
-                        </div>
-                        <div class="row">
-                            <button class="refresh">Provar altre</button>
-                        </div>
-                        <div class="row">
-                            <button class="validate login100-form-btn botonForm">
-                                Entra
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <div class="g-recaptcha" data-sitekey="6Lf-Wb0aAAAAAIvniwskBL4euyHPxgMnA32beSfX"></div>                
 
                 <div class="container-login100-form-btn m-t-17">
+                    <button id="entrar" class="login100-form-btn botonForm">
+                        Entra
+                    </button>
                 </div>
             </form>
 
@@ -101,37 +85,36 @@
 
 @push('scripts')
 
+<script src="https://www.google.com/recaptcha/api.js?hl=ca" async defer></script>
+<!-- <script src="{{ asset('js/notifications/notifications.js') }}"></script>
 <script>
     $('button').click(function(e) {
         e.preventDefault();
         return false;
     })
-</script>
-<script src="{{ asset('js/captcha/client_captcha.js') }}" defer></script>
-<script src="{{ asset('js/notifications/notifications.js') }}"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const errorNotf = window.createNotification({
-        theme: 'error',
-        showDuration: 3000
-    });
-    
-    var captcha = new $.Captcha({
-		onFailure: function() {
-            errorNotf({
-                title: 'Error!',
-                message: 'Captcha incorrecte',
-            });
-        },
-        
-		onSuccess: function() {
-            $('form').submit();
-		}
-	});
 
-	captcha.generate();
-})
-</script>
+    var captcha = false;
+
+    function captchaSuccess() {
+        captcha = true;
+    }
+
+    $('#entrar').click(function() {
+        const errNo = window.createNotification({
+            theme: 'error',
+            showDuration: 3000
+        });
+
+        if(captcha) {
+            documents.forms[0].submit();
+        } else {
+            errNo({
+                title: 'Error!',
+                message: 'Captcha invàlid',
+            });
+        }
+    })
+</script> -->
 
 @endpush
 

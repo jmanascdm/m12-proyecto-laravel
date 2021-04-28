@@ -17,7 +17,7 @@
         });
     </script>
 
-	<h2>Captcha</h2>
+	<h2>Captcha 1</h2>
     <!-- https://www.bestjquery.com/2017/07/clientsidecaptcha-pure-client-side-javascript-captcha/ -->
 	<div id="captcha">
 		<div class="controls">
@@ -42,4 +42,13 @@
         captcha.generate();
     });
     </script>
+
+    <h2>Captcha Google</h2>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <form>
+        <div class="g-recaptcha" data-sitekey="6Lf-Wb0aAAAAAIvniwskBL4euyHPxgMnA32beSfX"></div>
+        <br/>
+        <button>Enviar</button>
+    </form>
+
 @endsection

@@ -30,4 +30,5 @@ class DatatableController extends Controller
         if($account->delete()) return true;
         else return false;
     }
+
 }

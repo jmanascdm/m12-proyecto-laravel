@@ -297,7 +297,11 @@
             lengthMenu: [5,10,25,50,100],
             responsive: true,
             language: {
+<<<<<<< HEAD
                 searchPlaceholder: 'Buscar',
+=======
+                searchPlaceholder: 'Buscar...',
+>>>>>>> a5a9dd1ff323d7bd644c00c774feb9ee6da1f620
                 sSearch: '',
                 "decimal": "",
                 "emptyTable": "No hi han registres",
@@ -318,7 +322,11 @@
                     "previous": "Anterior"
                 }
             },
+<<<<<<< HEAD
             dom: 'Bflrtrip',
+=======
+            dom: 'Brtrlip',
+>>>>>>> a5a9dd1ff323d7bd644c00c774feb9ee6da1f620
             buttons: [{
                             extend: 'excelHtml5',
                             text: '<i class="far fa-file-excel"></i>',

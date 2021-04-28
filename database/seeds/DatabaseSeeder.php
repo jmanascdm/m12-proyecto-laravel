@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        DB::table('accounts')->insert([
+            'establishment' => 12345,
+            'account' => Str::random(10),
+            'fuc' => Str::random(10),
+            'key' => Str::random(10),
+            'created_by' => 1,
+            'updated_by' => 1,
+        ]);
     }
 }

@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'TestController@index')->name('test');
+Route::post('/payment', 'HomeController@getPayment')->name('hm-payment');
+Route::post('/payments', 'HomeController@getPayments')->name('hm-payments');
 
 Route::get('/datatable', 'DatatableController@index')->name('datatable');
 Route::post('/datatable/delete', 'DatatableController@delete')->name('dt-delete');
+
+Route::get('/test', 'TestController@index')->name('test');

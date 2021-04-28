@@ -37,10 +37,6 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/miCss.css') }}" rel="stylesheet">
-
-    <!-- VENTANA DE LOGIN -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/login/util.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/login/main.css') }}">
     @stack('styles')
 </head>
 

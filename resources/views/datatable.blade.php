@@ -250,7 +250,7 @@
             lengthMenu: [5,10,25,50,100],
             responsive: true,
             language: {
-                searchPlaceholder: 'Buscar per ID',
+                searchPlaceholder: 'Buscar...',
                 sSearch: '',
                 "decimal": "",
                 "emptyTable": "No hi han registres",

@@ -60,3 +60,189 @@ a.iniciarSesion:hover {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
+/* Data table */
+
+#tablaAutomatica_wrapper {
+    text-align: center;
+}
+
+#tablaAutomatica_filter {
+    text-align: center;
+    padding-right: 8.4%;
+    padding-top: 2.3%;
+}
+
+#tablaAutomatica_filter.label.input {
+    width: 100%;
+}
+
+#tablaAutomatica_info {
+    padding-left: 30%;
+}
+
+#tablaAutomatica_paginate {
+    padding-right: 30%;
+}
+
+div.dt-buttons {
+    text-align: center;
+}
+
+main span {
+    padding-right: 100px;
+
+}
+
+main span:hover {
+    background-color: none;
+    color: orange;
+}
+
+img {
+    max-width: 87px;
+    max-height: 87px;
+}
+
+.btn {
+    border: none;
+    padding: 18px 58px 18px 19px;
+    text-transform: capitalize;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    background-size: 10%;
+    transition: 0.6s;
+    box-shadow: 0px 7px 21px 0px rgba(0, 0, 0, 0.12);
+    background-color: #00A19B;
+}
+
+body {
+    background-color: azure;
+    font-size: 1em;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: cadetblue;
+    padding: 4%;
+}
+
+p {
+    text-align: center;
+}
+
+form {
+    width: 60%;
+    padding: 2%;
+    margin: 10px auto;
+}
+
+fieldset {
+    background-color: #FFF;
+}
+
+label,
+input {
+    display: block;
+    width: 48%;
+    height: 30px;
+    padding: 1%;
+    margin-bottom: 10px;
+}
+
+label {
+    float: left;
+}
+
+input {
+    float: right;
+    border: none;
+    box-shadow: 0 0 3px #AAA;
+}
+
+input[type="submit"] {
+    width: 98%;
+    padding-bottom: 3%;
+    background-color: #00A19B;
+    color: #FFF;
+}
+
+input[type="submit"]:hover {
+    background-color: orange;
+}
+
+table {
+    text-align: center;
+    width: 50%;
+    padding: 1%;
+    margin: 10px auto;
+}
+
+td {
+    box-shadow: 0 0 3px #CCC;
+    background-color: #FFF;
+}
+
+th {
+    text-align: center;
+    background-color: #013660 ;
+    color: #FFF;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    padding: initial;
+    width: 100%;
+    background-color:white;
+}
+.dataTables_wrapper .dataTables_length select{
+    background-color:white;
+    width:100%;
+    text-align:center;
+
+}
+div#tablaAutomatica_length{
+    padding-left: 15%;
+    padding-bottom: 3%;
+}
+div#tablaAutomatica_filter label input{
+    text-align: center;
+    padding-right: 8.5%!important;
+}
+.odd{
+    background-color: #eff6fd;
+}
+button.buttons-excel{
+    width: 4.4%!important;
+    background-color: transparent;
+    border: none;
+}
+button.buttons-excel span{
+    font-size: 80px;
+    color: #013660;
+}
+button.buttons-excel span :hover{
+    color: orange
+}
+button.buttons-pdf{
+    width: 4.4%!important;
+    background-color: transparent;
+    border: none;
+}
+button.buttons-pdf span{
+    font-size: 80px;
+    color: #013660;
+}
+button.buttons-pdf span :hover{
+    color: orange
+}
+.buttons-collection{
+    width:5%;
+    border-radius: 11px;
+}
+.dt-button-collection{
+    text-align:center;
+}

@@ -83,10 +83,12 @@
     </div>
 </div>
 
+@endsection
+
 @push('scripts')
 
 <script src="https://www.google.com/recaptcha/api.js?hl=ca" async defer></script>
-<!-- <script src="{{ asset('js/notifications/notifications.js') }}"></script>
+<script src="{{ asset('js/notifications/notifications.js') }}"></script>
 <script>
     $('button').click(function(e) {
         e.preventDefault();
@@ -114,8 +116,6 @@
             });
         }
     })
-</script> -->
+</script>
 
 @endpush
-
-@endsection

@@ -192,22 +192,6 @@
 
 @section('content')
 
-<!-- <h1>Afegir Compte</h1>
-<form method="post" enctype="multipart/form-data" action="tablaComptes">
-    <label for="id">Id</label>
-    <input type="text" name="id" required><br><br>
-    <label for="establiment">Establiment</label>
-    <input type="text" name="establiment" required><br><br>
-    <label for="compte">Compte</label>
-    <input type="text" name="compte" required><br><br>
-    <label for="fuc">Fuc</label>
-    <input type="text" name="fuc" required><br><br>
-    <label for="clau">Clau</label>
-    <input type="text" name="clau" required><br><br><br>
-
-    <input type=submit value="Enviar" name="subir"><br>
-</form> -->
-
 <div style="padding-top: 4%; padding-bottom: 4%;">
     <table id="tablaAutomatica" style="text-align: center; width: 70%;">
         <thead>

@@ -54,7 +54,7 @@
                     @enderror
                 </div>
 
-                <div class="g-recaptcha" data-sitekey="6Lf-Wb0aAAAAAIvniwskBL4euyHPxgMnA32beSfX"></div>                
+                <div class="g-recaptcha" data-callback="captchaSuccess" data-sitekey="6Lf-Wb0aAAAAAIvniwskBL4euyHPxgMnA32beSfX"></div>                
 
                 <div class="container-login100-form-btn m-t-17">
                     <button id="entrar" class="login100-form-btn botonForm">
@@ -108,7 +108,7 @@
         });
 
         if(captcha) {
-            documents.forms[0].submit();
+            document.forms[0].submit();
         } else {
             errNo({
                 title: 'Error!',

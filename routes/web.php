@@ -19,7 +19,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/payment', 'HomeController@getPayment')->name('hm-payment');
 Route::post('/payments', 'HomeController@getPayments')->name('hm-payments');
 
-Route::get('/datatable', 'DatatableController@index')->name('datatable');
-Route::post('/datatable/delete', 'DatatableController@delete')->name('dt-delete');
+Route::get('/admin/accounts', 'AccountsController@getAccounts')->name('admin.accounts');
+Route::post('/account/edit', 'AccountsController@setAccount')->name('account.edit');
+Route::post('/account/delete', 'AccountsController@deleteAccount')->name('account.delete');
 
 Route::get('/test', 'TestController@index')->name('test');

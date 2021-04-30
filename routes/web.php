@@ -19,8 +19,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/payment', 'HomeController@getPayment')->name('hm-payment');
 Route::post('/payments', 'HomeController@getPayments')->name('hm-payments');
 
-Route::get('/admin/accounts', 'AccountsController@getAccounts')->name('admin.accounts');
+Route::get('/admin/accounts', 'DataTables\AccountsController@getAccounts')->name('admin.accounts');
 Route::post('/account/edit', 'AccountsController@setAccount')->name('account.edit');
 Route::post('/account/delete', 'AccountsController@deleteAccount')->name('account.delete');
+
+Route::get('/admin/payments', 'DataTables\PaymentsController@getPayments')->name('admin.payments');
+Route::post('/payment/delete', 'DataTables\PaymentsController@deletePayment')->name('payment.delete');
 
 Route::get('/test', 'TestController@index')->name('test');

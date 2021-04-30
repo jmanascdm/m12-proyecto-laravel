@@ -34,73 +34,15 @@
             @endforeach
         </tbody>
     </table>
-    <script>
-        $('.deletebtn').click(function(e) {
-            e.preventDefault();
-
-            const successNotf = window.createNotification({
-                theme: 'success',
-			    showDuration: 3000
-            });
-
-            const errorNotf = window.createNotification({
-                theme: 'error',
-			    showDuration: 3000
-            });
-            
-            if(confirm("Estas segur que vols eliminar el registre?")) {
-                var id = $(this).attr('dt-id');
-                if(isNaN(id)) console.log("ID invàlid: "+id);
-                else {
-                    $.ajax({
-                        type: 'post',
-                        url: '/',
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            "id": id,
-                        },
-                        success: function(e) {
-                            $('#'+e).remove();
-                            successNotf({
-                                title: 'Fet!',
-                                message: 'Registre eliminat correctament',
-                            });
-                        }, error: function() {
-                            errorNotf({
-                                title: 'Error!',
-                                message: 'No s\'ha pogut eliminar el registre',
-                            });
-                        }
-                    })
-                }
-            }
-        })
-    </script>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <textarea id="editfield">
-        </textarea>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="submit" class="btn btn-primary">Save changes</button>
-    </div>
-    </div>
-</div>
-</div>
+@endsection
 
 @push('scripts')
+<!-- Notificacions -->
+<script src="{{ asset('js/notifications/notifications.js') }}"></script>
+
+<!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
@@ -110,8 +52,6 @@
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-<script src="{{ asset('js/notifications/notifications.js') }}"></script>
-<!-- Datatable -->
 <script>
     $(document).ready(function () {
         $("tr:even").addClass("even");
@@ -166,49 +106,49 @@
     });
 </script>
 
-<!-- Editar campos -->
-<script src="https://cdn.tiny.cloud/1/21wmjgvo3uldi678zp5poa3pc2pn0n8cu7rw8iwmp8c3r3n9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-tinymce.init({
-    selector: 'textarea',
-    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-    toolbar_mode: 'floating',
-});
-</script>
-<script>
-    var textarea;
-    var column;
-    var $td;
-    var id;
+<!-- Editar camps -->
 
-    $('td').dblclick(function() {
-        $('#exampleModalCenter').modal();
-        tinyMCE.activeEditor.setContent($(this).html());
-        column = $(this).attr("dt-col");
-        id = $(this).attr("dt-id");
-        $td = $(this);
-    });
 
-    $('#submit').click(function() {
-        textarea = tinyMCE.activeEditor.getContent();
-        $.ajax({
-            type: 'POST',
-            url: '{{ route("account.edit") }}',
-            data: {
-                '_token': "{{ csrf_token() }}",
-                'id': id,
-                'column': column,
-                'value': textarea,
-            }, success: function() {
-                $td.html(textarea)
-                alert("success");
-            }, error: function() {
-                alert("error");
+<!-- Eliminar registres -->
+<script>
+    $('.deletebtn').click(function() {
+        const successNotf = window.createNotification({
+            theme: 'success',
+            showDuration: 3000
+        });
+
+        const errorNotf = window.createNotification({
+            theme: 'error',
+            showDuration: 3000
+        });
+        
+        if(confirm("Estas segur que vols eliminar el registre?")) {
+            var id = $(this).attr('dt-id');
+            if(isNaN(id)) console.log("ID invàlid: "+id);
+            else {
+                $.ajax({
+                    type: 'post',
+                    url: '/',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id,
+                    },
+                    success: function(e) {
+                        $('#'+e).remove();
+                        successNotf({
+                            title: 'Fet!',
+                            message: 'Registre eliminat correctament',
+                        });
+                    }, error: function() {
+                        errorNotf({
+                            title: 'Error!',
+                            message: 'No s\'ha pogut eliminar el registre',
+                        });
+                    }
+                })
             }
-        })
+        }
     })
 </script>
 
 @endpush
-
-@endsection

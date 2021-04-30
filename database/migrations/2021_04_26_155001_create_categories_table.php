@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned();
+            $table->softDeletes();
 
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');

@@ -24,10 +24,10 @@ class CreatePaymentsTable extends Migration
             $table->float('price');
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('enabled');
             $table->timestamps();
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned();
+            $table->softDeletes();
 
             $table->foreign('id_category')->references('id')->on('categories');
             $table->foreign('id_account')->references('id')->on('accounts');

@@ -22,8 +22,8 @@ class PaymentsController extends Controller
     public function index()
     {
         $items = DB::select("SELECT payments.id as id, categories.category as id_category, accounts.account as id_account,
-        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`, `enabled`,
-        payments.created_at, payments.updated_at, users1.name as created_by, users2.name as updated_by
+        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`, payments.created_at,
+        payments.updated_at, users1.name as created_by, users2.name as updated_by, payments.deleted_at
         FROM payments
         JOIN categories ON id_category = categories.id
         JOIN accounts ON id_account = accounts.id

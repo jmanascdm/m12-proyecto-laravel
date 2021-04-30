@@ -149,6 +149,10 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
 }
 
+.nav-menu span, .nav-menu a {
+  cursor: pointer;
+}
+
 .nav-menu > ul > li {
   position: relative;
   white-space: nowrap;
@@ -156,7 +160,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a {
-  display: inline;
+  display: inline-block;
+  width: 100%;
   position: relative;
   color: #354144;
   transition: 0.3s;

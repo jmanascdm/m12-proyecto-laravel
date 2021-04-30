@@ -63,21 +63,21 @@
                 </div>
             </form>
 
-                <div class="container-login100-form-btn m-t-17">
-                    <button class="login100-form-btn" style="background-color: white;color:black">
-                        <img src="{{ asset('img/icons/icon-google.png') }}" alt="GOOGLE" style="padding-right: 10px;">
-                        Google
-                    </button>
-                </div>
-                <div class="w-full text-center p-t-55 hoverForm">
-                    <span class="txt2">
-                        Encara no tens compte?
-                    </span>
+            <div class="container-login100-form-btn m-t-17">
+                <button class="login100-form-btn" style="background-color: white;color:black">
+                    <img src="{{ asset('img/icons/icon-google.png') }}" alt="GOOGLE" style="padding-right: 10px;">
+                    Google
+                </button>
+            </div>
+            <div class="w-full text-center p-t-55 hoverForm">
+                <span class="txt2">
+                    Encara no tens compte?
+                </span>
 
-                    <a href="{{ route('register') }}" class="txt2 bo1">
-                        Crea un compte
-                    </a>
-                </div>
+                <a href="{{ route('register') }}" class="txt2 bo1">
+                    Crea un compte
+                </a>
+            </div>
                 
         </div>
     </div>

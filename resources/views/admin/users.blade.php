@@ -14,7 +14,6 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Email</th>
-                <th>Habilitat</th>
                 <th>Creat el</th>
                 <th>Actualitzat el</th>
                 <th>Creat per</th>
@@ -25,14 +24,13 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-type="number" dt-col="id" dt-col_ca="Id">{{ $item->id }}</td>
-                <td dt-type="text" dt-col="name" dt-col_ca="nom">{{ $item->name }}</td>
-                <td dt-type="email" dt-col="email" dt-col_ca="Email">{{ $item->email }}</td>
-                <td dt-type="checkbox" dt-col="deleted_at" dt-col_ca="Habilitat">@if($item->deleted_at == null) Sí @else No @endif</td>
-                <td dt-type="datetime" dt-col="created_at" dt-col_ca="Creat el">{{ $item->created_at }}</td>
-                <td dt-type="datetime" dt-col="updated_at" dt-col_ca="Actualitzat el">{{ $item->updated_at }}</td>
-                <td dt-type="text" dt-col="created_by" dt-col_ca="Creat per">{{ $item->created_by }}</td>
-                <td dt-type="text" dt-col="updated_by" dt-col_ca="Actualitzat per">{{ $item->updated_by }}</td>
+                <td dt-col="id">{{ $item->id }}</td>
+                <td dt-col="name">{{ $item->name }}</td>
+                <td dt-col="email">{{ $item->email }}</td>
+                <td dt-col="created_at">{{ $item->created_at }}</td>
+                <td dt-col="updated_at">{{ $item->updated_at }}</td>
+                <td dt-col="created_by">{{ $item->created_by }}</td>
+                <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 <td>
                     <button dt-tb="user" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
                     <button dt-id="{{ $item->id }}" class="btn btn-warning editbtn"><i class="fas fa-edit"></i></button>
@@ -44,7 +42,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">
@@ -55,6 +53,18 @@
     </div>
     <div class="modal-body">
         <form>
+            <div class="form-group row">
+                <label for="name" class="col-sm-4 col-form-label">Nom</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="name" name="name"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-4 col-form-label">Email</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="email" name="email"/>
+                </div>
+            </div>
         </form>
     </div>
     <div class="modal-footer">

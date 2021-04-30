@@ -48,10 +48,10 @@
                     <a href="{{ route('login') }}" class="iniciarSesion"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
                 @else
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    <span class="dropdown-toggle" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
-                    </button>
+                    </span>
                     <div class="dropdown-menu">
                         <h6 class="dropdown-header">Zona admin</h6>
                         <a class="dropdown-item" href="{{ route('admin.accounts') }}">Comptes</a>

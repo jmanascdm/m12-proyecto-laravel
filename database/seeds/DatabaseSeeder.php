@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::talbe('users')->insert([
+            'name' => "admin",
+            'password' => "$2y$10$8vHIUdlUxkfvS/g./L5.wOYPKBjp8IqNZIa5uAv66ZzkzEL2YMVHG",
+            'email' => "test@correo.com",
+        ]);
+        
         DB::table('accounts')->insert([
             'establishment' => 12345,
             'account' => Str::random(10),

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use DB;
 
 class CreateAccountsTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateAccountsTable extends Migration
             $table->string('account',150);
             $table->string('fuc',150);
             $table->string('key',50);
-            $table->timestamps();
+            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned();
             $table->softDeletes();

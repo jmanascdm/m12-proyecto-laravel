@@ -1,5 +1,21 @@
 <!-- Notificacions -->
 <script src="{{ asset('js/notifications/notifications.js') }}"></script>
+<script>
+const successNotf = window.createNotification({
+    theme: 'success',
+    showDuration: 5000
+});
+
+const errorNotf = window.createNotification({
+    theme: 'error',
+    showDuration: 5000
+});
+
+const infoNotf = window.createNotification({
+    theme: 'info',
+    showDuration: 5000
+});
+</script>
 
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -62,87 +78,62 @@
     });
 </script>
 
-<!-- Editar camps -->
+<!-- Editor textarea -->
 <script src="https://cdn.tiny.cloud/1/21wmjgvo3uldi678zp5poa3pc2pn0n8cu7rw8iwmp8c3r3n9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
+</script>
+
+<!-- Editar camps -->
+<script>
     $('.editbtn').click(function() {
-        var $form = $('#edit_modal .modal-body form');
-        $form.html("");
-
         var id = $(this).attr("dt-id");
-        var col,col_ca,type,content,value;
-        $(`#${id}`).find("td").each(function(index,element) {
-            col = $(element).attr("dt-col");
-            if(col != "id" && col != "created_at" && col != "updated_at" && col != "created_by" && col != "updated_by" && col != "deleted_at") {
-                col_ca = $(element).attr("dt-col_ca");
-                type = $(element).attr("dt-type");
-                value = $(element).html();
-
-                if(type == "textarea")
-                    content = `<div class="form-group row">
-                                <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
-                                <div class="col-sm-8">
-                                <textarea class="form-control" id="${col}" name="${col}">${value}</textarea>
-                                </div>
-                                </div>`;
-                else
-                    content = `<div class="form-group row">
-                                <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
-                                <div class="col-sm-8">
-                                <input type="${type}" class="form-control" id="${col}" name="${col}" value="${value}">
-                                </div>
-                                </div>`;
-
-                $form.append(content);
-                if(type == "checkbox") if(value == " Sí ")
-                    $form.find("input").last().attr("checked","true");
-            }
-        });
-        $form.find("div.form-group:last-child").remove();
-        $('#edit_modal').modal();
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            toolbar_mode: 'floating',
-        });
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El ID proporcionat no és vàlid',
+            });
+        } else {
+            $('#modal .form-control').each(function(index,element) {
+                if($(element)[0].localName == "textarea") {
+                    tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
+                }
+                else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
+            });
+            $('#modal').modal();
+        }
     })
 </script>
 
 <!-- Eliminar registres -->
 <script>
-    $('.deletebtn').click(function(e) {
-        e.preventDefault();
-
-        const successNotf = window.createNotification({
-            theme: 'success',
-            showDuration: 3000
-        });
-
-        const errorNotf = window.createNotification({
-            theme: 'error',
-            showDuration: 3000
-        });
-        
+    $('.deletebtn').click(function() {        
         if(confirm("Estas segur que vols eliminar el registre?")) {
             var id = $(this).attr('dt-id');
             var table = $(this).attr('dt-tb');
             if(isNaN(id)) {
-                console.log("ID invàlid: "+id);
                 errorNotf({
                     title: 'Error!',
-                    message: 'El ID proporcionat no és vàlid',
+                    message: `El ID proporcionat (${id}) no és vàlid`,
                 });
-            }
-            else {
+            } else {
                 $.ajax({
-                    type: 'post',
+                    type: 'POST',
                     url: `/${table}/delete`,
                     data: {
-                        "_token": "{{ csrf_token() }}",
-                        "id": id,
-                    },
-                    success: function(e) {
-                        $(`#${e}`).remove();
+                        '_token': "{{ csrf_token() }}",
+                        'id': id,
+                    }, beforeSend: function() {
+                        infoNotf({
+                            title: 'Processant',
+                            message: 'S\'està processant la petició',
+                        });
+                    }, success: function() {
+                        $(`#${id}`).remove();
                         successNotf({
                             title: 'Fet!',
                             message: 'Registre eliminat correctament',

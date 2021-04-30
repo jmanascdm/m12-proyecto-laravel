@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use DB;
 
 class CreatePaymentsTable extends Migration
 {
@@ -24,7 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->float('price');
             $table->date('start_date');
             $table->date('end_date');
-            $table->timestamps();
+            $table->timestamps()->default(DB::raw('CURRENT_TIMESTAMP'));;
             $table->bigInteger('created_by')->unsigned();
             $table->bigInteger('updated_by')->unsigned();
             $table->softDeletes();

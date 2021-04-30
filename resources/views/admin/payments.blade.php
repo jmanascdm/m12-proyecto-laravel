@@ -154,32 +154,32 @@
         $form.html("");
 
         var id = $(this).attr("dt-id");
-        var col,col_ca,type,conent,value;
+        var col,col_ca,type,content,value;
         $(`#${id}`).find("td").each(function(index,element) {
             col = $(element).attr("dt-col");
             if(col != "id" && col != "created_at" && col != "updated_at") {
-            col_ca = $(element).attr("dt-col_ca");
-            type = $(element).attr("dt-type");
-            value = $(element).html();
+                col_ca = $(element).attr("dt-col_ca");
+                type = $(element).attr("dt-type");
+                value = $(element).html();
 
-            if(type == "textarea")
-                content = `<div class="form-group row">
-                            <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
-                            <div class="col-sm-8">
-                            <textarea class="form-control" id="${col}" name="${col}">${value}</textarea>
-                            </div>
-                            </div>`;
-            else
-                content = `<div class="form-group row">
-                            <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
-                            <div class="col-sm-8">
-                            <input type="${type}" class="form-control" id="${col}" name="${col}" value="${value}">
-                            </div>
-                            </div>`;
+                if(type == "textarea")
+                    content = `<div class="form-group row">
+                                <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
+                                <div class="col-sm-8">
+                                <textarea class="form-control" id="${col}" name="${col}">${value}</textarea>
+                                </div>
+                                </div>`;
+                else
+                    content = `<div class="form-group row">
+                                <label for="${col}" class="col-sm-4 col-form-label">${col_ca}</label>
+                                <div class="col-sm-8">
+                                <input type="${type}" class="form-control" id="${col}" name="${col}" value="${value}">
+                                </div>
+                                </div>`;
 
-            $form.append(content);
-            if(type == "checkbox") if(value == " Sí ")
-                $form.find("input").last().attr("checked","true");
+                $form.append(content);
+                if(type == "checkbox") if(value == " Sí ")
+                    $form.find("input").last().attr("checked","true");
             }
         });
         $form.find("div.form-group:last-child").remove();
@@ -190,7 +190,6 @@
             toolbar_mode: 'floating',
         });
     })
-
 </script>
 
 <!-- Eliminar registres -->

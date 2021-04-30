@@ -29,7 +29,6 @@ a.iniciarSesion:hover {
 #titolPagament {
     text-align: center;
     padding: 5%;
-    font-family: Montserrat-Medium;
     font-size: 39px;
     color: #555555;
 }
@@ -138,7 +137,6 @@ input {
     display: block;
     height: 30px;
     padding: 1%;
-    margin-bottom: 10px;
 }
 
 label {
@@ -148,7 +146,6 @@ label {
 input {
     float: right;
     border: none;
-    box-shadow: 0 0 3px #AAA;
 }
 
 input[type="submit"] {

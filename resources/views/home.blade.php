@@ -3,19 +3,20 @@
 @section('content')
 <!-- ======= Main Section ======= -->
 <div class="mainPagaments container">
-    <h1 id="titolPagament">Pàgina de Pagaments</h1>
+    <h1 id="titolPagament">Pagaments INS Camí de Mar</h1>
     <form id="pagaments">
         <div class="row">
             <div class="col-md-6">
-                <label for="category" class="form-label">Sel·lecciona la categoria</label>
+                <label for="category" class="form-label">Sel·lecciona una categoria</label>
                 <select class="custom-select my-1 mr-sm-2" id="category">
+                    <option selected disabled>Sel·lecciona una categoria</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                     @endforeach
-                    <option selected disabled>Sel·lecciona una categoria</option>
                 </select>
                 <script>
                     $('#category').on("change",function() {
+                        $('#payment').html("<option selected disabled>Sel·lecciona un pagament</option>");
                         var id = $(this).val();
                         const errorNotf = window.createNotification({
                             theme: 'error',
@@ -35,7 +36,7 @@
                                     id: id,
                                 }, success: function(e) {
                                     for(const payment of e) {
-                                        $('#payment').prepend(`<option value="${payment.id}">${payment.title}</option>`)
+                                        $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
                                     }
                                 }, error: function() {
                                     alert("error")
@@ -46,7 +47,7 @@
                 </script>
             </div>
             <div class="col-md-6">
-                <label for="payment" class="form-label">Opció de pagament</label>
+                <label for="payment" class="form-label">Sel·lecciona un pagament</label>
                 <select class="custom-select my-1 mr-sm-2" id="payment">
                     <option selected disabled>Sel·lecciona un pagament</option>
                 </select>

@@ -136,7 +136,6 @@ fieldset {
 label,
 input {
     display: block;
-    width: 48%;
     height: 30px;
     padding: 1%;
     margin-bottom: 10px;

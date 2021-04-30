@@ -73,7 +73,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-primary">Guardar canvis</button>
+        <button type="button" class="btn btn-success">Guardar canvis</button>
     </div>
     </div>
 </div>

@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function getPayments(Request $request)
     {
         $id = $request->id;
-        $payments = Payment::select('id','title')->where("id_category",$id)->where("enabled",1)->get();
+        $payments = Payment::select('id','title')->where("id_category",$id)->where("deleted_at",null)->get();
 
         return $payments;
     }
@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function getPayment(Request $request)
     {
         $id = $request->id;
-        $payments = Payment::select('title','description','price')->where("id",$id)->where("enabled",1)->get();
+        $payments = Payment::select('title','description','price')->where("id",$id)->where("deleted_at",null)->get();
 
         return $payments;
     }

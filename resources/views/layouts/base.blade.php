@@ -89,6 +89,11 @@
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-sticky/jquery.sticky.js') }}"></script>
+    <script src="{{ asset('vendor/counterup/counterup.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ asset('js/main.js') }}"></script>
 
     @stack('scripts')
 </body>

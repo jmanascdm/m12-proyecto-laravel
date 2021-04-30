@@ -42,7 +42,7 @@
                 <td dt-type="number" dt-col="price" dt-col_ca="Preu">{{ $item->price }}</td>
                 <td dt-type="date" dt-col="start_date" dt-col_ca="Data inici">{{ $item->start_date }}</td>
                 <td dt-type="date" dt-col="end_date" dt-col_ca="Data final">{{ $item->end_date }}</td>
-                <td dt-type="checkbox" dt-col="state" dt-col_ca="Activat">@if($item->state == 1) Sí @else No @endif</td>
+                <td dt-type="checkbox" dt-col="enabled" dt-col_ca="Activat">@if($item->enabled == 1) Sí @else No @endif</td>
                 <td dt-type="datetime" dt-col="created_at" dt-col_ca="Creat el">{{ $item->created_at }}</td>
                 <td dt-type="datetime" dt-col="updated_at" dt-col_ca="Actualitzat el">{{ $item->updated_at }}</td>
                 <td dt-type="text" dt-col="created_by" dt-col_ca="Creat per">{{ $item->created_by }}</td>

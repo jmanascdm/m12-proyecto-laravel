@@ -21,12 +21,12 @@
         </thead>
         <tbody>
             @foreach($result as $item)
-            <tr id="<?= $item->id ?>">
-                <td><?= $item->id ?></td>
-                <td><?= $item->establishment ?></td>
-                <td><?= $item->account ?></td>
-                <td><?= $item->fuc ?></td>
-                <td><?= $item->key ?></td>
+            <tr id="{{ $item->id }}">
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->establishment }}</td>
+                <td>{{ $item->account }}</td>
+                <td>{{ $item->fuc }}</td>
+                <td>{{ $item->key }}</td>
                 <td>
                     <form>
                         <button dt-id="{{ $item->id }}" class="deletebtn"><i class="fas fa-trash"></i></button>

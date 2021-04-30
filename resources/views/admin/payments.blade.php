@@ -22,8 +22,8 @@
                 <th>Data inici</th>
                 <th>Data final</th>
                 <th>Activat</th>
-                <th>Creat en</th>
-                <th>Actualitzat en</th>
+                <th>Creat el</th>
+                <th>Actualitzat el</th>
                 <th>Creat per</th>
                 <th>Actualitzat per</th>
                 <th>Accions</th>
@@ -32,24 +32,24 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-type="number" dt-col="id" dt-col_ca="Id"><?= $item->id ?></td>
-                <td dt-type="" dt-col="id_category" dt-col_ca="Categoria"><?= $item->id_category ?></td>
-                <td dt-type="" dt-col="id_account" dt-col_ca="Compte"><?= $item->id_account ?></td>
-                <td dt-type="" dt-col="level" dt-col_ca="Nivell"><?= $item->level ?></td>
-                <td dt-type="" dt-col="order" dt-col_ca="Comanda"><?= $item->order ?></td>
-                <td dt-type="" dt-col="title" dt-col_ca="Títol"><?= $item->title ?></td>
-                <td dt-type="textarea" dt-col="description" dt-col_ca="Descripció"><?= $item->description ?></td>
-                <td dt-type="number" dt-col="price" dt-col_ca="Preu"><?= $item->price ?></td>
-                <td dt-type="date" dt-col="start_date" dt-col_ca="Data inici"><?= $item->start_date ?></td>
-                <td dt-type="date" dt-col="end_date" dt-col_ca="Data final"><?= $item->end_date ?></td>
+                <td dt-type="number" dt-col="id" dt-col_ca="Id">{{ $item->id }}</td>
+                <td dt-type="text" dt-col="id_category" dt-col_ca="Categoria">{{ $item->id_category }}</td>
+                <td dt-type="text" dt-col="id_account" dt-col_ca="Compte">{{ $item->id_account }}</td>
+                <td dt-type="text" dt-col="level" dt-col_ca="Nivell">{{ $item->level }}</td>
+                <td dt-type="text" dt-col="order" dt-col_ca="Comanda">{{ $item->order }}</td>
+                <td dt-type="text" dt-col="title" dt-col_ca="Títol">{{ $item->title }}</td>
+                <td dt-type="textarea" dt-col="description" dt-col_ca="Descripció">{{ $item->description }}</td>
+                <td dt-type="number" dt-col="price" dt-col_ca="Preu">{{ $item->price }}</td>
+                <td dt-type="date" dt-col="start_date" dt-col_ca="Data inici">{{ $item->start_date }}</td>
+                <td dt-type="date" dt-col="end_date" dt-col_ca="Data final">{{ $item->end_date }}</td>
                 <td dt-type="checkbox" dt-col="state" dt-col_ca="Activat">@if($item->state == 1) Sí @else No @endif</td>
-                <td dt-type="" dt-col="created_at" dt-col_ca="Creat en"><?= $item->created_at ?></td>
-                <td dt-type="" dt-col="updated_at" dt-col_ca="Actualitzat en"><?= $item->updated_at ?></td>
-                <td dt-type="" dt-col="created_by" dt-col_ca="Creat per"><?= $item->created_by ?></td>
-                <td dt-type="" dt-col="updated_by" dt-col_ca="Actualitzat per"><?= $item->updated_by ?></td>
+                <td dt-type="datetime" dt-col="created_at" dt-col_ca="Creat el">{{ $item->created_at }}</td>
+                <td dt-type="datetime" dt-col="updated_at" dt-col_ca="Actualitzat el">{{ $item->updated_at }}</td>
+                <td dt-type="text" dt-col="created_by" dt-col_ca="Creat per">{{ $item->created_by }}</td>
+                <td dt-type="text" dt-col="updated_by" dt-col_ca="Actualitzat per">{{ $item->updated_by }}</td>
                 <td>
-                    <button dt-id="{{ $item->id }}" class="deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" class="editbtn"><i class="fas fa-edit"></i></button>
+                    <button dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
+                    <button dt-id="{{ $item->id }}" class="btn btn-warning editbtn"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -157,7 +157,7 @@
         var col,col_ca,type,content,value;
         $(`#${id}`).find("td").each(function(index,element) {
             col = $(element).attr("dt-col");
-            if(col != "id" && col != "created_at" && col != "updated_at") {
+            if(col != "id" && col != "created_at" && col != "updated_at" && col != "created_by" && col != "updated_by") {
                 col_ca = $(element).attr("dt-col_ca");
                 type = $(element).attr("dt-type");
                 value = $(element).html();

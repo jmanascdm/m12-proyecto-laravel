@@ -5,6 +5,7 @@ namespace App\Http\Controllers\DataTables;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Account;
+use DB;
 
 class AccountsController extends Controller
 {
@@ -18,9 +19,14 @@ class AccountsController extends Controller
         $this->middleware('auth');
     }
 
-    public function getAccounts()
+    public function index()
     {
-        $items = Account::all();
+        $items = DB::select("SELECT accounts.id AS id, `establishment`, `account`, `fuc`, `key`,
+        accounts.created_at, accounts.updated_at, users1.name as created_by, users2.name as updated_by
+        FROM accounts
+        JOIN users users1 ON accounts.created_by = users1.id
+        JOIN users users2 ON accounts.updated_by = users2.id;");
+
         return view('admin.accounts', compact('items'));
     }
 

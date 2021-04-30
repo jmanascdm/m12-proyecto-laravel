@@ -29,7 +29,7 @@
                         } else {
                             $.ajax({
                                 type: 'POST',
-                                url: '{{ route("hm-payments") }}',
+                                url: '{{ route("home.payments") }}',
                                 data: {
                                     '_token': "{{ csrf_token() }}",
                                     id: id,
@@ -66,7 +66,7 @@
                         } else {
                             $.ajax({
                                 type: 'POST',
-                                url: '{{ route("hm-payment") }}',
+                                url: '{{ route("home.payment") }}',
                                 data: {
                                     '_token': "{{ csrf_token() }}",
                                     id: id,

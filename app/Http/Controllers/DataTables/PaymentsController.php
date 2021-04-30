@@ -19,7 +19,7 @@ class PaymentsController extends Controller
         $this->middleware('auth');
     }
 
-    public function getPayments()
+    public function index()
     {
         $items = DB::select("SELECT payments.id as id, categories.category as id_category, accounts.account as id_account,
         `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`, `state`,

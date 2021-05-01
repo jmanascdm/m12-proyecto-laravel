@@ -88,27 +88,6 @@ const infoNotf = window.createNotification({
     });
 </script>
 
-<!-- Editar camps -->
-<script>
-    $('.editbtn').click(function() {
-        var id = $(this).attr("dt-id");
-        if(isNaN(id)) {
-            errorNotf({
-                title: 'Error!',
-                message: 'El ID proporcionat no és vàlid',
-            });
-        } else {
-            $('#modal .form-control').each(function(index,element) {
-                if($(element)[0].localName == "textarea") {
-                    tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
-                }
-                else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
-            });
-            $('#modal').modal();
-        }
-    })
-</script>
-
 <!-- Eliminar registres -->
 <script>
     $('.deletebtn').click(function() {        
@@ -146,6 +125,27 @@ const infoNotf = window.createNotification({
                     }
                 })
             }
+        }
+    })
+</script>
+
+<!-- Editar camps -->
+<script>
+    $('.editbtn').click(function() {
+        var id = $(this).attr("dt-id");
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El ID proporcionat no és vàlid',
+            });
+        } else {
+            $('#modal .form-control').each(function(index,element) {
+                if($(element)[0].localName == "textarea") {
+                    tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
+                }
+                else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
+            });
+            $('#modal').modal();
         }
     })
 </script>

@@ -7,8 +7,9 @@
 
 @section('content')
 
-<div style="padding-top: 4%; padding-bottom: 4%;">
-    <table id="tablaAutomatica" style="text-align: center; width: 70%;">
+<div>
+    <h1>Comptes</h1>
+    <table class="col-md-6" id="tablaAutomatica">
         <thead>
             <tr>
                 <th>Id</th>
@@ -95,6 +96,6 @@
 
 @push('scripts')
 
-@include('admin.scripts.scripts');
+@include('admin.scripts.scripts')
 
 @endpush

@@ -169,7 +169,7 @@ table {
 td {
     box-shadow: 0 0 3px #CCC;
     background-color: #FFF;
-    max-width: 150px;
+    max-width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

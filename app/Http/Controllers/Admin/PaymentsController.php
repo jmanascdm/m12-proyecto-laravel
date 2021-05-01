@@ -36,6 +36,22 @@ class PaymentsController extends Controller
         return view('admin.payments',compact('items'));
     }
 
+    public function getPayment(Request $request)
+    {
+        $id = $request->id;
+        $payment = Payment::select('title','description','price')->where("id",$id)->where("deleted_at",null)->get();
+
+        return $payment;
+    }
+
+    public function getPayments(Request $request)
+    {
+        $id = $request->id;
+        $payments = Payment::select('id','title')->where("id_category",$id)->where("deleted_at",null)->get();
+
+        return $payments;
+    }
+
     public function setPayment(Request $request)
     {
         $id = $request->id;

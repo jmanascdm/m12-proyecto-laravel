@@ -16,6 +16,7 @@
                 </select>
                 <script>
                     $('#category').on("change",function() {
+                        $('#payment_view').hide();
                         $('#payment').html("<option selected disabled>Sel·lecciona un pagament</option>");
                         var id = $(this).val();
                         const errorNotf = window.createNotification({
@@ -39,7 +40,10 @@
                                         $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
                                     }
                                 }, error: function() {
-                                    alert("error")
+                                    errorNotf({
+                                        title: 'Error!',
+                                        message: 'No s\'ha pogut processar la petició',
+                                    });
                                 }
                             })
                         }
@@ -77,7 +81,10 @@
                                     $('#description').html(e[0].description);
                                     $('#price').html(e[0].price+"€");
                                 }, error: function() {
-                                    alert("error")
+                                    errorNotf({
+                                        title: 'Error!',
+                                        message: 'No s\'ha pogut processar la petició',
+                                    });
                                 }
                             })
                         }
@@ -118,5 +125,21 @@
 @push('scripts')
 
 <script src="{{ asset('js/notifications/notifications.js') }}"></script>
+<script>
+const successNotf = window.createNotification({
+    theme: 'success',
+    showDuration: 5000
+});
+
+const errorNotf = window.createNotification({
+    theme: 'error',
+    showDuration: 5000
+});
+
+const infoNotf = window.createNotification({
+    theme: 'info',
+    showDuration: 5000
+});
+</script>
 
 @endpush

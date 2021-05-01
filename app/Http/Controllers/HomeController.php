@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Payment;
+use DB;
 
 class HomeController extends Controller
 {
@@ -15,24 +14,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = DB::select("SELECT categories.id, categories.category FROM categories
+        JOIN payments ON payments.id_category = categories.id
+        WHERE payments.deleted_at IS NULL
+        GROUP BY categories.id,categories.category;");
+
         return view('home',compact('categories'));
-    }
-
-    public function getPayments(Request $request)
-    {
-        $id = $request->id;
-        $payments = Payment::select('id','title')->where("id_category",$id)->where("deleted_at",null)->get();
-
-        return $payments;
-    }
-
-    public function getPayment(Request $request)
-    {
-        $id = $request->id;
-        $payments = Payment::select('title','description','price')->where("id",$id)->where("deleted_at",null)->get();
-
-        return $payments;
     }
 
 }

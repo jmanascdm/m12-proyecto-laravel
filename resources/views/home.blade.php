@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/notifications/notifications.css') }}">
+@endpush
+
 @section('content')
 <!-- ======= Main Section ======= -->
 <div class="mainPagaments container">

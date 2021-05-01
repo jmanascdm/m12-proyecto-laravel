@@ -9,6 +9,7 @@
 
 <div>
     <h1>Categories</h1>
+    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>
@@ -32,7 +33,7 @@
                 <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 <td>
                     <button dt-id="{{ $item->id }}" dt-tb="category" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" class="btn btn-warning editbtn"><i class="fas fa-edit"></i></button>
+                    <button dt-id="{{ $item->id }}" class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -45,7 +46,7 @@
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edita la categoria</h5>
+        <h5 class="modal-title" id="ModalLongTitle">una categoria</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -55,14 +56,15 @@
             <div class="form-group row">
                 <label for="category" class="col-sm-4 col-form-label">Nom</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="category" name="category"/>
+                    <input type="text" class="form-control" id="category" name="category" required/>
                 </div>
             </div>
+            <input type="hidden" class="form-control" id="id" name="id" required/>
         </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success">Guardar canvis</button>
+        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
     </div>
     </div>
 </div>
@@ -73,5 +75,56 @@
 @push('scripts')
 
 @include('layouts.admin.scripts')
+<script>
+    $('#save').click(function() {
+        var id = $('#id').val();
+        var id_r = /^[0-9]{1,20}$/;
+
+        var category = $('#category').val();
+        var category_r = /^[a-zA-Z0-9]{1,150}$/;
+
+        if(id && !id.match(id_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El ID proporcionat no és vàlid',
+            });
+            throw new Error('El ID proporcionat no és vàlid');
+        }
+
+        if(!category.match(category_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'La categoria proporcionada no és vàlida',
+            });
+            throw new Error('La categoria proporcionada no és vàlida');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("category.edit") }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                id: id,
+                category: category,
+            }, beforeSend: function() {
+                infoNotf({
+                    title: 'Processant...',
+                    message: 'S\'està processant la petició',
+                });
+            }, success: function() {
+                successNotf({
+                    title: 'Fet!',
+                    message: 'Base de dades actualitzada correctament',
+                });
+                location.reload();
+            }, error: function() {
+                errorNotf({
+                    title: 'Error!',
+                    message: 'No s\'ha pogut processar la petició',
+                });
+            }
+        })
+    })
+</script>
 
 @endpush

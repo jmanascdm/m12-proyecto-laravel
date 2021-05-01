@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\User;
 use DB;
 
@@ -31,5 +33,23 @@ class UsersController extends Controller
         return view('admin.users',compact('items'));
     }
 
-    
+    public function setUser(Request $request)
+    {
+        $id = $request->id;
+        dump($id);
+        $name = $request->name;
+        $email = $request->email;
+        $updated_at = Carbon::now()->toDateTimeString();
+        $updated_by = Auth::user()->id;
+
+        $newUser = User::find($id);
+        dump($newUser);
+        
+        $newUser->name = $name;
+        $newUser->email = $email;
+        $newUser->updated_by = $updated_by;
+        $newUser->updated_at = $updated_at;
+
+        $newUser->save();
+    }
 }

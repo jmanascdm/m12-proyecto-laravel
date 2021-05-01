@@ -133,7 +133,12 @@ const infoNotf = window.createNotification({
 <script>
     $('.modalbtn').click(function() {
         var id = $(this).attr("dt-id");
-        $('#ModalLongTitle').prepend("Afegir ")
+        $('#ModalLongTitle').html("un compte");
+
+        $('#modal .form-control').each(function(index,element) {
+            $(element).attr('value',"");
+        });
+
         if(!isNaN(id)) {
             $('#ModalLongTitle').prepend("Editar ")
             $('#modal .form-control').each(function(index,element) {
@@ -142,7 +147,7 @@ const infoNotf = window.createNotification({
                 }
                 else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
             });
-        }
+        } else $('#ModalLongTitle').prepend("Afegir ");
         $('#modal').modal();
     })
 </script>

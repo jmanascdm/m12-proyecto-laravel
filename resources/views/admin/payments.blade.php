@@ -137,5 +137,80 @@
 @push('scripts')
 
 @include('layouts.admin.scripts')
+<script>
+    $('#save').click(function() {
+        var id = $('#id').val();
+        var id_r = /^[0-9]{1,20}$/;
+
+        if(id && !id.match(id_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El ID proporcionat no és vàlid',
+            });
+            throw new Error('El ID proporcionat no és vàlid');
+        }
+
+        if(!establishment.match(establishment_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'L\'establiment proporcionat no és vàlid',
+            });
+            throw new Error('L\'establiment proporcionat no és vàlid');
+        }
+
+        if(!account.match(account_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El compte proporcionat no és vàlid',
+            });
+            throw new Error('El compte proporcionat no és vàlid');
+        }
+
+        if(!fuc.match(fuc_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El fuc proporcionat no és vàlid',
+            });
+            throw new Error('El fuc proporcionat no és vàlid');
+        }
+
+        if(!key.match(key_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'La clau proporcionada no és vàlida',
+            });
+            throw new Error('La clau proporcionada no és vàlida');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("payment.edit") }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                id: id,
+                establishment: establishment,
+                account: account,
+                fuc: fuc,
+                key: key
+            }, beforeSend: function() {
+                infoNotf({
+                    title: 'Processant...',
+                    message: 'S\'està processant la petició',
+                });
+            }, success: function() {
+                successNotf({
+                    title: 'Fet!',
+                    message: 'Base de dades actualitzada correctament',
+                });
+                location.reload();
+            }, error: function() {
+                errorNotf({
+                    title: 'Error!',
+                    message: 'No s\'ha pogut processar la petició',
+                });
+            }
+        })
+    })
+</script>
 
 @endpush

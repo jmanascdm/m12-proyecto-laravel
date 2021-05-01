@@ -47,7 +47,7 @@ class AccountsController extends Controller
             $newAccount = Account::find($id);
         } else {
             $newAccount = new Account;
-            $newAccount->created_by = Auth::user()->id;
+            $newAccount->created_by = $updated_by;
             $newAccount->created_at = $updated_at;
         }
         

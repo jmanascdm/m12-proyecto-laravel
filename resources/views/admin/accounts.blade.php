@@ -8,10 +8,8 @@
 @section('content')
 
 <div class="mb-5">
-    <div>
-        <h1>Comptes</h1>
-        <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
-    </div>
+    <h1>Comptes</h1>
+    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
     <table class="col-md-6" id="tablaAutomatica">
         <thead>
             <tr>
@@ -50,7 +48,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">

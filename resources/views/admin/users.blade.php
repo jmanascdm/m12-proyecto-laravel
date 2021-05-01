@@ -80,6 +80,6 @@
 
 @push('scripts')
 
-@include('admin.scripts.scripts')
+@include('layouts.admin.scripts')
 
 @endpush

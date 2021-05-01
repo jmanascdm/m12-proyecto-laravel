@@ -7,8 +7,11 @@
 
 @section('content')
 
-<div>
-    <h1>Comptes</h1>
+<div class="mb-5">
+    <div>
+        <h1>Comptes</h1>
+        <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
+    </div>
     <table class="col-md-6" id="tablaAutomatica">
         <thead>
             <tr>
@@ -37,8 +40,8 @@
                 <td dt-col="created_by" >{{ $item->created_by }}</td>
                 <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 <td>
-                    <button dt-tb="account" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" class="btn btn-warning editbtn"><i class="fas fa-edit"></i></button>
+                    <button title="Eliminar" dt-tb="account" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
+                    <button title="Editar" dt-id="{{ $item->id }}" class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -51,7 +54,7 @@
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edita el compte</h5>
+        <h5 class="modal-title" id="ModalLongTitle">un compte</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -61,32 +64,33 @@
             <div class="form-group row">
                 <label for="establishment" class="col-sm-4 col-form-label">Establiment</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="establishment" name="establishment"/>
+                    <input type="text" class="form-control" id="establishment" name="establishment" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="account" class="col-sm-4 col-form-label">Compte</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="account" name="account"/>
+                    <input type="text" class="form-control" id="account" name="account" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="fuc" class="col-sm-4 col-form-label">Fuc</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="fuc" name="fuc"/>
+                    <input type="text" class="form-control" id="fuc" name="fuc" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="key" class="col-sm-4 col-form-label">Clau</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="key" name="key"/>
+                    <input type="text" class="form-control" id="key" name="key" required/>
                 </div>
             </div>
+            <input type="hidden" class="form-control" id="id" name="id" required/>
         </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success">Guardar canvis</button>
+        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
     </div>
     </div>
 </div>
@@ -96,6 +100,93 @@
 
 @push('scripts')
 
-@include('admin.scripts.scripts')
+@include('layouts.admin.scripts')
+<script>
+    $('#save').click(function() {
+        var id = $('#id').val();
+        var id_r = /^[0-9]{1,20}$/;
+
+        var establishment = $('#establishment').val();
+        var establishment_r = /^[0-9]{1,11}$/;
+
+        var account = $('#account').val();
+        var account_r = /^[a-zA-Z0-9]{1,150}$/;
+
+        var fuc = $('#fuc').val();
+        var fuc_r = /^[a-zA-Z0-9]{1,150}$/;
+
+        var key = $('#key').val();
+        var key_r = /^[a-zA-Z0-9]{1,150}$/;
+
+        if(id && !id.match(id_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El ID proporcionat no és vàlid',
+            });
+            throw new Error('El ID proporcionat no és vàlid');
+        }
+
+        if(!establishment.match(establishment_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'L\'establiment proporcionat no és vàlid',
+            });
+            throw new Error('L\'establiment proporcionat no és vàlid');
+        }
+
+        if(!account.match(account_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El compte proporcionat no és vàlid',
+            });
+            throw new Error('El compte proporcionat no és vàlid');
+        }
+
+        if(!fuc.match(fuc_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El fuc proporcionat no és vàlid',
+            });
+            throw new Error('El fuc proporcionat no és vàlid');
+        }
+
+        if(!key.match(key_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'La clau proporcionada no és vàlida',
+            });
+            throw new Error('La clau proporcionada no és vàlida');
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '{{ route("account.edit") }}',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                id: id,
+                establishment: establishment,
+                account: account,
+                fuc: fuc,
+                key: key
+            }, beforeSend: function() {
+                infoNotf({
+                    title: 'Processant...',
+                    message: 'S\'està processant la petició',
+                });
+            }, success: function() {
+                successNotf({
+                    title: 'Fet!',
+                    message: 'Base de dades actualitzada correctament',
+                });
+                location.reload();
+            }, error: function() {
+                errorNotf({
+                    title: 'Error!',
+                    message: 'No s\'ha pogut processar la petició',
+                });
+            }
+        })
+    })
+</script>
 
 @endpush

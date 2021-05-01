@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Account;
 use DB;
 
@@ -33,7 +35,30 @@ class AccountsController extends Controller
 
     public function setAccount(Request $request)
     {
+        $id = $request->id;
+        $establishment = $request->establishment;
+        $account = $request->account;
+        $fuc = $request->fuc;
+        $key = $request->key;
+        $updated_at = Carbon::now()->toDateTimeString();
+        $updated_by = Auth::user()->id;
+
+        if($id) {
+            $newAccount = Account::find($id);
+        } else {
+            $newAccount = new Account;
+            $newAccount->created_by = Auth::user()->id;
+            $newAccount->created_at = $updated_at;
+        }
         
+        $newAccount->establishment = $establishment;
+        $newAccount->account = $account;
+        $newAccount->fuc = $fuc;
+        $newAccount->key = $key;
+        $newAccount->updated_by = $updated_by;
+        $newAccount->updated_at = $updated_at;
+
+        $newAccount->save();
     }
 
     public function deleteAccount(Request $request)

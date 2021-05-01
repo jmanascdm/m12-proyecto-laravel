@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Account extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = [
+        'establishment', 'account', 'fuc', 'key', 'created_by', 'updated_by',
+    ];
+
 }

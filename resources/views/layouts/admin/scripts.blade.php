@@ -108,7 +108,7 @@ const infoNotf = window.createNotification({
                         'id': id,
                     }, beforeSend: function() {
                         infoNotf({
-                            title: 'Processant',
+                            title: 'Processant...',
                             message: 'S\'està processant la petició',
                         });
                     }, success: function() {
@@ -131,21 +131,18 @@ const infoNotf = window.createNotification({
 
 <!-- Editar camps -->
 <script>
-    $('.editbtn').click(function() {
+    $('.modalbtn').click(function() {
         var id = $(this).attr("dt-id");
-        if(isNaN(id)) {
-            errorNotf({
-                title: 'Error!',
-                message: 'El ID proporcionat no és vàlid',
-            });
-        } else {
+        $('#ModalLongTitle').prepend("Afegir ")
+        if(!isNaN(id)) {
+            $('#ModalLongTitle').prepend("Editar ")
             $('#modal .form-control').each(function(index,element) {
                 if($(element)[0].localName == "textarea") {
                     tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
                 }
                 else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
             });
-            $('#modal').modal();
         }
+        $('#modal').modal();
     })
 </script>

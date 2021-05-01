@@ -34,6 +34,12 @@ class CategoriesController extends Controller
         return view('admin.categories',compact('items'));
     }
 
+    public function getCategories()
+    {
+        $items = DB::select("SELECT id,category FROM categories;");
+        return $items;
+    }
+
     public function setCategory(Request $request)
     {
         $id = $request->id;

@@ -9,6 +9,7 @@
 
 <div>
     <h1>Pagaments</h1>
+    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>
@@ -33,8 +34,8 @@
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
                 <td dt-col="id">{{ $item->id }}</td>
-                <td dt-col="category">{{ $item->id_category }}</td>
-                <td dt-col="account">{{ $item->id_account }}</td>
+                <td dt-col="category">{{ $item->category }}</td>
+                <td dt-col="account">{{ $item->account }}</td>
                 <td dt-col="level">{{ $item->level }}</td>
                 <td dt-col="order">{{ $item->order }}</td>
                 <td dt-col="title">{{ $item->title }}</td>
@@ -48,7 +49,7 @@
                 <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 <td>
                     <button dt-tb="payment" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" class="btn btn-warning editbtn"><i class="fas fa-edit"></i></button>
+                    <button dt-id="{{ $item->id }}" class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -57,11 +58,11 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edita el registre</h5>
+        <h5 class="modal-title" id="ModalLongTitle">Modifica els camps</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -71,62 +72,67 @@
             <div class="form-group row">
                 <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="category" name="category"/>
+                    <select class="form-control" id="category" name="category" required>
+                        <option disabled selected>Sel·lecciona una categoria</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="account" class="col-sm-4 col-form-label">Compte</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="account" name="account"/>
+                    <select class="form-control" class="form-control" id="account" name="account">
+                        <option disabled selected>Sel·lecciona un compte</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="level" class="col-sm-4 col-form-label">Nivell</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="level" name="level"/>
+                    <input type="text" class="form-control" id="level" name="level" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="order" class="col-sm-4 col-form-label">Comanda</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="order" name="order"/>
+                    <input type="text" class="form-control" id="order" name="order" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="title" class="col-sm-4 col-form-label">Títol</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="title" name="title"/>
+                    <input type="text" class="form-control" id="title" name="title" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="description" class="col-sm-4 col-form-label">Descripció</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" id="description" name="description"></textarea>
+                    <textarea class="form-control" id="description" name="description" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="price" class="col-sm-4 col-form-label">Preu</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" id="price" name="price"/>
+                    <input type="number" class="form-control" id="price" name="price" step="any" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="start_date" class="col-sm-4 col-form-label">Data inici</label>
                 <div class="col-sm-8">
-                    <input type="date" class="form-control" id="start_date" name="start_date"/>
+                    <input type="date" class="form-control" id="start_date" name="start_date" required/>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="end_date" class="col-sm-4 col-form-label">Data final</label>
                 <div class="col-sm-8">
-                    <input type="date" class="form-control" id="end_date" name="end_date"/>
+                    <input type="date" class="form-control" id="end_date" name="end_date" required/>
                 </div>
             </div>
+            <input type="hidden" class="form-control" id="id" name="id" required/>
         </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success">Guardar canvis</button>
+        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
     </div>
     </div>
 </div>
@@ -138,9 +144,54 @@
 
 @include('layouts.admin.scripts')
 <script>
+    $.ajax({
+        type: 'GET',
+        url: '{{ route("categories.get") }}',
+        success: function(e) {
+            $(e).each(function(index,element) {
+                $('#category').append(`<option value="${element.id}">${element.category}</option>`);
+            })
+        }
+    })
+    $.ajax({
+        type: 'GET',
+        url: '{{ route("accounts.get") }}',
+        success: function(e) {
+            $(e).each(function(index,element) {
+                $('#account').append(`<option value="${element.id}">${element.account}</option>`);
+            })
+        }
+    })
+</script>
+<script>
     $('#save').click(function() {
         var id = $('#id').val();
         var id_r = /^[0-9]{1,20}$/;
+
+        var category = $('#category').val();
+        var category_r = /^[0-9]{1,20}$/;
+
+        var account = $('#account').val();
+        var account_r = /^[0-9]{1,20}$/;
+
+        var level = $('#level').val();
+        var level_r = /^[a-zA-Z0-9]+$/;
+
+        var order = $('#order').val();
+        var order_r = /^[a-zA-Z0-9]{1,20}$/;
+
+        var title = $('#title').val();
+        var title_r = /^[a-zA-Z0-9]{1,150}$/;
+
+        var description = tinymce.activeEditor.getContent();
+        var description_r = /^$/;
+
+        var price = $('#price').val();
+        var price_r = /^[0-9]+((,|.){1}[0-9]+)?$/;
+
+        var start_date = $('#start_date').val();
+        var end_date = $('#end_date').val();
+        var date_r = /^[0-9]{4}\-([0][1-9]|[1][1-2])\-([0][1-9]|[1-2][0-9]|[3][1-2])$/;
 
         if(id && !id.match(id_r)) {
             errorNotf({
@@ -150,10 +201,10 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!establishment.match(establishment_r)) {
+        if(!category.match(category_r)) {
             errorNotf({
                 title: 'Error!',
-                message: 'L\'establiment proporcionat no és vàlid',
+                message: 'La categoria proporcionada no és vàlida',
             });
             throw new Error('L\'establiment proporcionat no és vàlid');
         }
@@ -166,20 +217,52 @@
             throw new Error('El compte proporcionat no és vàlid');
         }
 
-        if(!fuc.match(fuc_r)) {
+        if(!level.match(level_r)) {
             errorNotf({
                 title: 'Error!',
-                message: 'El fuc proporcionat no és vàlid',
+                message: 'El nivell proporcionat no és vàlid',
             });
-            throw new Error('El fuc proporcionat no és vàlid');
+            throw new Error('El nivell proporcionat no és vàlid');
         }
 
-        if(!key.match(key_r)) {
+        if(!order.match(order_r)) {
             errorNotf({
                 title: 'Error!',
-                message: 'La clau proporcionada no és vàlida',
+                message: 'La comanda proporcionada no és vàlida',
             });
-            throw new Error('La clau proporcionada no és vàlida');
+            throw new Error('La comanda proporcionada no és vàlida');
+        }
+
+        if(!title.match(title_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El títol proporcionat no és vàlid',
+            });
+            throw new Error('El títol proporcionat no és vàlid');
+        }
+
+        if(!price.match(price_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'El preu proporcionat no és vàlid',
+            });
+            throw new Error('El preu proporcionat no és vàlid');
+        }
+
+        if(!start_date.match(date_r)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'La data d\'inici proporcionada no és vàlida',
+            });
+            throw new Error('La data d\'inici proporcionada no és vàlida');
+        }
+
+        if(!end_date.match(date_r) || start_date>end_date) {
+            errorNotf({
+                title: 'Error!',
+                message: 'La data final proporcionada no és vàlida',
+            });
+            throw new Error('La data final proporcionada no és vàlida');
         }
 
         $.ajax({
@@ -188,10 +271,15 @@
             data: {
                 '_token': '{{ csrf_token() }}',
                 id: id,
-                establishment: establishment,
+                category: category,
                 account: account,
-                fuc: fuc,
-                key: key
+                level: level,
+                order: order,
+                title: title,
+                description: description,
+                price: price,
+                start_date: start_date,
+                end_date: end_date
             }, beforeSend: function() {
                 infoNotf({
                     title: 'Processant...',

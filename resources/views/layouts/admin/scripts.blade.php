@@ -133,21 +133,23 @@ const infoNotf = window.createNotification({
 <script>
     $('.modalbtn').click(function() {
         var id = $(this).attr("dt-id");
-        $('#ModalLongTitle').html("un compte");
-
-        $('#modal .form-control').each(function(index,element) {
+        
+        $('#modal input.form-control').each(function(index,element) {
             $(element).attr('value',"");
+        });
+        $('#modal textarea.form-control').each(function(index,element) {
+            tinymce.activeEditor.setContent("");
         });
 
         if(!isNaN(id)) {
-            $('#ModalLongTitle').prepend("Editar ")
-            $('#modal .form-control').each(function(index,element) {
-                if($(element)[0].localName == "textarea") {
-                    tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
-                }
-                else $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
+            $('#modal input.form-control').each(function(index,element) {
+                $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
             });
-        } else $('#ModalLongTitle').prepend("Afegir ");
+            
+            $('#modal textarea.form-control').each(function(index,element) {
+                tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
+            });
+        }
         $('#modal').modal();
     })
 </script>

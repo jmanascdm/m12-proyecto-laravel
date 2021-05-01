@@ -33,6 +33,12 @@ class AccountsController extends Controller
         return view('admin.accounts', compact('items'));
     }
 
+    public function getAccounts()
+    {
+        $items = DB::select("SELECT id,account FROM accounts;");
+        return $items;
+    }
+
     public function setAccount(Request $request)
     {
         $id = $request->id;

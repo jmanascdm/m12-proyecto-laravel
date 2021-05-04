@@ -116,13 +116,37 @@
                 <p class="preu" id="price"></p>
             </div>
             <div class="col">
-                <button class="login100-form-btn botonForm" style="width: 50%;height: 80px;">
+                <button class="login100-form-btn botonForm" id="paybtn" style="width: 50%;height: 80px;">
                     Fer Pagament
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="ModalLongTitle">Realitzar un pagament</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Vols compartir?
+		
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
+    </div>
+    </div>
+</div>
+</div>
+
 
 @endsection
 
@@ -144,6 +168,30 @@ const infoNotf = window.createNotification({
     theme: 'info',
     showDuration: 5000
 });
+</script>
+<script>
+$('#paybtn').click(function() {
+	var category = $(`#category option[value="${$('#category').val()}"]`).html();
+	var title = $('#title').html();
+	var price = $('#price').html();
+
+	var content =
+	`<a href="https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat" title="Compartir a Twitter" target="_blank">
+		<i class="fab fa-twitter"></i>
+	</a>
+	<a href="https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat" title="Compartir a Whatsapp" target="_blank">
+		<i class="fab fa-whatsapp"></i>
+	</a>
+	<a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="_blank">
+	    <i class="fab fa-telegram"></i>
+	</a>
+    <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
+	    <i class="far fa-envelope"></i>
+    </a>`;
+	$('.modal-body').append(content);
+
+	$('#modal').modal();
+})
 </script>
 
 @endpush

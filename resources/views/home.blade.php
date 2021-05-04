@@ -116,14 +116,13 @@
                 <p class="preu" id="price"></p>
             </div>
             <div class="col">
-                <button class="login100-form-btn botonForm" id="paybtn" style="width: 50%;height: 80px;">
+                <button class="login100-form-btn botonForm btn btn-primary" id="paybtn" style="width: 50%;height: 80px;">
                     Fer Pagament
                 </button>
             </div>
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
@@ -137,11 +136,11 @@
     </div>
     <div class="modal-body">
         Vols compartir?
-		
+        <div class="socials"></div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
+        <button type="button" class="btn btn-success" id="save">Continuar</button>
     </div>
     </div>
 </div>
@@ -185,10 +184,13 @@ $('#paybtn').click(function() {
 	<a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="_blank">
 	    <i class="fab fa-telegram"></i>
 	</a>
+	<a href="https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat" class="fb-xfbml-parse-ignore" title="Compartir a telegram" target="_blank">
+	    <i class="fab fa-facebook"></i>
+	</a>
     <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
 	    <i class="far fa-envelope"></i>
     </a>`;
-	$('.modal-body').append(content);
+	$('.modal-body .socials').html(content);
 
 	$('#modal').modal();
 })

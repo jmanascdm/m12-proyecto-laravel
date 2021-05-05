@@ -1,3 +1,4 @@
+<?php $title = "Pagaments" ?>
 @extends('layouts.base')
 
 @push('styles')

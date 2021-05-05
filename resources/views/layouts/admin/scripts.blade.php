@@ -80,13 +80,6 @@ const infoNotf = window.createNotification({
 
 <!-- Editor textarea -->
 <script src="https://cdn.tiny.cloud/1/21wmjgvo3uldi678zp5poa3pc2pn0n8cu7rw8iwmp8c3r3n9/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-        toolbar_mode: 'floating',
-    });
-</script>
 
 <!-- Eliminar registres -->
 <script>
@@ -133,12 +126,14 @@ const infoNotf = window.createNotification({
 <script>
     $('.modalbtn').click(function() {
         var id = $(this).attr("dt-id");
+
+        tinymce.remove();
         
         $('#modal input.form-control').each(function(index,element) {
             $(element).attr('value',"");
         });
         $('#modal textarea.form-control').each(function(index,element) {
-            tinymce.activeEditor.setContent("");
+            $(element).html("");
         });
 
         if(!isNaN(id)) {
@@ -147,9 +142,16 @@ const infoNotf = window.createNotification({
             });
             
             $('#modal textarea.form-control').each(function(index,element) {
-                tinymce.activeEditor.setContent($(`#${id} td[dt-col="${$(element).attr('id')}"]`).html());
+               $(element).html( $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() );
             });
         }
+
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+
         $('#modal').modal();
     })
 </script>

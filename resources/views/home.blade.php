@@ -1,3 +1,4 @@
+<?php $title = "Inici" ?>
 @extends('layouts.base')
 
 @push('styles')
@@ -139,8 +140,12 @@
         <div class="socials"></div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success" id="save">Continuar</button>
+        <form action="https://sis.sermepa.es/sis/realizarPago" method="post" accept-charset="utf-8" id="form_260">
+            <input type="hidden" name="Ds_SignatureVersion" value=""/>
+            <input type="hidden" name="Ds_MerchantParameters" value=""/>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+            <button type="submit" class="btn btn-success" id="save">Continuar</button>
+        </form>
     </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
+<?php $title = "Comptes" ?>
 @extends('layouts.base')
 
 @push('styles')

@@ -1,3 +1,4 @@
+<?php $title = "Login" ?>
 @extends('layouts.base')
 
 @push('styles')
@@ -26,7 +27,7 @@
                     </label>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input class="input100 @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" placeholder="correu@proba.com" required autocomplete="email" autofocus>
+                    <input class="input100 @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" placeholder="correu@proba.com" pattern="^[a-zA-Z0-9]+\@[a-zA-Z]+(\.[a-zA-Z]{2,3}){1,2}$" required autocomplete="email" autofocus>
                     <span class="focus-input100"></span>
                     @error('email')
                         <span class="invalid-feedback" role="alert">

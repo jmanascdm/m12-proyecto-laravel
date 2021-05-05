@@ -1,3 +1,4 @@
+<?php $title = "Categories" ?>
 @extends('layouts.base')
 
 @push('styles')

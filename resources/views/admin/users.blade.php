@@ -1,3 +1,4 @@
+<?php $title = "Usuaris" ?>
 @extends('layouts.base')
 
 @push('styles')

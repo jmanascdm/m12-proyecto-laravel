@@ -61,9 +61,23 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="code" class="col-md-4 col-form-label text-md-right">Codi de registre</label>
+                            
+                            <div class="col-md-6">
+                                <input id="code" type="text" class="form-control" name="code" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="offset-md-4 col-md-6">
+                                <div class="g-recaptcha mt-3" data-callback="captchaSuccess" data-sitekey="6Ld0lMcaAAAAAMpZ_cNsMrS6QADJ2jaekq73ZigX"></div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button id="entrar" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -75,3 +89,34 @@
     </div>
 </div>
 @endsection
+
+<script src="https://www.google.com/recaptcha/api.js?hl=ca" async defer></script>
+<script src="{{ asset('js/notifications/notifications.js') }}"></script>
+<script>
+    $('button').click(function(e) {
+        e.preventDefault();
+        return false;
+    })
+
+    var captcha = false;
+
+    function captchaSuccess() {
+        captcha = true;
+    }
+
+    $('#entrar').click(function() {
+        const errNo = window.createNotification({
+            theme: 'error',
+            showDuration: 3000
+        });
+
+        if(captcha) {
+            document.forms[0].submit();
+        } else {
+            errNo({
+                title: 'Error!',
+                message: 'Captcha invàlid',
+            });
+        }
+    })
+</script>

@@ -55,7 +55,7 @@
                     @enderror
                 </div>
 
-                <div class="g-recaptcha mt-3" data-callback="captchaSuccess" data-sitekey="6Ld0lMcaAAAAAMpZ_cNsMrS6QADJ2jaekq73ZigX"></div>                
+                <div class="g-recaptcha mt-3" data-callback="captchaSuccess" data-sitekey="6Ld0lMcaAAAAAMpZ_cNsMrS6QADJ2jaekq73ZigX"></div>
 
                 <div class="container-login100-form-btn m-t-17">
                     <button id="entrar" class="login100-form-btn botonForm">

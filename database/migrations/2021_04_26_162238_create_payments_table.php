@@ -26,14 +26,14 @@ class CreatePaymentsTable extends Migration
             $table->date('end_date');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->bigInteger('created_by')->unsigned();
-            $table->bigInteger('updated_by')->unsigned();
+            $table->bigInteger('created_by')->unsigned()->nullable();
+            $table->bigInteger('updated_by')->unsigned()->nullable();
             $table->softDeletes();
 
             $table->foreign('id_category')->references('id')->on('categories')->onDelete('set null');
             $table->foreign('id_account')->references('id')->on('accounts')->onDelete('set null');
-            $table->foreign('created_by')->references('id')->on('users');
-            $table->foreign('updated_by')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
         });
     }
 

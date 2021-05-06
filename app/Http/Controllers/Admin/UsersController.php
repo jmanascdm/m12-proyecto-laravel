@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
+use App\Code;
 use DB;
 use Mail;
 
@@ -54,7 +56,16 @@ class UsersController extends Controller
     public function create(Request $request)
     {
         $email = $request->email;
-        echo $email;
+
+        $code = new Code();
+        $code->code = Str::random(6);
+        $code->created_by = Auth::user()->id;
+        $code->save();
+
+        Mail::send('mail.user', ['code' => $code->code], function($message) use ($email) {
+            $message->to($email)->subject
+                ('Codi de registre | Pagaments INS Camí de Mar');
+        });
     }
 
     public function enable(Request $request)

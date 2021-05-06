@@ -37,3 +37,6 @@ Route::post('/category/delete', 'Admin\CategoriesController@deleteCategory')->na
 
 Route::post('/user/edit', 'Admin\UsersController@setUser')->name('user.edit');
 Route::post('/user/delete', 'Admin\UsersController@deleteUser')->name('user.delete');
+
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('social.callback');

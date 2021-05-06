@@ -55,7 +55,7 @@
                     @enderror
                 </div>
 
-                <div class="g-recaptcha mt-3" data-callback="captchaSuccess" data-sitekey="6Lf-Wb0aAAAAAIvniwskBL4euyHPxgMnA32beSfX"></div>                
+                <div class="g-recaptcha mt-3" data-callback="captchaSuccess" data-sitekey="6Ld0lMcaAAAAAMpZ_cNsMrS6QADJ2jaekq73ZigX"></div>                
 
                 <div class="container-login100-form-btn m-t-17">
                     <button id="entrar" class="login100-form-btn botonForm">
@@ -65,7 +65,7 @@
             </form>
 
             <div class="container-login100-form-btn m-t-17">
-                <button class="login100-form-btn" style="background-color: white;color:black">
+                <button id="googlelogin" class="login100-form-btn" style="background-color: white;color:black">
                     <img src="{{ asset('img/icons/icon-google.png') }}" alt="GOOGLE" style="padding-right: 10px;">
                     Google
                 </button>
@@ -117,6 +117,11 @@
             });
         }
     })
+</script>
+<script>
+$('#googlelogin').click(function() {
+    location.assign("{{ route('social.auth','google') }}");
+})
 </script>
 
 @endpush

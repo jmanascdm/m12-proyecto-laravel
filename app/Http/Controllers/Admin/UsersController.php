@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use DB;
+use Mail;
 
 class UsersController extends Controller
 {
@@ -27,23 +28,20 @@ class UsersController extends Controller
         users0.updated_at, users1.name AS created_by, users2.name AS updated_by, users0.deleted_at
         FROM users users0
         JOIN users users1 ON users0.created_by = users1.id
-        JOIN users users2 ON users0.updated_by = users2.id
-        WHERE users0.deleted_at IS NULL;");
+        JOIN users users2 ON users0.updated_by = users2.id;");
 
         return view('admin.users',compact('items'));
     }
 
-    public function setUser(Request $request)
+    /* public function update(Request $request)
     {
         $id = $request->id;
-        dump($id);
         $name = $request->name;
         $email = $request->email;
         $updated_at = Carbon::now()->toDateTimeString();
         $updated_by = Auth::user()->id;
 
         $newUser = User::find($id);
-        dump($newUser);
         
         $newUser->name = $name;
         $newUser->email = $email;
@@ -51,5 +49,32 @@ class UsersController extends Controller
         $newUser->updated_at = $updated_at;
 
         $newUser->save();
+    } */
+
+    public function create(Request $request)
+    {
+        $email = $request->email;
+        echo $email;
+    }
+
+    public function enable(Request $request)
+    {
+        $id = $request->id;
+        $category = User::withTrashed()->find($id);
+        $category->restore();
+    }
+
+    public function disable(Request $request)
+    {
+        $id = $request->id;
+        $category = User::find($id);
+        $category->delete();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $category = User::withTrashed()->find($id);
+        $category->forceDelete();
     }
 }

@@ -27,8 +27,7 @@ class AccountsController extends Controller
         accounts.updated_at, users1.name as created_by, users2.name as updated_by, accounts.deleted_at
         FROM accounts
         JOIN users users1 ON accounts.created_by = users1.id
-        JOIN users users2 ON accounts.updated_by = users2.id
-        WHERE accounts.deleted_at IS NULL;");
+        JOIN users users2 ON accounts.updated_by = users2.id;");
 
         return view('admin.accounts', compact('items'));
     }
@@ -39,7 +38,7 @@ class AccountsController extends Controller
         return $items;
     }
 
-    public function setAccount(Request $request)
+    public function update(Request $request)
     {
         $id = $request->id;
         $establishment = $request->establishment;
@@ -67,10 +66,24 @@ class AccountsController extends Controller
         $newAccount->save();
     }
 
-    public function deleteAccount(Request $request)
+    public function enable(Request $request)
     {
         $id = $request->id;
-        
-        Account::find($id)->delete();
+        $category = Account::withTrashed()->find($id);
+        $category->restore();
+    }
+
+    public function disable(Request $request)
+    {
+        $id = $request->id;
+        $category = Account::find($id);
+        $category->delete();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $account = Account::withTrashed()->find($id);
+        $account->forceDelete();
     }
 }

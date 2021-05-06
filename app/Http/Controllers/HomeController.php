@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $categories = DB::select("SELECT categories.id, categories.category FROM categories
         JOIN payments ON payments.id_category = categories.id
-        WHERE categorias.deleted_at IS NULL
+        WHERE categories.deleted_at IS NULL
         AND payments.deleted_at IS NULL
         GROUP BY categories.id,categories.category;");
 

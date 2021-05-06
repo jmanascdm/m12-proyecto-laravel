@@ -23,20 +23,20 @@ class PaymentsController extends Controller
 
     public function index()
     {
-        $items = DB::select("SELECT payments.id as id, categories.id as id_category, categories.category as category,
-        accounts.id as id_account, accounts.account as account, `level`, `order`, `title`, `description`, `price`,
-        `start_date`, `end_date`, payments.created_at, payments.updated_at, users1.name as created_by, users2.name as updated_by
+        $items = DB::select("SELECT payments.id as id, categories.id as id_category,
+        categories.category as category, accounts.id as id_account, accounts.account as account,
+        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`,payments.created_at,
+        payments.updated_at, users1.name as created_by, users2.name as updated_by, payments.deleted_at
         FROM payments
         JOIN categories ON id_category = categories.id
         JOIN accounts ON id_account = accounts.id
         JOIN users users1 ON payments.created_by = users1.id
-        JOIN users users2 ON payments.updated_by = users2.id
-        WHERE payments.deleted_at IS NULL;");
+        JOIN users users2 ON payments.updated_by = users2.id;");
 
         return view('admin.payments',compact('items'));
     }
 
-    public function setPayment(Request $request)
+    public function update(Request $request)
     {
         $id = $request->id;
         $category = $request->category;
@@ -74,11 +74,24 @@ class PaymentsController extends Controller
         $newPayment->save();
     }
 
-    public function deletePayment(Request $request)
+    public function enable(Request $request)
     {
         $id = $request->id;
-        Payment::find($id)->delete();
+        $category = Payment::withTrashed()->find($id);
+        $category->restore();
+    }
 
-        return $id;
+    public function disable(Request $request)
+    {
+        $id = $request->id;
+        $category = Payment::find($id);
+        $category->delete();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $category = Payment::withTrashed()->find($id);
+        $category->forceDelete();
     }
 }

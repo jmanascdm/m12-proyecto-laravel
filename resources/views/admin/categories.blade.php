@@ -20,6 +20,7 @@
                 <th>Actualitzat el</th>
                 <th>Creat per</th>
                 <th>Actualitzat per</th>
+                <th>Habilitat</th>
                 <th>Accions</th>
             </tr>
         </thead>
@@ -32,9 +33,18 @@
                 <td dt-col="updated_at">{{ $item->updated_at }}</td>
                 <td dt-col="created_by">{{ $item->created_by }}</td>
                 <td dt-col="updated_by">{{ $item->updated_by }}</td>
+                @if($item->deleted_at == null)
+                <td>Sí</td>
+                @else
+                <td>No</td>
+                @endif
                 <td>
                     <button dt-id="{{ $item->id }}" dt-tb="category" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
+                    <button dt-id="{{ $item->id }}" dt-tb="category"
+                        @if($item->deleted_at == null)
+                        dt-enabled="true"
+                        @endif
+                        class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
             @endforeach
@@ -43,7 +53,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLongTitle" aria-hidden="true">
 <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
     <div class="modal-header">
@@ -64,8 +74,12 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-        <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
+        <div class="mr-auto">
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
+            <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
+        </div>
     </div>
     </div>
 </div>
@@ -102,7 +116,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '{{ route("category.edit") }}',
+            url: '{{ route("category.update") }}',
             data: {
                 '_token': '{{ csrf_token() }}',
                 id: id,

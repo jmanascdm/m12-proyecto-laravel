@@ -25,11 +25,10 @@ class CategoriesController extends Controller
     {
         $items = DB::select("SELECT categories.id as id, `category`,
         categories.created_at as created_at, categories.updated_at as updated_at,
-        users1.name as created_by, users2.name as updated_by
+        users1.name as created_by, users2.name as updated_by, categories.deleted_at as deleted_at
         FROM categories
         JOIN users users1 ON categories.created_by = users1.id
-        JOIN users users2 ON categories.updated_by = users2.id
-        WHERE categories.deleted_at IS NULL;");
+        JOIN users users2 ON categories.updated_by = users2.id;");
 
         return view('admin.categories',compact('items'));
     }
@@ -40,7 +39,7 @@ class CategoriesController extends Controller
         return $items;
     }
 
-    public function setCategory(Request $request)
+    public function update(Request $request)
     {
         $id = $request->id;
         $category = $request->category;
@@ -60,5 +59,26 @@ class CategoriesController extends Controller
         $newCategory->updated_at = $updated_at;
 
         $newCategory->save();
+    }
+
+    public function enable(Request $request)
+    {
+        $id = $request->id;
+        $category = Category::withTrashed()->find($id);
+        $category->restore();
+    }
+
+    public function disable(Request $request)
+    {
+        $id = $request->id;
+        $category = Category::find($id);
+        $category->delete();
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $category = Category::withTrashed()->find($id);
+        $category->forceDelete();
     }
 }

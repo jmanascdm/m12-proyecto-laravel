@@ -15,8 +15,8 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_category')->unsigned();
-            $table->bigInteger('id_account')->unsigned();
+            $table->bigInteger('id_category')->unsigned()->nullable();
+            $table->bigInteger('id_account')->unsigned()->nullable();
             $table->text('level');
             $table->string('order',20);
             $table->string('title',150);
@@ -30,8 +30,8 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('updated_by')->unsigned();
             $table->softDeletes();
 
-            $table->foreign('id_category')->references('id')->on('categories');
-            $table->foreign('id_account')->references('id')->on('accounts');
+            $table->foreign('id_category')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('id_account')->references('id')->on('accounts')->onDelete('set null');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

@@ -32,8 +32,10 @@ Route::post('/payment/edit', 'Admin\PaymentsController@setPayment')->name('payme
 Route::post('/payment/delete', 'Admin\PaymentsController@deletePayment')->name('payment.delete');
 
 Route::get('/categories', 'Admin\CategoriesController@getCategories')->name('categories.get');
-Route::post('/category/edit', 'Admin\CategoriesController@setCategory')->name('category.edit');
-Route::post('/category/delete', 'Admin\CategoriesController@deleteCategory')->name('category.delete');
+Route::post('/category/edit', 'Admin\CategoriesController@update')->name('category.update');
+Route::post('/category/enable', 'Admin\CategoriesController@enable')->name('category.enable');
+Route::post('/category/disable', 'Admin\CategoriesController@disable')->name('category.disable');
+Route::post('/category/delete', 'Admin\CategoriesController@delete')->name('category.delete');
 
 Route::post('/user/edit', 'Admin\UsersController@setUser')->name('user.edit');
 Route::post('/user/delete', 'Admin\UsersController@deleteUser')->name('user.delete');

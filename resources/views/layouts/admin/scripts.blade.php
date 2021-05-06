@@ -126,15 +126,13 @@ const infoNotf = window.createNotification({
 <script>
     $('.modalbtn').click(function() {
         var id = $(this).attr("dt-id");
+        var enabled = $(this).attr("dt-enabled");
+        var table = $(this).attr("dt-tb");
 
         tinymce.remove();
-        
-        $('#modal input.form-control').each(function(index,element) {
-            $(element).attr('value',"");
-        });
-        $('#modal textarea.form-control').each(function(index,element) {
-            $(element).html("");
-        });
+        $('#modal input.form-control').attr('value',"");
+        $('#modal textarea.form-control').html("");
+        $('#modal .modal-footer div').first().html("");
 
         if(!isNaN(id)) {
             $('#modal input.form-control').each(function(index,element) {
@@ -144,6 +142,12 @@ const infoNotf = window.createNotification({
             $('#modal textarea.form-control').each(function(index,element) {
                $(element).html( $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() );
             });
+
+            if(enabled){
+                $('#modal .modal-footer div').first().html(`<button type="button" dt-id="${id}" dt-tb="${table}" class="btn btn-warning" onclick="disable($(this));">Deshabilitar</button>`);
+            } else {
+                $('#modal .modal-footer div').first().html(`<button type="button" dt-id="${id}" dt-tb="${table}" class="btn btn-success" onclick="enable($(this));">Habilitar</button>`);
+            }
         }
 
         tinymce.init({
@@ -154,4 +158,82 @@ const infoNotf = window.createNotification({
 
         $('#modal').modal();
     })
+</script>
+
+<!-- Deshabilitar camps -->
+<script>
+    function disable(element) {
+        var id = element.attr('dt-id');
+        var table = element.attr('dt-tb');
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: `El ID proporcionat (${id}) no és vàlid`,
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: `/${table}/disable`,
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': id,
+                }, beforeSend: function() {
+                    infoNotf({
+                        title: 'Processant...',
+                        message: 'S\'està processant la petició',
+                    });
+                }, success: function() {
+                    successNotf({
+                        title: 'Fet!',
+                        message: 'Registre eliminat correctament',
+                    });
+                    location.reload();
+                }, error: function() {
+                    errorNotf({
+                        title: 'Error!',
+                        message: 'No s\'ha pogut eliminar el registre',
+                    });
+                }
+            })
+        }
+    }
+</script>
+
+<!-- Habilitar camps -->
+<script>
+    function enable(element) {
+        var id = element.attr('dt-id');
+        var table = element.attr('dt-tb');
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: `El ID proporcionat (${id}) no és vàlid`,
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: `/${table}/enable`,
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    'id': id,
+                }, beforeSend: function() {
+                    infoNotf({
+                        title: 'Processant...',
+                        message: 'S\'està processant la petició',
+                    });
+                }, success: function() {
+                    successNotf({
+                        title: 'Fet!',
+                        message: 'Registre eliminat correctament',
+                    });
+                    location.reload();
+                }, error: function() {
+                    errorNotf({
+                        title: 'Error!',
+                        message: 'No s\'ha pogut eliminar el registre',
+                    });
+                }
+            })
+        }
+    }
 </script>

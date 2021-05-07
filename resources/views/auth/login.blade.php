@@ -20,7 +20,6 @@
                     LOGIN
                 </span>
 
-
                 <div class="p-t-13 p-b-9">
                     <label for="email" class="txt1">
                         Email

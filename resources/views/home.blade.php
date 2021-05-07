@@ -14,88 +14,89 @@
             <div class="col-md-6">
                 <label for="category" class="form-label">Sel·lecciona una categoria</label>
                 <select class="custom-select my-1 mr-sm-2" id="category">
-                    <option selected disabled>Sel·lecciona una categoria</option>
+                    <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                     @endforeach
                 </select>
-                <script>
-                    $('#category').on("change",function() {
-                        $('#payment_view').hide();
-                        $('#payment').html("<option selected disabled>Sel·lecciona un pagament</option>");
-                        var id = $(this).val();
-                        const errorNotf = window.createNotification({
-                            theme: 'error',
-                            showDuration: 3000
+            </div>
+            <script>
+                $('#category').on("change",function() {
+                    $('#payment_view').hide();
+                    $('#payment').closest("div").children().show();
+                    $('#payment').html("<option selected disabled>Pagament...</option>");
+                    var id = $(this).val();
+                    const errorNotf = window.createNotification({
+                        theme: 'error',
+                        showDuration: 3000
+                    });
+                    if(isNaN(id)) {
+                        errorNotf({
+                            title: 'Error!',
+                            message: 'ID categoria invàlid',
                         });
-                        if(isNaN(id)) {
-                            errorNotf({
-                                title: 'Error!',
-                                message: 'ID categoria invàlid',
-                            });
-                        } else {
-                            $.ajax({
-                                type: 'POST',
-                                url: '{{ route("home.payments") }}',
-                                data: {
-                                    '_token': "{{ csrf_token() }}",
-                                    id: id,
-                                }, success: function(e) {
-                                    for(const payment of e) {
-                                        $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
-                                    }
-                                }, error: function() {
-                                    errorNotf({
-                                        title: 'Error!',
-                                        message: 'No s\'ha pogut processar la petició',
-                                    });
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ route("home.payments") }}',
+                            data: {
+                                '_token': "{{ csrf_token() }}",
+                                id: id,
+                            }, success: function(e) {
+                                for(const payment of e) {
+                                    $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
                                 }
-                            })
-                        }
-                    })
-                </script>
-            </div>
-            <div class="col-md-6">
-                <label for="payment" class="form-label">Sel·lecciona un pagament</label>
-                <select class="custom-select my-1 mr-sm-2" id="payment">
-                    <option selected disabled>Sel·lecciona un pagament</option>
-                </select>
-                <script>
-                    $('#payment').on("change",function() {
-                        var id = $(this).val();
-                        const errorNotf = window.createNotification({
-                            theme: 'error',
-                            showDuration: 3000
+                            }, error: function() {
+                                errorNotf({
+                                    title: 'Error!',
+                                    message: 'No s\'ha pogut processar la petició',
+                                });
+                            }
                         })
-
-                        if(isNaN(id)) {
-                            errorNotf({
-                                title: 'Error!',
-                                message: 'ID categoria invàlid',
-                            })
-                        } else {
-                            $.ajax({
-                                type: 'POST',
-                                url: '{{ route("home.payment") }}',
-                                data: {
-                                    '_token': "{{ csrf_token() }}",
-                                    id: id,
-                                }, success: function(e) {
-                                    $('#payment_view').show();
-                                    $('#title').html(e[0].title);
-                                    $('#description').html(e[0].description);
-                                    $('#price').html(e[0].price+"€");
-                                }, error: function() {
-                                    errorNotf({
-                                        title: 'Error!',
-                                        message: 'No s\'ha pogut processar la petició',
-                                    });
-                                }
-                            })
-                        }
-                    })
-                </script>
+                    }
+                })
+            </script>
+            <div class="col-md-6">
+                <label for="payment" class="form-label" style="display: none;">Sel·lecciona un pagament</label>
+                <select class="custom-select my-1 mr-sm-2" id="payment" style="display: none;">
+                    <option selected disabled>Pagament...</option>
+                </select>
             </div>
+            <script>
+                $('#payment').on("change",function() {
+                    var id = $(this).val();
+                    const errorNotf = window.createNotification({
+                        theme: 'error',
+                        showDuration: 3000
+                    })
+
+                    if(isNaN(id)) {
+                        errorNotf({
+                            title: 'Error!',
+                            message: 'ID categoria invàlid',
+                        })
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: '{{ route("home.payment") }}',
+                            data: {
+                                '_token': "{{ csrf_token() }}",
+                                id: id,
+                            }, success: function(e) {
+                                $('#payment_view').show();
+                                $('#title').html(e[0].title);
+                                $('#description').html(e[0].description);
+                                $('#price').html(e[0].price+"€");
+                            }, error: function() {
+                                errorNotf({
+                                    title: 'Error!',
+                                    message: 'No s\'ha pogut processar la petició',
+                                });
+                            }
+                        })
+                    }
+                })
+            </script>
         </div>
     </form>
     <div id="payment_view" style="display: none;">

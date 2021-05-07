@@ -23,7 +23,7 @@
             <script>
                 $('#category').on("change",function() {
                     $('#payment_view').hide();
-                    $('#payment').closest("div").children().show();
+                    $('#payment').closest("div").show();
                     $('#payment').html("<option selected disabled>Pagament...</option>");
                     var id = $(this).val();
                     const errorNotf = window.createNotification({
@@ -56,9 +56,9 @@
                     }
                 })
             </script>
-            <div class="col-md-6">
-                <label for="payment" class="form-label" style="display: none;">Sel·lecciona un pagament</label>
-                <select class="custom-select my-1 mr-sm-2" id="payment" style="display: none;">
+            <div class="col-md-6" style="display: none;">
+                <label for="payment" class="form-label">Sel·lecciona un pagament</label>
+                <select class="custom-select my-1 mr-sm-2" id="payment">
                     <option selected disabled>Pagament...</option>
                 </select>
             </div>

@@ -35,7 +35,7 @@ class UsersController extends Controller
         return view('admin.users',compact('items'));
     }
 
-    /* public function update(Request $request)
+    public function update(Request $request)
     {
         $id = $request->id;
         $name = $request->name;
@@ -51,7 +51,7 @@ class UsersController extends Controller
         $newUser->updated_at = $updated_at;
 
         $newUser->save();
-    } */
+    }
 
     public function create(Request $request)
     {

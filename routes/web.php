@@ -47,5 +47,5 @@ Route::post('/category/enable', 'Admin\CategoriesController@enable')->name('cate
 Route::post('/category/disable', 'Admin\CategoriesController@disable')->name('category.disable');
 Route::post('/category/delete', 'Admin\CategoriesController@delete')->name('category.delete');
 
-Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('social.auth');
-Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('social.callback');
+Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle')->name('google.redirect');
+Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback')->name('google.callback');

@@ -247,8 +247,7 @@ button.anadiRegistro{
     padding-left: 4%;
    
 }
-
  
 tr:nth-child(even){
-    color: grey;
+    background-color: grey;
 }

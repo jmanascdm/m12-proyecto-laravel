@@ -43,38 +43,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function redirectToProvider($provider) {
-        return Socialite::driver($provider)->stateless()->redirect();
-    }
-    
-    public function handleProviderCallback($provider) {
-        // Obtenemos los datos del usuario
-        $social_user = Socialite::driver($provider)->stateless()->user();
-        //dd($user); // Sirve para visualizar que llega el callback antes de seguir con el codigo 
-    
-        if ($user = User::where('email', $social_user->email)->first()) { 
-        return $this->authAndRedirect($user); // Login y redirección
-        } else {
-        // add user to database
-            if ($social_user->getName()==null) {
-            $social_user->name = $social_user->nickname;
-            } 
-            $user = User::create([
-            // 'token' => $user->token;
-            'name' => $social_user->getName(),
-            'email' => $social_user->getEmail(),
-            'password' => Hash::make(Str::random(24)),
-            'avatar' => $social_user->avatar,
-            'provider' => $provider
-            ]);
-            return $this->authAndRedirect($user); // Login y redirección
-        }
-    }
-    
-    // Login y redirección
-    public function authAndRedirect($user) {
-        Auth::login($user);
-        return redirect($this->redirectTo);
-    }
 }

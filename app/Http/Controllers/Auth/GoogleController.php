@@ -43,7 +43,7 @@ class GoogleController extends Controller
                 if($finduser->deleted_at == null) {
                     Auth::login($finduser);
                 }
-                return redirect('/home');
+                return redirect('/');
             }else{
                 $newUser = User::create([
                     'name' => $user->name,

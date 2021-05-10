@@ -248,6 +248,6 @@ button.anadiRegistro{
    
 }
  
-tr:nth-child(even){
-    background-color: grey;
+tr:nth-child(even) td{
+    background-color: lightgrey !important;
 }

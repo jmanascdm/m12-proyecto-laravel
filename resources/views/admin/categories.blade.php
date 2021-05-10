@@ -10,7 +10,7 @@
 
 <div>
     <h1>Categories</h1>
-    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
+    <button title="Afegir" class="anadiRegistro btn btn-warning modalbtn"><i class="fas fa-plus">Afegir Categoria</i></button>
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>

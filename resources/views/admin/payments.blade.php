@@ -10,8 +10,8 @@
 
 <div>
     <h1>Pagaments</h1>
-    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
-    <table id="tablaAutomatica" class="col-md-6">
+    <button title="Afegir"  class="anadiRegistro btn btn-warning modalbtn"><i class="fas fa-plus">Afegir Pagament</i></button>
+    <table id="tablaAutomatica" style="" class="col-md-6">
         <thead>
             <tr>
                 <th>Id</th>
@@ -178,6 +178,7 @@
         }
     })
 </script>
+
 <script>
     $('#save').click(function() {
         var id = $('#id').val();

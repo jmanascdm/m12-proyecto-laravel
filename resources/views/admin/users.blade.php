@@ -4,13 +4,14 @@
 @push('styles')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="{{ asset('css/notifications/notifications.css') }}">
+<link rel="stylesheet" href="{{ asset('miCss.css') }}">
 @endpush
 
 @section('content')
 
 <div>
     <h1>Usuaris</h1>
-    <button title="Afegir" id="addbtn" class="btn btn-warning"><i class="fas fa-plus"></i></button>
+    <button title="Afegir" class="anadiRegistro btn btn-warning"><i class="fas fa-plus">Afegir Usuari</i></button>
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>

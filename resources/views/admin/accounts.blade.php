@@ -10,7 +10,7 @@
 
 <div class="mb-5">
     <h1>Comptes</h1>
-    <button title="Afegir" class="btn btn-warning modalbtn"><i class="fas fa-plus"></i></button>
+    <button title="Afegir" class="anadiRegistro btn btn-warning modalbtn"><i class="fas fa-plus">Afegir Compte</i></button>
     <table class="col-md-6" id="tablaAutomatica">
         <thead>
             <tr>

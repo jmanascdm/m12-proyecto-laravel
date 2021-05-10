@@ -83,7 +83,7 @@ const infoNotf = window.createNotification({
 
 <!-- Eliminar registres -->
 <script>
-    $('.deletebtn').click(function() {        
+    function deletebtn() {
         if(confirm("Estas segur que vols eliminar el registre?")) {
             var id = $(this).attr('dt-id');
             var table = $(this).attr('dt-tb');
@@ -119,12 +119,13 @@ const infoNotf = window.createNotification({
                 })
             }
         }
-    })
+    }
+    $('.deletebtn').click(deletebtn);
 </script>
 
 <!-- Editar camps -->
 <script>
-    $('.modalbtn').click(function() {
+    function modalbtn() {
         var id = $(this).attr("dt-id");
         var enabled = $(this).attr("dt-enabled");
         var table = $(this).attr("dt-tb");
@@ -157,7 +158,12 @@ const infoNotf = window.createNotification({
         });
 
         $('#modal').modal();
-    })
+    }
+    $('.modalbtn').click(modalbtn);
+    $('*[aria-controls="tablaAutomatica"]').click(function() {
+        $('.modalbtn').click(modalbtn);
+        $('.deletebtn').click(deletebtn);
+    });
 </script>
 
 <!-- Deshabilitar camps -->

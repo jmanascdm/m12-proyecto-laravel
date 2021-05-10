@@ -211,12 +211,6 @@
         var end_date_obj = new Date(end_date);
         var date_r = /^[0-9]{4}\-([0][1-9]|[1][1-2])\-([0][1-9]|[1-2][0-9]|[3][0-2])$/;
 
-        console.log(start_date);
-        console.log(end_date);
-        if(start_date_obj < end_date_obj) {
-            console.log("if");
-        }
-        
         if(id && !id.match(id_r)) {
             errorNotf({
                 title: 'Error!',
@@ -281,7 +275,7 @@
             throw new Error('La data d\'inici proporcionada no és vàlida');
         }
 
-        if(!end_date.match(date_r) || start_date_obj < end_date_obj) {
+        if(!end_date.match(date_r) || start_date_obj>end_date_obj) {
             errorNotf({
                 title: 'Error!',
                 message: 'La data final proporcionada no és vàlida',

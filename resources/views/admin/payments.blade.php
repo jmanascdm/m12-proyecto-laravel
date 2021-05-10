@@ -197,7 +197,7 @@
         var order_r = /^[a-zA-Z0-9]{1,20}$/;
 
         var title = $('#title').val();
-        var title_r = /^[a-zA-Z0-9]{1,150}$/;
+        var title_r = /^[a-zA-Z0-9\s]{1,150}$/;
 
         var description = tinymce.activeEditor.getContent();
         var description_r = /^$/;

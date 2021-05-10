@@ -19,6 +19,7 @@ class HomeController extends Controller
         JOIN payments ON payments.id_category = categories.id
         WHERE categories.deleted_at IS NULL
         AND payments.deleted_at IS NULL
+        AND payments.end_date > CURRENT_DATE
         GROUP BY categories.id,categories.category;");
 
         return view('home',compact('categories'));
@@ -27,7 +28,7 @@ class HomeController extends Controller
     public function getPayment(Request $request)
     {
         $id = $request->id;
-        $payment = Payment::select('title','description','price')->where("id",$id)->where("deleted_at",null)->get();
+        $payment = Payment::select('title','description','price')->where("id",$id)->get();
 
         return $payment;
     }
@@ -35,7 +36,9 @@ class HomeController extends Controller
     public function getPayments(Request $request)
     {
         $id = $request->id;
-        $payments = Payment::select('id','title')->where("id_category",$id)->where("deleted_at",null)->get();
+        $payments = Payment::select('id','title')->where("id_category",$id)->where("end_date")->get();
+        $payments = DB::select("SELECT id,title FROM payments
+        WHERE id_category = $id AND end_date > CURRENT_DATE;");
 
         return $payments;
     }

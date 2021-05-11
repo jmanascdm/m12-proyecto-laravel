@@ -11,7 +11,7 @@
 
 <div>
     <h1>Usuaris</h1>
-    <button title="Afegir" class="anadiRegistro btn btn-warning"><i class="fas fa-plus">Afegir Usuari</i></button>
+    <button title="Afegir" id="addbtn" class="anadiRegistro btn btn-warning"><i class="fas fa-plus">Afegir Usuari</i></button>
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>

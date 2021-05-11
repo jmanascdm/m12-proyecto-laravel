@@ -5,6 +5,16 @@
     --azulFuerte: #013660;
 }
 
+::-moz-selection {
+    color: white;
+    background: var(--amarilloFlojo);
+}
+
+::selection {
+    color: white;
+    background: var(--amarilloFlojo);
+}
+
 .iniciarSesion {
     color: #00365f;
 }

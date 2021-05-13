@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             'name' => "admin",
             'password' => "$2y$10$8vHIUdlUxkfvS/g./L5.wOYPKBjp8IqNZIa5uAv66ZzkzEL2YMVHG",
             'email' => "admin",
+            'admin' => 1,
             'created_by' => 1,
             'updated_by' => 1,
         ]);

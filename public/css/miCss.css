@@ -186,6 +186,10 @@ td {
     white-space: nowrap;
 }
 
+td[dt-col=price]::after {
+    content: "€";
+}
+
 th {
     text-align: center;
     background-color: #013660 ;

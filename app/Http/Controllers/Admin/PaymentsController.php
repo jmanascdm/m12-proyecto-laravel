@@ -25,13 +25,10 @@ class PaymentsController extends Controller
     {
         $items = DB::select("SELECT payments.id as id, categories.id as id_category,
         categories.category as category, accounts.id as id_account, accounts.account as account,
-        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`,payments.created_at,
-        payments.updated_at, users1.name as created_by, users2.name as updated_by, payments.deleted_at
+        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`,payments.deleted_at
         FROM payments
         JOIN categories ON id_category = categories.id
-        JOIN accounts ON id_account = accounts.id
-        JOIN users users1 ON payments.created_by = users1.id
-        JOIN users users2 ON payments.updated_by = users2.id;");
+        JOIN accounts ON id_account = accounts.id;");
 
         return view('admin.payments',compact('items'));
     }

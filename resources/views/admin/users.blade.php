@@ -15,14 +15,9 @@
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Email</th>
                 <th>Admin</th>
-                <th>Creat el</th>
-                <th>Actualitzat el</th>
-                <th>Creat per</th>
-                <th>Actualitzat per</th>
                 <th>Habilitat</th>
                 <th>Accions</th>
             </tr>
@@ -30,7 +25,6 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="id">{{ $item->id }}</td>
                 <td dt-col="name">{{ $item->name }}</td>
                 <td dt-col="email">{{ $item->email }}</td>
                 @if($item->admin == 1)
@@ -38,10 +32,6 @@
                 @else
                 <td dt-col="admin">No</td>
                 @endif
-                <td dt-col="created_at">{{ $item->created_at }}</td>
-                <td dt-col="updated_at">{{ $item->updated_at }}</td>
-                <td dt-col="created_by">{{ $item->created_by }}</td>
-                <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
@@ -213,7 +203,7 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!name.match(name_r)) {
+        if(!name || !name.match(name_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El nom proporcionat no és vàlid',
@@ -223,7 +213,7 @@
 
         console.log(email);
 
-        if(!email.match(email_r)) {
+        if(!email || !email.match(email_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'L\'email proporcionat no és vàlid',

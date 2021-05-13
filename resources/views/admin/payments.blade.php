@@ -14,7 +14,6 @@
     <table id="tablaAutomatica" style="" class="col-md-6">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Categoria</th>
                 <th>Compte</th>
                 <th>Nivell</th>
@@ -24,10 +23,6 @@
                 <th>Preu</th>
                 <th>Data inici</th>
                 <th>Data final</th>
-                <th>Creat el</th>
-                <th>Actualitzat el</th>
-                <th>Creat per</th>
-                <th>Actualitzat per</th>
                 <th>Habilitat</th>
                 <th>Accions</th>
             </tr>
@@ -35,7 +30,6 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="id">{{ $item->id }}</td>
                 <td dt-col="category">{{ $item->category }}</td>
                 <td dt-col="account">{{ $item->account }}</td>
                 <td dt-col="level">{{ $item->level }}</td>
@@ -45,10 +39,6 @@
                 <td dt-col="price">{{ $item->price }}</td>
                 <td dt-col="start_date">{{ $item->start_date }}</td>
                 <td dt-col="end_date">{{ $item->end_date }}</td>
-                <td dt-col="created_at">{{ $item->created_at }}</td>
-                <td dt-col="updated_at">{{ $item->updated_at }}</td>
-                <td dt-col="created_by">{{ $item->created_by }}</td>
-                <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
@@ -219,7 +209,7 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!category.match(category_r)) {
+        if(!category || !category.match(category_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La categoria proporcionada no és vàlida',
@@ -227,7 +217,7 @@
             throw new Error('L\'establiment proporcionat no és vàlid');
         }
 
-        if(!account.match(account_r)) {
+        if(!account || !account.match(account_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El compte proporcionat no és vàlid',
@@ -235,7 +225,7 @@
             throw new Error('El compte proporcionat no és vàlid');
         }
 
-        if(!level.match(level_r)) {
+        if(!level || !level.match(level_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El nivell proporcionat no és vàlid',
@@ -243,7 +233,7 @@
             throw new Error('El nivell proporcionat no és vàlid');
         }
 
-        if(!order.match(order_r)) {
+        if(!order || !order.match(order_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La comanda proporcionada no és vàlida',
@@ -251,7 +241,7 @@
             throw new Error('La comanda proporcionada no és vàlida');
         }
 
-        if(!title.match(title_r)) {
+        if(!order || !title.match(title_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El títol proporcionat no és vàlid',
@@ -259,7 +249,7 @@
             throw new Error('El títol proporcionat no és vàlid');
         }
 
-        if(!price.match(price_r)) {
+        if(!price || !price.match(price_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El preu proporcionat no és vàlid',
@@ -267,7 +257,7 @@
             throw new Error('El preu proporcionat no és vàlid');
         }
 
-        if(!start_date.match(date_r)) {
+        if(!start_date || !start_date.match(date_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La data d\'inici proporcionada no és vàlida',
@@ -275,7 +265,7 @@
             throw new Error('La data d\'inici proporcionada no és vàlida');
         }
 
-        if(!end_date.match(date_r) || start_date_obj>end_date_obj) {
+        if(!end_date || !end_date.match(date_r) || start_date_obj>end_date_obj) {
             errorNotf({
                 title: 'Error!',
                 message: 'La data final proporcionada no és vàlida',

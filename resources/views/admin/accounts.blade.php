@@ -14,15 +14,10 @@
     <table class="col-md-6" id="tablaAutomatica">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Establiment</th>
                 <th>Compte</th>
                 <th>Fuc</th>
                 <th>Clau</th>
-                <th>Creat el</th>
-                <th>Actualitzat el</th>
-                <th>Creat per</th>
-                <th>Actualitzat per</th>
                 <th>Habilitada</th>
                 <th>Accions</th>
             </tr>
@@ -30,15 +25,10 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="id">{{ $item->id }}</td>
                 <td dt-col="establishment">{{ $item->establishment }}</td>
                 <td dt-col="account">{{ $item->account }}</td>
                 <td dt-col="fuc">{{ $item->fuc }}</td>
                 <td dt-col="key">{{ $item->key }}</td>
-                <td dt-col="created_at">{{ $item->created_at }}</td>
-                <td dt-col="updated_at">{{ $item->updated_at }}</td>
-                <td dt-col="created_by" >{{ $item->created_by }}</td>
-                <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
@@ -139,7 +129,7 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!establishment.match(establishment_r)) {
+        if(!establishment || !establishment.match(establishment_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'L\'establiment proporcionat no és vàlid',
@@ -147,7 +137,7 @@
             throw new Error('L\'establiment proporcionat no és vàlid');
         }
 
-        if(!account.match(account_r)) {
+        if(!account || !account.match(account_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El compte proporcionat no és vàlid',
@@ -155,7 +145,7 @@
             throw new Error('El compte proporcionat no és vàlid');
         }
 
-        if(!fuc.match(fuc_r)) {
+        if(!fuc || !fuc.match(fuc_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El fuc proporcionat no és vàlid',
@@ -163,7 +153,7 @@
             throw new Error('El fuc proporcionat no és vàlid');
         }
 
-        if(!key.match(key_r)) {
+        if(!key || !key.match(key_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La clau proporcionada no és vàlida',

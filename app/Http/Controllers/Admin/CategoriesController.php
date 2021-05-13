@@ -23,12 +23,7 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $items = DB::select("SELECT categories.id as id, `category`,
-        categories.created_at as created_at, categories.updated_at as updated_at,
-        users1.name as created_by, users2.name as updated_by, categories.deleted_at as deleted_at
-        FROM categories
-        JOIN users users1 ON categories.created_by = users1.id
-        JOIN users users2 ON categories.updated_by = users2.id;");
+        $items = DB::select("SELECT id as id, `category`, `deleted_at` FROM categories");
 
         return view('admin.categories',compact('items'));
     }

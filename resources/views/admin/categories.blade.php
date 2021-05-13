@@ -14,12 +14,7 @@
     <table id="tablaAutomatica" class="col-md-6">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
-                <th>Creat el</th>
-                <th>Actualitzat el</th>
-                <th>Creat per</th>
-                <th>Actualitzat per</th>
                 <th>Habilitada</th>
                 <th>Accions</th>
             </tr>
@@ -27,12 +22,7 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="id">{{ $item->id }}</td>
                 <td dt-col="category">{{ $item->category }}</td>
-                <td dt-col="created_at">{{ $item->created_at }}</td>
-                <td dt-col="updated_at">{{ $item->updated_at }}</td>
-                <td dt-col="created_by">{{ $item->created_by }}</td>
-                <td dt-col="updated_by">{{ $item->updated_by }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
@@ -106,7 +96,7 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!category.match(category_r)) {
+        if(!category || !category.match(category_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La categoria proporcionada no és vàlida',

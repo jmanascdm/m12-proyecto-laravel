@@ -26,7 +26,7 @@ class UsersController extends Controller
     
     public function index()
     {
-        $items = DB::select("SELECT users0.id, users0.name, users0.email, users0.created_at,
+        $items = DB::select("SELECT users0.id, users0.name, users0.email, users0.admin, users0.created_at,
         users0.updated_at, users1.name AS created_by, users2.name AS updated_by, users0.deleted_at
         FROM users users0
         JOIN users users1 ON users0.created_by = users1.id
@@ -40,6 +40,7 @@ class UsersController extends Controller
         $id = $request->id;
         $name = $request->name;
         $email = $request->email;
+        $admin = $request->admin;
         $updated_at = Carbon::now()->toDateTimeString();
         $updated_by = Auth::user()->id;
 
@@ -47,6 +48,7 @@ class UsersController extends Controller
         
         $newUser->name = $name;
         $newUser->email = $email;
+        $newUser->admin = $admin;
         $newUser->updated_by = $updated_by;
         $newUser->updated_at = $updated_at;
 

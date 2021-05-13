@@ -18,6 +18,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Email</th>
+                <th>Admin</th>
                 <th>Creat el</th>
                 <th>Actualitzat el</th>
                 <th>Creat per</th>
@@ -32,6 +33,11 @@
                 <td dt-col="id">{{ $item->id }}</td>
                 <td dt-col="name">{{ $item->name }}</td>
                 <td dt-col="email">{{ $item->email }}</td>
+                @if($item->admin == 1)
+                <td dt-col="admin">Sí</td>
+                @else
+                <td dt-col="admin">No</td>
+                @endif
                 <td dt-col="created_at">{{ $item->created_at }}</td>
                 <td dt-col="updated_at">{{ $item->updated_at }}</td>
                 <td dt-col="created_by">{{ $item->created_by }}</td>
@@ -111,6 +117,12 @@
                     <input type="email" class="form-control" id="email" name="email" required/>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="email" class="col-sm-4 col-form-label">Admin</label>
+                <div class="col-sm-8">
+                    <input type="checkbox" class="form-control" id="admin" name="admin" required/>
+                </div>
+            </div>
             <input type="hidden" class="form-control" id="id" name="id" required/>
         </form>
     </div>
@@ -183,11 +195,15 @@
         var id_r = /^[0-9]{1,20}$/;
 
         var name = $('#name').val();
-        var name_r = /^[a-zA-Z0-9\_]{4,255}$/;
+        var name_r = /^[ña-zA-Z0-9\s]{4,255}$/;
 
         var email = $('#email').val();
-        console.log($('#email'));
         var email_r = /^[a-zA-Z0-9]+\@[a-zA-Z]+(\.[a-zA-Z]{2,3}){1,2}$/;
+
+        var admin;
+        var admin_c = $('#admin')[0].checked;
+        if(admin_c) admin = 1;
+        else admin = 0;
 
         if(!id || !id.match(id_r)) {
             errorNotf({
@@ -222,7 +238,8 @@
                 '_token': '{{ csrf_token() }}',
                 id: id,
                 name: name,
-                email: email
+                email: email,
+                admin: admin
             }, beforeSend: function() {
                 infoNotf({
                     title: 'Processant...',

@@ -137,6 +137,9 @@ const infoNotf = window.createNotification({
 
         if(!isNaN(id)) {
             $('#modal input.form-control').each(function(index,element) {
+                if($(element)[0].type == "checkbox" && $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() == "Sí") {
+                    $(element).attr('checked','true');
+                }
                 $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
             });
             

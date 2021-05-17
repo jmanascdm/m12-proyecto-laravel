@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\User;
 use App\Code;
-use DB;
 use Mail;
 
 class UsersController extends Controller
@@ -26,7 +25,7 @@ class UsersController extends Controller
     
     public function index()
     {
-        $items = DB::select("SELECT id, name, email, admin, deleted_at FROM users;");
+        $items = User::withTrashed()->select('id', 'name', 'email', 'admin', 'deleted_at')->get();
 
         return view('admin.users',compact('items'));
     }

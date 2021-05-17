@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Account;
-use DB;
 
 class AccountsController extends Controller
 {
@@ -23,14 +22,15 @@ class AccountsController extends Controller
 
     public function index()
     {
-        $items = DB::select("SELECT id, `establishment`, `account`, `fuc`, `key`, `deleted_at` FROM accounts");
+        $items = Account::withTrashed()->select('id', 'establishment', 'account', 'fuc', 'key', 'deleted_at')->get();
 
         return view('admin.accounts', compact('items'));
     }
 
     public function getAccounts()
     {
-        $items = DB::select("SELECT id,account FROM accounts;");
+        $items = Account::select('id','account')->get();
+
         return $items;
     }
 

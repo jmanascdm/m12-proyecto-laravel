@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Category;
-use DB;
 
 class CategoriesController extends Controller
 {
@@ -23,14 +22,15 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        $items = DB::select("SELECT id as id, `category`, `deleted_at` FROM categories");
+        $items = Category::withTrashed()->select('id','category','deleted_at')->get();
 
         return view('admin.categories',compact('items'));
     }
 
     public function getCategories()
     {
-        $items = DB::select("SELECT id,category FROM categories;");
+        $items = Category::select('id', 'category')->get();
+        
         return $items;
     }
 

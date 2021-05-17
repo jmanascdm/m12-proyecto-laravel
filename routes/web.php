@@ -19,6 +19,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/payment', 'HomeController@getPayment')->name('home.payment');
 Route::post('/payments', 'HomeController@getPayments')->name('home.payments');
 
+Route::get('/error', 'HomeController@error')->name('error');
+
 Route::get('/admin/users', 'Admin\UsersController@index')->name('admin.users')->middleware('admin');;
 Route::get('/admin/payments', 'Admin\PaymentsController@index')->name('admin.payments');
 Route::get('/admin/accounts', 'Admin\AccountsController@index')->name('admin.accounts');

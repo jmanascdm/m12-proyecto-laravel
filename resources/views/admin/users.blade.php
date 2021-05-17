@@ -133,12 +133,14 @@
 @push('scripts')
 
 @include('layouts.admin.scripts')
+
 <!-- Afegir usuaris -->
 <script>
     $('#addbtn').click(function (){
         $('#modalAdd').modal();
     })
 </script>
+
 <script>
     $('#add').click(function() {
 
@@ -178,6 +180,7 @@
         })
     })
 </script>
+
 <!-- Editar usuaris -->
 <script>
     $('#save').click(function (){

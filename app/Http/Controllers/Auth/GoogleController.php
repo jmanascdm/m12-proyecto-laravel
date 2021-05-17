@@ -45,16 +45,18 @@ class GoogleController extends Controller
                 }
                 return redirect('/');
             }else{
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'password' => encrypt('123456dummy'),
-                    'created_by' => $nextId,
-                    'updated_by' => $nextId
-                ]);
-                $newUser->delete();
-                return redirect('/');
+                if(preg_match('/^[a-zA-Z0-9]+\@(inscamidemar|xtec)\.cat$/', $user->email)) {
+                    $newUser = User::create([
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'google_id'=> $user->id,
+                        'password' => encrypt('123456dummy'),
+                        'created_by' => $nextId,
+                        'updated_by' => $nextId
+                    ]);
+                    $newUser->delete();
+                }
+                return redirect( route('home') );
             }
         } catch (Exception $e) {
             dd($e->getMessage());

@@ -136,18 +136,29 @@
         <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <form action="https://sis.sermepa.es/sis/realizarPago" method="post" accept-charset="utf-8" id="form_260">
     <div class="modal-body">
-        Vols compartir?
-        <div class="socials"></div>
+
+        <div class="row">
+            <label for="name" class="col-lg-4 col-form-label">
+                Nom i cognoms
+            </label>
+            <div class="col-lg-8">
+                <input class="form-control" type="text" name="name" id="name" autocomplete="name" required/>
+            </div>
+        </div>
+
     </div>
     <div class="modal-footer">
-        <form action="https://sis.sermepa.es/sis/realizarPago" method="post" accept-charset="utf-8" id="form_260">
+        <div class="mr-auto">
+            Vols compartir? <span class="socials"></span>
+        </div>
             <input type="hidden" name="Ds_SignatureVersion" value=""/>
             <input type="hidden" name="Ds_MerchantParameters" value=""/>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
             <button type="submit" class="btn btn-success" id="save">Continuar</button>
-        </form>
     </div>
+    </form>
     </div>
 </div>
 </div>
@@ -196,7 +207,7 @@ $('#paybtn').click(function() {
     <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
 	    <i class="far fa-envelope"></i>
     </a>`;
-	$('.modal-body .socials').html(content);
+	$('.modal-footer .socials').html(content);
 
 	$('#modal').modal();
 })

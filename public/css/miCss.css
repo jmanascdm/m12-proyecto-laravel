@@ -265,3 +265,11 @@ button.anadiRegistro{
 tr:nth-child(even) td{
     background-color: lightgrey !important;
 }
+
+.socials a {
+    font-size: 4pc;
+}
+
+.modal {
+    z-index: 9999;
+}

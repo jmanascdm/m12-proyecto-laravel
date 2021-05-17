@@ -1,6 +1,8 @@
 <!-- Notificacions -->
 <script src="{{ asset('js/notifications/notifications.js') }}"></script>
 <script>
+// Creamos los objetos de notificacion de  exito, error e informacion
+// Cada uno tiene un tiempo de aparicion de 5 segundos
 const successNotf = window.createNotification({
     theme: 'success',
     showDuration: 5000
@@ -83,6 +85,13 @@ const infoNotf = window.createNotification({
 
 <!-- Eliminar registres -->
 <script>
+    /**
+     * Al presionar el boton para eliminar un registro aparecerá un mensaje de confirmacion. Si continuamos con la eliminacion
+     *  se recogen el ID y la tabla del registro a eliminar des de los atributos del boton 'dt-id' y 'dt-table' respectivamente.
+     * Si los datos son correctos, estas variables se utilizan para enviar la petición al servidor y eliminar el registro.
+     * En cualquier caso, se notifica visualmente al usuario del estado de la peticion, y en caso de ejecutarse correctamente,
+     *  se elimina el registro de la tabla al momento.
+     */
     function deletebtn() {
         if(confirm("Estas segur que vols eliminar el registre?")) {
             var id = $(this).attr('dt-id');
@@ -125,6 +134,19 @@ const infoNotf = window.createNotification({
 
 <!-- Editar camps -->
 <script>
+    /**
+     * Al presionar el boton de modal (editar/añadir) se recogen el ID, la tabla y el boobleano de habilitado del registro
+     *  des de los atributos del boton 'dt-id', 'dt-table' y 'dt-enabled' respectivamente.
+     * 
+     * Antes de mostrar el modal se elimina el contenido de los inputs/textarea y se comprieba si existe la variable ID.
+     * Si la variable no existe, significa que se esta añadiendo un registro, por lo que los campos aparecerán vacios.
+     * Si existe, se rellenan los campos a partir de los datos en el HTML:
+     *  Por cada input en el modal, se recoge el valor HTML de la columna con el atributo 'dt-col' que tenga el mismo valor
+     *  que el ID del input del modal de cada iteracion, y se le asigna el valor usando el atributo 'value'.
+     * 
+     * Tambien se comprueba si el campo esta habilitado o no, y se muetra el boton correspondiente para realizar la accion
+     *  contraria.
+     */
     function modalbtn() {
         var id = $(this).attr("dt-id");
         var enabled = $(this).attr("dt-enabled");
@@ -162,6 +184,9 @@ const infoNotf = window.createNotification({
 
         $('#modal').modal();
     }
+    /**
+     * Cada vez que se modifica la tabla (por ejemplo, al filtrar las columnas) se vuelve a aplicar el evento clic a los botones editar y borrar
+     */
     $('.modalbtn').click(modalbtn);
     $('*[aria-controls="tablaAutomatica"]').click(function() {
         $('.modalbtn').click(modalbtn);
@@ -171,6 +196,10 @@ const infoNotf = window.createNotification({
 
 <!-- Deshabilitar camps -->
 <script>
+    /**
+     * Al presionar el boton de deshabilitar se recogen el ID y la tabla del registro a eliminar des de los atributos del boton
+     *  'dt-id' y 'dt-table' respectivamente. En cualquier caso, se notifica visualmente al usuario del estado de la peticion.
+     */
     function disable(element) {
         var id = element.attr('dt-id');
         var table = element.attr('dt-tb');
@@ -194,13 +223,13 @@ const infoNotf = window.createNotification({
                 }, success: function() {
                     successNotf({
                         title: 'Fet!',
-                        message: 'Registre eliminat correctament',
+                        message: 'Registre deshabilitat correctament',
                     });
                     location.reload();
                 }, error: function() {
                     errorNotf({
                         title: 'Error!',
-                        message: 'No s\'ha pogut eliminar el registre',
+                        message: 'No s\'ha pogut deshabilitar el registre',
                     });
                 }
             })
@@ -233,13 +262,13 @@ const infoNotf = window.createNotification({
                 }, success: function() {
                     successNotf({
                         title: 'Fet!',
-                        message: 'Registre eliminat correctament',
+                        message: 'Registre habilitat correctament',
                     });
                     location.reload();
                 }, error: function() {
                     errorNotf({
                         title: 'Error!',
-                        message: 'No s\'ha pogut eliminar el registre',
+                        message: 'No s\'ha pogut habilitar el registre',
                     });
                 }
             })

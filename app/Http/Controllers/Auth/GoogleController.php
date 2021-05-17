@@ -55,8 +55,14 @@ class GoogleController extends Controller
                         'updated_by' => $nextId
                     ]);
                     $newUser->delete();
+                    return redirect( route('home') );
+                } else {
+                    $error_title = 'Email incorrecte';
+                    $error_msg = 'Els únics dominis disponibles per registrar-se són <a class="badge badge-info" href="xtec.cat" target="_blank">xtec.cat</a> i 
+                    <a class="badge badge-info" href="inscamidemar.cat" target="_blank">inscamidemar.cat</a>.';
+
+                    return redirect( route('error',compact('error_title','error_msg')) );
                 }
-                return redirect( route('home') );
             }
         } catch (Exception $e) {
             dd($e->getMessage());

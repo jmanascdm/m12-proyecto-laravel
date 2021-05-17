@@ -25,6 +25,14 @@ class HomeController extends Controller
         return view('home',compact('categories'));
     }
 
+    public function error(Request $request)
+    {
+        $error_title = $request->error_title;
+        $error_msg = $request->error_msg;
+
+        return view('error',compact('error_title','error_msg'));
+    }
+
     public function getPayment(Request $request)
     {
         $id = $request->id;

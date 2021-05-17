@@ -9,7 +9,6 @@ use App\Code;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use DB;
 
 class RegisterController extends Controller
 {
@@ -67,15 +66,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $code = DB::select("SELECT id,created_by FROM codes WHERE code = '".$data['code']."';");
-        Code::find($code[0]->id)->delete();
+        $code = Code::select('id','created_by')->where('code',$data['code'])->first();
+        Code::find($code->id)->delete();
 
         return User::create([
             'name' => $data['name'],
             'password' => Hash::make($data['password']),
             'email' => $data['email'],
-            'created_by' => $code[0]->created_by,
-            'updated_by' => $code[0]->created_by,
+            'created_by' => $code->created_by,
+            'updated_by' => $code->created_by,
         ]);
     }
 }

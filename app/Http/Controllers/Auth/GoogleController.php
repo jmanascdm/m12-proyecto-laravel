@@ -54,7 +54,7 @@ class GoogleController extends Controller
                         'created_by' => $nextId,
                         'updated_by' => $nextId
                     ]);
-                    $newUser->delete();
+                    Auth::login($newUser);
                     return redirect( route('home') );
                 } else {
                     $error_title = 'Email incorrecte';

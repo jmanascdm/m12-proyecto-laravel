@@ -79,10 +79,10 @@ class UsersController extends Controller
         $category->delete();
     }
 
-    public function delete(Request $request)
+    /* public function delete(Request $request)
     {
         $id = $request->id;
         $category = User::withTrashed()->find($id);
         $category->forceDelete();
-    }
+    } */
 }

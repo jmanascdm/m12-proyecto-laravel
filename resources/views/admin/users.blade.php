@@ -38,7 +38,6 @@
                 <td>No</td>
                 @endif
                 <td>
-                    <button dt-tb="user" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
                     <button dt-id="{{ $item->id }}" dt-tb="user"
                         @if($item->deleted_at == null)
                         dt-enabled="true"

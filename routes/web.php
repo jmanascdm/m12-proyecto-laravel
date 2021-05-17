@@ -30,7 +30,7 @@ Route::post('/user/update', 'Admin\UsersController@update')->name('user.update')
 Route::post('/user/create', 'Admin\UsersController@create')->name('user.create');
 Route::post('/user/enable', 'Admin\UsersController@enable')->name('user.enable');
 Route::post('/user/disable', 'Admin\UsersController@disable')->name('user.disable');
-Route::post('/user/delete', 'Admin\UsersController@delete')->name('user.delete');
+// Route::post('/user/delete', 'Admin\UsersController@delete')->name('user.delete');
 
 Route::post('/payment/update', 'Admin\PaymentsController@update')->name('payment.update');
 Route::post('/payment/enable', 'Admin\PaymentsController@enable')->name('payment.enable');

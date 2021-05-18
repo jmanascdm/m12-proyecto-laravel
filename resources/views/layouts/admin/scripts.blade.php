@@ -152,12 +152,17 @@ const infoNotf = window.createNotification({
         var enabled = $(this).attr("dt-enabled");
         var table = $(this).attr("dt-tb");
 
+        // Para la tabla de pagos, al editar un pago se recoge el ID de la categoria/cuenta asociadas para preseleccionarlas
+        var category = $(`tr#${id} td[dt-category]`).attr('dt-category');
+        var account = $(`tr#${id} td[dt-account]`).attr('dt-account');
+
         tinymce.remove();
         $('#modal input.form-control').attr('value',"");
         $('#modal textarea.form-control').html("");
         $('#modal .modal-footer div').first().html("");
 
         if(!isNaN(id)) {
+            $('#modal #id').attr('value',id);
             $('#modal input.form-control').each(function(index,element) {
                 if($(element)[0].type == "checkbox" && $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() == "Sí") {
                     $(element).attr('checked','true');
@@ -168,6 +173,13 @@ const infoNotf = window.createNotification({
             $('#modal textarea.form-control').each(function(index,element) {
                $(element).html( $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() );
             });
+
+            if(category) {
+                $(`#modal select#category option[value=${category}]`).attr('selected',true);
+            }
+            if(account) {
+                $(`#modal select#account option[value=${account}]`).attr('selected',true);
+            }
 
             if(enabled){
                 $('#modal .modal-footer div').first().html(`<button type="button" dt-id="${id}" dt-tb="${table}" class="btn btn-warning" onclick="disable($(this));">Deshabilitar</button>`);

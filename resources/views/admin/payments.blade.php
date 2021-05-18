@@ -22,7 +22,7 @@
                 <th>Descripció</th>
                 <th>Preu</th>
                 <th>Data inici</th>
-                <th>Data final</th>
+                <th>Data fi</th>
                 <th>Habilitat</th>
                 <th>Accions</th>
             </tr>
@@ -30,8 +30,8 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="category">{{ $item->category }}</td>
-                <td dt-col="account">{{ $item->account }}</td>
+                <td dt-category="{{ $item->id_category }}" dt-col="category">{{ $item->category }}</td>
+                <td dt-account="{{ $item->id_account }}" dt-col="account">{{ $item->account }}</td>
                 <td dt-col="level">{{ $item->level }}</td>
                 <td dt-col="order">{{ $item->order }}</td>
                 <td dt-col="title">{{ $item->title }}</td>
@@ -123,7 +123,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="end_date" class="col-sm-4 col-form-label">Data final</label>
+                <label for="end_date" class="col-sm-4 col-form-label">Data fi</label>
                 <div class="col-sm-8">
                     <input type="date" class="form-control" id="end_date" name="end_date" required/>
                 </div>
@@ -214,7 +214,7 @@
                 title: 'Error!',
                 message: 'La categoria proporcionada no és vàlida',
             });
-            throw new Error('L\'establiment proporcionat no és vàlid');
+            throw new Error('La categoria proporcionada no és vàlid');
         }
 
         if(!account || !account.match(account_r)) {
@@ -241,7 +241,7 @@
             throw new Error('La comanda proporcionada no és vàlida');
         }
 
-        if(!order || !title.match(title_r)) {
+        if(!title || !title.match(title_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El títol proporcionat no és vàlid',
@@ -268,9 +268,9 @@
         if(!end_date || !end_date.match(date_r) || start_date_obj>end_date_obj) {
             errorNotf({
                 title: 'Error!',
-                message: 'La data final proporcionada no és vàlida',
+                message: 'La data fi proporcionada no és vàlida',
             });
-            throw new Error('La data final proporcionada no és vàlida');
+            throw new Error('La data fi proporcionada no és vàlida');
         }
 
         $.ajax({

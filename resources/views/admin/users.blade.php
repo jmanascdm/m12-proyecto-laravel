@@ -25,12 +25,12 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="name">{{ $item->name }}</td>
-                <td dt-col="email">{{ $item->email }}</td>
+                <td data-col="name">{{ $item->name }}</td>
+                <td data-col="email">{{ $item->email }}</td>
                 @if($item->admin == 1)
-                <td dt-col="admin">Sí</td>
+                <td data-col="admin">Sí</td>
                 @else
-                <td dt-col="admin">No</td>
+                <td data-col="admin">No</td>
                 @endif
                 @if($item->deleted_at == null)
                 <td>Sí</td>
@@ -38,9 +38,9 @@
                 <td>No</td>
                 @endif
                 <td>
-                    <button dt-id="{{ $item->id }}" dt-tb="user"
+                    <button data-id="{{ $item->id }}" data-tb="user"
                         @if($item->deleted_at == null)
-                        dt-enabled="true"
+                        data-enabled="true"
                         @endif
                         class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
@@ -112,7 +112,7 @@
                     <input type="checkbox" class="form-control" id="admin" name="admin" required/>
                 </div>
             </div>
-            <input type="hidden" class="form-control" id="id" name="id" required/>
+            <input type="hidden" class="form-control" id="id" name="id"/>
         </form>
     </div>
     <div class="modal-footer">

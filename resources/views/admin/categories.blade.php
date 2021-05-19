@@ -22,17 +22,17 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="category">{{ $item->category }}</td>
+                <td data-col="category">{{ $item->category }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
                 <td>No</td>
                 @endif
                 <td>
-                    <button dt-id="{{ $item->id }}" dt-tb="category" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" dt-tb="category"
+                    <button data-id="{{ $item->id }}" data-tb="category" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
+                    <button data-id="{{ $item->id }}" data-tb="category"
                         @if($item->deleted_at == null)
-                        dt-enabled="true"
+                        data-enabled="true"
                         @endif
                         class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
@@ -60,7 +60,7 @@
                     <input type="text" class="form-control" id="category" name="category" required/>
                 </div>
             </div>
-            <input type="hidden" class="form-control" id="id" name="id" required/>
+            <input type="hidden" class="form-control" id="id" name="id"/>
         </form>
     </div>
     <div class="modal-footer">
@@ -121,6 +121,7 @@
                     title: 'Fet!',
                     message: 'Base de dades actualitzada correctament',
                 });
+                location.reload();
             }, error: function(e) {
                 var error = 'No s\'ha pogut processar la petició:';
                 $.each($(e)[0].responseJSON.errors, function(index,element) {

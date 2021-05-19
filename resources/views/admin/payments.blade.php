@@ -30,25 +30,25 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-category="{{ $item->id_category }}" dt-col="id_category">{!! $item->category !!}</td>
-                <td dt-account="{{ $item->id_account }}" dt-col="id_account">{!! $item->account !!}</td>
-                <td dt-col="level">{{ $item->level }}</td>
-                <td dt-col="order">{{ $item->order }}</td>
-                <td dt-col="title">{{ $item->title }}</td>
-                <td dt-col="description">{{ $item->description }}</td>
-                <td dt-col="price">{{ $item->price }}</td>
-                <td dt-col="start_date">{{ $item->start_date }}</td>
-                <td dt-col="end_date">{{ $item->end_date }}</td>
+                <td data-category="{{ $item->id_category }}" data-col="id_category">{!! $item->category !!}</td>
+                <td data-account="{{ $item->id_account }}" data-col="id_account">{!! $item->account !!}</td>
+                <td data-col="level">{{ $item->level }}</td>
+                <td data-col="order">{{ $item->order }}</td>
+                <td data-col="title">{{ $item->title }}</td>
+                <td data-col="description">{{ $item->description }}</td>
+                <td data-col="price">{{ $item->price }}</td>
+                <td data-col="start_date">{{ $item->start_date }}</td>
+                <td data-col="end_date">{{ $item->end_date }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
                 <td>No</td>
                 @endif
                 <td>
-                    <button dt-tb="payment" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" dt-tb="payment"
+                    <button data-tb="payment" data-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
+                    <button data-id="{{ $item->id }}" data-tb="payment"
                         @if($item->deleted_at == null)
-                        dt-enabled="true"
+                        data-enabled="true"
                         @endif
                         class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
@@ -71,18 +71,18 @@
     <div class="modal-body">
         <form>
             <div class="form-group row">
-                <label for="category" class="col-sm-4 col-form-label">Categoria</label>
+                <label for="id_category" class="col-sm-4 col-form-label">Categoria</label>
                 <div class="col-sm-8">
                     <select class="form-control" id="id_category" name="id_category" required>
-                        <option disabled selected>Sel·lecciona una categoria</option>
+                        <option value="" disabled selected>Sel·lecciona una categoria</option>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="account" class="col-sm-4 col-form-label">Compte</label>
+                <label for="id_account" class="col-sm-4 col-form-label">Compte</label>
                 <div class="col-sm-8">
                     <select class="form-control" class="form-control" id="id_account" name="id_account">
-                        <option disabled selected>Sel·lecciona un compte</option>
+                        <option value="" disabled selected>Sel·lecciona un compte</option>
                     </select>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     <input type="date" class="form-control" id="end_date" name="end_date" required/>
                 </div>
             </div>
-            <input type="hidden" class="form-control" id="id" name="id" required/>
+            <input type="hidden" class="form-control" id="id" name="id"/>
         </form>
     </div>
     <div class="modal-footer">
@@ -249,7 +249,7 @@
             throw new Error('El títol proporcionat no és vàlid');
         }
 
-        if(!price || !price.match(price_r)) {
+        if(!price || price < 1 || !price.match(price_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El preu proporcionat no és vàlid',
@@ -300,6 +300,8 @@
                 });
                 location.reload();
             }, error: function(e) {
+                console.log($(e));
+                console.log($(e)[0].responseJSON.errors);
                 var error = 'No s\'ha pogut processar la petició:';
                 $.each($(e)[0].responseJSON.errors, function(index,element) {
                     error += "\n·"+element[0]; 

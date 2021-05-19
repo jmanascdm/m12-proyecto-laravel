@@ -32,6 +32,13 @@ class UsersController extends Controller
 
     public function update(Request $request)
     {
+        request()->validate([
+            'id' => 'required|integer',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'admin' => 'required|integer|max:1',
+        ]);
+
         $id = $request->id;
         $name = $request->name;
         $email = $request->email;

@@ -44,6 +44,7 @@ class PaymentsController extends Controller
             'order' => 'required|string|max:20',
             'title' => 'required|string|max:150',
             'description' => 'required|string',
+            'price' => 'required|integer|gt:0',
             'start_date' => 'required|date',
             'end_date' => 'required|date'
         ]);

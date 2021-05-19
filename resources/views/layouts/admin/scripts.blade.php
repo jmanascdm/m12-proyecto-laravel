@@ -89,15 +89,15 @@ const infoNotf = window.createNotification({
 <script>
     /**
      * Al presionar el boton para eliminar un registro aparecerá un mensaje de confirmacion. Si continuamos con la eliminacion
-     *  se recogen el ID y la tabla del registro a eliminar des de los atributos del boton 'dt-id' y 'dt-table' respectivamente.
+     *  se recogen el ID y la tabla del registro a eliminar des de los atributos del boton 'data-id' y 'data-table' respectivamente.
      * Si los datos son correctos, estas variables se utilizan para enviar la petición al servidor y eliminar el registro.
      * En cualquier caso, se notifica visualmente al usuario del estado de la peticion, y en caso de ejecutarse correctamente,
      *  se elimina el registro de la tabla al momento.
      */
     function deletebtn() {
         if(confirm("Estas segur que vols eliminar el registre?")) {
-            var id = $(this).attr('dt-id');
-            var table = $(this).attr('dt-tb');
+            var id = $(this).attr('data-id');
+            var table = $(this).attr('data-tb');
             if(isNaN(id)) {
                 errorNotf({
                     title: 'Error!',
@@ -138,25 +138,25 @@ const infoNotf = window.createNotification({
 <script>
     /**
      * Al presionar el boton de modal (editar/añadir) se recogen el ID, la tabla y el boobleano de habilitado del registro
-     *  des de los atributos del boton 'dt-id', 'dt-table' y 'dt-enabled' respectivamente.
+     *  des de los atributos del boton 'data-id', 'data-table' y 'data-enabled' respectivamente.
      * 
      * Antes de mostrar el modal se elimina el contenido de los inputs/textarea y se comprieba si existe la variable ID.
      * Si la variable no existe, significa que se esta añadiendo un registro, por lo que los campos aparecerán vacios.
      * Si existe, se rellenan los campos a partir de los datos en el HTML:
-     *  Por cada input en el modal, se recoge el valor HTML de la columna con el atributo 'dt-col' que tenga el mismo valor
+     *  Por cada input en el modal, se recoge el valor HTML de la columna con el atributo 'data-col' que tenga el mismo valor
      *  que el ID del input del modal de cada iteracion, y se le asigna el valor usando el atributo 'value'.
      * 
      * Tambien se comprueba si el campo esta habilitado o no, y se muetra el boton correspondiente para realizar la accion
      *  contraria.
      */
     function modalbtn() {
-        var id = $(this).attr("dt-id");
-        var enabled = $(this).attr("dt-enabled");
-        var table = $(this).attr("dt-tb");
+        var id = $(this).attr("data-id");
+        var enabled = $(this).attr("data-enabled");
+        var table = $(this).attr("data-tb");
 
         // Para la tabla de pagos, al editar un pago se recoge el ID de la categoria/cuenta asociadas para preseleccionarlas
-        var category = $(`tr#${id} td[dt-category]`).attr('dt-category');
-        var account = $(`tr#${id} td[dt-account]`).attr('dt-account');
+        var category = $(`tr#${id} td[data-category]`).attr('data-category');
+        var account = $(`tr#${id} td[data-account]`).attr('data-account');
 
         tinymce.remove();
         $('#modal input.form-control').attr('value',"");
@@ -166,14 +166,14 @@ const infoNotf = window.createNotification({
         if(!isNaN(id)) {
             $('#modal #id').attr('value',id);
             $('#modal input.form-control').each(function(index,element) {
-                if($(element)[0].type == "checkbox" && $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() == "Sí") {
+                if($(element)[0].type == "checkbox" && $(`#${id} td[data-col="${$(element).attr('id')}"]`).html() == "Sí") {
                     $(element).attr('checked','true');
                 }
-                $(element).attr('value', $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() )
+                $(element).attr('value', $(`#${id} td[data-col="${$(element).attr('id')}"]`).html() )
             });
             
             $('#modal textarea.form-control').each(function(index,element) {
-               $(element).html( $(`#${id} td[dt-col="${$(element).attr('id')}"]`).html() );
+               $(element).html( $(`#${id} td[data-col="${$(element).attr('id')}"]`).html() );
             });
 
             if(category) {
@@ -184,9 +184,9 @@ const infoNotf = window.createNotification({
             }
 
             if(enabled){
-                $('#modal .modal-footer div').first().html(`<button type="button" dt-id="${id}" dt-tb="${table}" class="btn btn-warning" onclick="disable($(this));">Deshabilitar</button>`);
+                $('#modal .modal-footer div').first().html(`<button type="button" data-id="${id}" data-tb="${table}" class="btn btn-warning" onclick="disable($(this));">Deshabilitar</button>`);
             } else {
-                $('#modal .modal-footer div').first().html(`<button type="button" dt-id="${id}" dt-tb="${table}" class="btn btn-success" onclick="enable($(this));">Habilitar</button>`);
+                $('#modal .modal-footer div').first().html(`<button type="button" data-id="${id}" data-tb="${table}" class="btn btn-success" onclick="enable($(this));">Habilitar</button>`);
             }
         }
 
@@ -212,11 +212,11 @@ const infoNotf = window.createNotification({
 <script>
     /**
      * Al presionar el boton de deshabilitar se recogen el ID y la tabla del registro a eliminar des de los atributos del boton
-     *  'dt-id' y 'dt-table' respectivamente. En cualquier caso, se notifica visualmente al usuario del estado de la peticion.
+     *  'data-id' y 'data-table' respectivamente. En cualquier caso, se notifica visualmente al usuario del estado de la peticion.
      */
     function disable(element) {
-        var id = element.attr('dt-id');
-        var table = element.attr('dt-tb');
+        var id = element.attr('data-id');
+        var table = element.attr('data-tb');
         if(isNaN(id)) {
             errorNotf({
                 title: 'Error!',
@@ -254,8 +254,8 @@ const infoNotf = window.createNotification({
 <!-- Habilitar camps -->
 <script>
     function enable(element) {
-        var id = element.attr('dt-id');
-        var table = element.attr('dt-tb');
+        var id = element.attr('data-id');
+        var table = element.attr('data-tb');
         if(isNaN(id)) {
             errorNotf({
                 title: 'Error!',

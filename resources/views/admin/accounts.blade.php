@@ -25,20 +25,20 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-col="establishment">{{ $item->establishment }}</td>
-                <td dt-col="account">{{ $item->account }}</td>
-                <td dt-col="fuc">{{ $item->fuc }}</td>
-                <td dt-col="key">{{ $item->key }}</td>
+                <td data-col="establishment">{{ $item->establishment }}</td>
+                <td data-col="account">{{ $item->account }}</td>
+                <td data-col="fuc">{{ $item->fuc }}</td>
+                <td data-col="key">{{ $item->key }}</td>
                 @if($item->deleted_at == null)
                 <td>Sí</td>
                 @else
                 <td>No</td>
                 @endif
                 <td>
-                    <button title="Eliminar" dt-tb="account" dt-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
-                    <button dt-id="{{ $item->id }}" dt-tb="account"
+                    <button title="Eliminar" data-tb="account" data-id="{{ $item->id }}" class="btn btn-danger deletebtn"><i class="fas fa-trash"></i></button>
+                    <button data-id="{{ $item->id }}" data-tb="account"
                         @if($item->deleted_at == null)
-                        dt-enabled="true"
+                        data-enabled="true"
                         @endif
                         class="btn btn-warning modalbtn"><i class="fas fa-edit"></i></button>
                 </td>
@@ -84,7 +84,7 @@
                     <input type="text" class="form-control" id="key" name="key" required/>
                 </div>
             </div>
-            <input type="hidden" class="form-control" id="id" name="id" required/>
+            <input type="hidden" class="form-control" id="id" name="id"/>
         </form>
     </div>
     <div class="modal-footer">

@@ -30,8 +30,8 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-category="{{ $item->id_category }}" dt-col="category">{!! $item->category !!}</td>
-                <td dt-account="{{ $item->id_account }}" dt-col="account">{!! $item->account !!}</td>
+                <td dt-category="{{ $item->id_category }}" dt-col="id_category">{!! $item->category !!}</td>
+                <td dt-account="{{ $item->id_account }}" dt-col="id_account">{!! $item->account !!}</td>
                 <td dt-col="level">{{ $item->level }}</td>
                 <td dt-col="order">{{ $item->order }}</td>
                 <td dt-col="title">{{ $item->title }}</td>
@@ -73,7 +73,7 @@
             <div class="form-group row">
                 <label for="category" class="col-sm-4 col-form-label">Categoria</label>
                 <div class="col-sm-8">
-                    <select class="form-control" id="category" name="category" required>
+                    <select class="form-control" id="id_category" name="id_category" required>
                         <option disabled selected>Sel·lecciona una categoria</option>
                     </select>
                 </div>
@@ -81,7 +81,7 @@
             <div class="form-group row">
                 <label for="account" class="col-sm-4 col-form-label">Compte</label>
                 <div class="col-sm-8">
-                    <select class="form-control" class="form-control" id="account" name="account">
+                    <select class="form-control" class="form-control" id="id_account" name="id_account">
                         <option disabled selected>Sel·lecciona un compte</option>
                     </select>
                 </div>
@@ -154,7 +154,7 @@
         url: '{{ route("categories.get") }}',
         success: function(e) {
             $(e).each(function(index,element) {
-                $('#category').append(`<option value="${element.id}">${element.category}</option>`);
+                $('#id_category').append(`<option value="${element.id}">${element.category}</option>`);
             })
         }
     })
@@ -163,7 +163,7 @@
         url: '{{ route("accounts.get") }}',
         success: function(e) {
             $(e).each(function(index,element) {
-                $('#account').append(`<option value="${element.id}">${element.account}</option>`);
+                $('#id_account').append(`<option value="${element.id}">${element.account}</option>`);
             })
         }
     })
@@ -174,11 +174,11 @@
         var id = $('#id').val();
         var id_r = /^[0-9]{1,20}$/;
 
-        var category = $('#category').val();
-        var category_r = /^[0-9]{1,20}$/;
+        var id_category = $('#id_category').val();
+        var id_category_r = /^[0-9]{1,20}$/;
 
-        var account = $('#account').val();
-        var account_r = /^[0-9]{1,20}$/;
+        var id_account = $('#id_account').val();
+        var id_account_r = /^[0-9]{1,20}$/;
 
         var level = $('#level').val();
         var level_r = /^[a-zA-Z0-9]+$/;
@@ -209,7 +209,7 @@
             throw new Error('El ID proporcionat no és vàlid');
         }
 
-        if(!category || !category.match(category_r)) {
+        if(!id_category || !id_category.match(id_category_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'La categoria proporcionada no és vàlida',
@@ -217,7 +217,7 @@
             throw new Error('La categoria proporcionada no és vàlid');
         }
 
-        if(!account || !account.match(account_r)) {
+        if(!id_account || !id_account.match(id_account_r)) {
             errorNotf({
                 title: 'Error!',
                 message: 'El compte proporcionat no és vàlid',
@@ -279,8 +279,8 @@
             data: {
                 '_token': '{{ csrf_token() }}',
                 id: id,
-                category: category,
-                account: account,
+                id_category: id_category,
+                id_account: id_account,
                 level: level,
                 order: order,
                 title: title,

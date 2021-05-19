@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Payment;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
-use App\Payment;
-use DB;
 
 class PaymentsController extends Controller
 {
@@ -36,9 +36,21 @@ class PaymentsController extends Controller
 
     public function update(Request $request)
     {
+        request()->validate([
+            'id' => 'nullable|integer',
+            'id_category' => 'required|integer|max:20',
+            'id_account' => 'required|integer|max:20',
+            'level' => 'required|string',
+            'order' => 'required|string|max:20',
+            'title' => 'required|string|max:150',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date'
+        ]);
+
         $id = $request->id;
-        $category = $request->category;
-        $account = $request->account;
+        $id_category = $request->id_category;
+        $id_account = $request->id_account;
         $level = $request->level;
         $order = $request->order;
         $title = $request->title;
@@ -57,8 +69,8 @@ class PaymentsController extends Controller
             $newPayment->created_at = $updated_at;
         }
 
-        $newPayment->id_category = $category;
-        $newPayment->id_account = $account;
+        $newPayment->id_category = $id_category;
+        $newPayment->id_account = $id_account;
         $newPayment->level = $level;
         $newPayment->order = $order;
         $newPayment->title = $title;

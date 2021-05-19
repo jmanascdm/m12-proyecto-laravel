@@ -86,7 +86,7 @@
         var id_r = /^[0-9]{1,20}$/;
 
         var category = $('#category').val();
-        var category_r = /^[a-zA-Z0-9]{1,150}$/;
+        var category_r = /^[a-zA-Z0-9\s]{1,150}$/;
 
         if(id && !id.match(id_r)) {
             errorNotf({
@@ -121,11 +121,14 @@
                     title: 'Fet!',
                     message: 'Base de dades actualitzada correctament',
                 });
-                location.reload();
-            }, error: function() {
+            }, error: function(e) {
+                var error = 'No s\'ha pogut processar la petició:';
+                $.each($(e)[0].responseJSON.errors, function(index,element) {
+                    error += "\n·"+element[0]; 
+                });
                 errorNotf({
                     title: 'Error!',
-                    message: 'No s\'ha pogut processar la petició',
+                    message: error,
                 });
             }
         })

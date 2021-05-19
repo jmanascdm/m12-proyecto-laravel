@@ -36,6 +36,13 @@ class AccountsController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'id' => 'nullable|integer',
+            'establishment' => 'required|integer|max:11',
+            'account' => 'required|string|max:150',
+            'fuc' => 'required|string|max:150',
+            'key' => 'required|string|max:150'
+        ]);
         $id = $request->id;
         $establishment = $request->establishment;
         $account = $request->account;
@@ -64,6 +71,9 @@ class AccountsController extends Controller
 
     public function enable(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $category = Account::withTrashed()->find($id);
         $category->restore();
@@ -71,6 +81,9 @@ class AccountsController extends Controller
 
     public function disable(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $category = Account::find($id);
         $category->delete();
@@ -78,6 +91,9 @@ class AccountsController extends Controller
 
     public function delete(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $account = Account::withTrashed()->find($id);
         $account->forceDelete();

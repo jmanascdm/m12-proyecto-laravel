@@ -63,7 +63,7 @@
             <div class="form-group row">
                 <label for="establishment" class="col-sm-4 col-form-label">Establiment</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="establishment" name="establishment" required/>
+                    <input type="number" class="form-control" id="establishment" name="establishment" required/>
                 </div>
             </div>
             <div class="form-group row">
@@ -182,10 +182,14 @@
                     message: 'Base de dades actualitzada correctament',
                 });
                 location.reload();
-            }, error: function() {
+            }, error: function(e) {
+                var error = 'No s\'ha pogut processar la petició:';
+                $.each($(e)[0].responseJSON.errors, function(index,element) {
+                    error += "\n·"+element[0]; 
+                });
                 errorNotf({
                     title: 'Error!',
-                    message: 'No s\'ha pogut processar la petició',
+                    message: error,
                 });
             }
         })

@@ -243,10 +243,14 @@
                     message: 'Base de dades actualitzada correctament',
                 });
                 location.reload();
-            }, error: function() {
+            }, error: function(e) {
+                var error = 'No s\'ha pogut processar la petició:';
+                $.each($(e)[0].responseJSON.errors, function(index,element) {
+                    error += "\n·"+element[0]; 
+                });
                 errorNotf({
                     title: 'Error!',
-                    message: 'No s\'ha pogut processar la petició',
+                    message: error,
                 });
             }
         })

@@ -36,6 +36,11 @@ class CategoriesController extends Controller
 
     public function update(Request $request)
     {
+        request()->validate([
+            'id' => 'nullable|integer',
+            'category' => 'required|string|max:150'
+        ]);
+
         $id = $request->id;
         $category = $request->category;
         $updated_at = Carbon::now()->toDateTimeString();
@@ -58,6 +63,9 @@ class CategoriesController extends Controller
 
     public function enable(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $category = Category::withTrashed()->find($id);
         $category->restore();
@@ -65,6 +73,9 @@ class CategoriesController extends Controller
 
     public function disable(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $category = Category::find($id);
         $category->delete();
@@ -72,6 +83,9 @@ class CategoriesController extends Controller
 
     public function delete(Request $request)
     {
+        $request->validate([
+            'id' => 'integer'
+        ]);
         $id = $request->id;
         $category = Category::withTrashed()->find($id);
         $category->forceDelete();

@@ -67,6 +67,8 @@ const infoNotf = window.createNotification({
             {
                 extend: 'pdfHtml5',
                 text: '<i class="far fa-file-pdf"></i>',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
                 exportOptions: {
                     columns: ':visible'
                 }

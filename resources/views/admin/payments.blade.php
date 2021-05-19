@@ -30,8 +30,8 @@
         <tbody>
             @foreach($items as $item)
             <tr id="{{ $item->id }}">
-                <td dt-category="{{ $item->id_category }}" dt-col="category">{{ $item->category }}</td>
-                <td dt-account="{{ $item->id_account }}" dt-col="account">{{ $item->account }}</td>
+                <td dt-category="{{ $item->id_category }}" dt-col="category">{!! $item->category !!}</td>
+                <td dt-account="{{ $item->id_account }}" dt-col="account">{!! $item->account !!}</td>
                 <td dt-col="level">{{ $item->level }}</td>
                 <td dt-col="order">{{ $item->order }}</td>
                 <td dt-col="title">{{ $item->title }}</td>

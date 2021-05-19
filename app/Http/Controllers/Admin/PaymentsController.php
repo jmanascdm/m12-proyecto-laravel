@@ -24,8 +24,9 @@ class PaymentsController extends Controller
     public function index()
     {
         $items = DB::select("SELECT payments.id as id, categories.id as id_category,
-        IFNULL(categories.category,'NULL') as category, accounts.id as id_account, IFNULL(accounts.account,'NULL') as account,
-        `level`, `order`, `title`, `description`, `price`, `start_date`, `end_date`,payments.deleted_at
+        IFNULL(categories.category,'<i class=\"badge badge-warning\">NULL</i>') as category, accounts.id as id_account,
+        IFNULL(accounts.account,'<i class=\"badge badge-warning\">NULL</i>') as account, `level`, `order`, `title`,
+        `description`, `price`, `start_date`, `end_date`,payments.deleted_at
         FROM payments
         LEFT JOIN categories ON id_category = categories.id
         LEFT JOIN accounts ON id_account = accounts.id;");

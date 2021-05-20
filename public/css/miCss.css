@@ -271,5 +271,9 @@ tr:nth-child(even) td{
 }
 
 .modal {
-    z-index: 9999;
+    z-index: 1;
+}
+
+.modal-backdrop {
+    z-index: 0;
 }

@@ -69,7 +69,7 @@ class GoogleController extends Controller
                 }
             }
         } catch (Exception $e) {
-            $error_title = 'Hi ha hagut un error amb la comunicació de la base de dades';
+            $error_title = 'Hi ha hagut un error amb la comunicació entre la pàgina i Google';
             $error_msg = $e->getMessage();
             
             return redirect( route('error',compact('error_title','error_msg')) );

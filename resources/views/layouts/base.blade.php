@@ -39,13 +39,13 @@
 
             <div class="logo mr-auto">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="/"><img src="{{ asset('img/logo.jpg') }}" alt="Logo" class="img-fluid"
+                <a href="/" title="Tornar a l'inici"><img src="{{ asset('img/logo.jpg') }}" alt="Web-logo" class="img-fluid"
                         style="height: 200px"></a>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
                 @guest
-                    <a href="{{ route('login') }}" class="iniciarSesion"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
+                    <a href="{{ route('login') }}" class="iniciarSesion" title="Iniciar sessió"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
                 @else
                 <div class="dropdown">
                     <span class="dropdown-toggle" id="dropdownMenuButton"
@@ -54,12 +54,12 @@
                     </span>
                     <div class="dropdown-menu">
                         <h6 class="dropdown-header">Zona admin</h6>
-                        <a class="dropdown-item" href="{{ route('admin.payments') }}">Pagaments</a>
-                        <a class="dropdown-item" href="{{ route('admin.categories') }}">Categories</a>
-                        <a class="dropdown-item" href="{{ route('admin.accounts') }}">Comptes</a>
-                        <a class="dropdown-item" href="{{ route('admin.users') }}">Usuaris</a>
+                        <a class="dropdown-item" href="{{ route('admin.payments') }}" title="Visualitzar la taula de Pagaments">Pagaments</a>
+                        <a class="dropdown-item" href="{{ route('admin.categories') }}" title="Visualitzar la taula de Categories">Categories</a>
+                        <a class="dropdown-item" href="{{ route('admin.accounts') }}" title="Visualitzar la taula de Comptes">Comptes</a>
+                        <a class="dropdown-item" href="{{ route('admin.users') }}" title="Visualitzar la taula d'Usuaris">Usuaris</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a class="dropdown-item" href="{{ route('logout') }}" title="Tancar sessió"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Tancar
                             sessió</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -89,7 +89,7 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <a href="#" class="back-to-top" title="Tornar amunt"><i class="icofont-simple-up"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -99,6 +99,24 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
 
+    <!-- Notificacions -->
+    <script src="{{ asset('js/notifications/notifications.js') }}"></script>
+    <script>
+    const successNotf = window.createNotification({
+        theme: 'success',
+        showDuration: 5000
+    });
+
+    const errorNotf = window.createNotification({
+        theme: 'error',
+        showDuration: 5000
+    });
+
+    const infoNotf = window.createNotification({
+        theme: 'info',
+        showDuration: 5000
+    });
+    </script>
     @stack('scripts')
 </body>
 

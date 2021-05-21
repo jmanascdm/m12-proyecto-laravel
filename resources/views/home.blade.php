@@ -168,48 +168,38 @@
 
 @push('scripts')
 
-<script src="{{ asset('js/notifications/notifications.js') }}"></script>
-<script>
-const successNotf = window.createNotification({
-    theme: 'success',
-    showDuration: 5000
-});
-
-const errorNotf = window.createNotification({
-    theme: 'error',
-    showDuration: 5000
-});
-
-const infoNotf = window.createNotification({
-    theme: 'info',
-    showDuration: 5000
-});
-</script>
 <script>
 $('#paybtn').click(function() {
-	var category = $(`#category option[value="${$('#category').val()}"]`).html();
-	var title = $('#title').html();
-	var price = $('#price').html();
+    if($('#payment').val()) {
+        var category = $(`#category option[value="${$('#category').val()}"]`).html();
+        var title = $('#title').html();
+        var price = $('#price').html();
 
-	var content =
-	`<a href="https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat" title="Compartir a Twitter" target="_blank">
-		<i class="fab fa-twitter"></i>
-	</a>
-	<a href="https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat" title="Compartir a Whatsapp" target="_blank">
-		<i class="fab fa-whatsapp"></i>
-	</a>
-	<a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="_blank">
-	    <i class="fab fa-telegram"></i>
-	</a>
-	<a href="https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat" class="fb-xfbml-parse-ignore" title="Compartir a telegram" target="_blank">
-	    <i class="fab fa-facebook"></i>
-	</a>
-    <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
-	    <i class="far fa-envelope"></i>
-    </a>`;
-	$('.modal-footer .socials').html(content);
+        var content =
+        `<a href="https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat" title="Compartir a Twitter" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat" title="Compartir a Whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="_blank">
+            <i class="fab fa-telegram"></i>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat" class="fb-xfbml-parse-ignore" title="Compartir a telegram" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
+            <i class="far fa-envelope"></i>
+        </a>`;
+        $('.modal-footer .socials').html(content);
 
-	$('#modal').modal();
+        $('#modal').modal();
+    } else {
+        errorNotf({
+            title: 'Error!',
+            message: 'Has de sel·leccionar un pagament primer.',
+        });
+    }
 })
 </script>
 

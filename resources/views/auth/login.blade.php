@@ -39,7 +39,7 @@
                     <label for="password" class="txt1">
                         Contrassenya
                     </label>
-                    <a class="ml-4" href="{{ route('password.request') }}">
+                    <a class="ml-4" href="{{ route('password.request') }}" title="Recuperar la contrasenya">
                         Restaura la contrasenya
                     </a>
                 </div>
@@ -65,7 +65,7 @@
 
             <div class="container-login100-form-btn m-t-17">
                 <button id="googlelogin" class="login100-form-btn" style="background-color: white;color:black">
-                    <img src="{{ asset('img/icons/icon-google.png') }}" alt="GOOGLE" style="padding-right: 10px;">
+                    <img src="{{ asset('img/icons/icon-google.png') }}" alt="Google-logo" style="padding-right: 10px;">
                     Google
                 </button>
             </div>
@@ -74,7 +74,7 @@
                     Encara no tens compte?
                 </span>
 
-                <a href="{{ route('register') }}" class="txt2 bo1">
+                <a href="{{ route('register') }}" class="txt2 bo1" title="Registra't a la web">
                     Crea un compte
                 </a>
             </div>

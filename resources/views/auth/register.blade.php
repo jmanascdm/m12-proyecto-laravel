@@ -92,7 +92,7 @@
             </div>
             <div class="container-login100-form-btn m-t-17">
                 <button class="login100-form-btn" style="background-color: white;color:black">
-                <img src="{{ asset('img/icons/icon-google.png') }}" alt="GOOGLE" style="padding-right: 10px;">
+                <img src="{{ asset('img/icons/icon-google.png') }}" alt="Google-logo" style="padding-right: 10px;">
                 Google
                 </button>
             </div>
@@ -101,7 +101,7 @@
                 Ja tens un compte?
                 </span>
 
-                <a href="{{ route('login') }}" class="txt2 bo1">
+                <a href="{{ route('login') }}" class="txt2 bo1" title="Inicia sessió a la web">
                 Accedir
                 </a>
             </div>

@@ -1,24 +1,3 @@
-<!-- Notificacions -->
-<script src="{{ asset('js/notifications/notifications.js') }}"></script>
-<script>
-// Creamos los objetos de notificacion de  exito, error e informacion
-// Cada uno tiene un tiempo de aparicion de 5 segundos
-const successNotf = window.createNotification({
-    theme: 'success',
-    showDuration: 5000
-});
-
-const errorNotf = window.createNotification({
-    theme: 'error',
-    showDuration: 5000
-});
-
-const infoNotf = window.createNotification({
-    theme: 'info',
-    showDuration: 5000
-});
-</script>
-
 <!-- Datatables -->
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -177,10 +156,10 @@ const infoNotf = window.createNotification({
             });
 
             if(category) {
-                $(`#modal select#category option[value=${category}]`).attr('selected',true);
+                $(`#modal select#id_category option[value=${category}]`).attr('selected',true);
             }
             if(account) {
-                $(`#modal select#account option[value=${account}]`).attr('selected',true);
+                $(`#modal select#id_account option[value=${account}]`).attr('selected',true);
             }
 
             if(enabled){
@@ -192,8 +171,6 @@ const infoNotf = window.createNotification({
 
         tinymce.init({
             selector: 'textarea',
-            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            toolbar_mode: 'floating',
         });
 
         $('#modal').modal();

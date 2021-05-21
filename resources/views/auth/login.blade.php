@@ -26,7 +26,7 @@
                     </label>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input class="input100 @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" placeholder="correu@proba.com" pattern="^[a-zA-Z0-9]+\@[a-zA-Z]+(\.[a-zA-Z]{2,3}){1,2}$" required autocomplete="email" autofocus>
+                    <input class="input100 @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" placeholder="correu@proba.com" pattern="^[a-zA-Z0-9]+@[a-zA-Z]+(.[a-zA-Z]{2,3}){1,2}$" required autocomplete="email" autofocus>
                     <span class="focus-input100"></span>
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -88,7 +88,6 @@
 @push('scripts')
 
 <script src="https://www.google.com/recaptcha/api.js?hl=ca" async defer></script>
-<script src="{{ asset('js/notifications/notifications.js') }}"></script>
 <script>
     $('button').click(function(e) {
         e.preventDefault();
@@ -102,11 +101,6 @@
     }
 
     $('#entrar').click(function() {
-        const errNo = window.createNotification({
-            theme: 'error',
-            showDuration: 3000
-        });
-
         if(captcha) {
             document.forms[0].submit();
         } else {

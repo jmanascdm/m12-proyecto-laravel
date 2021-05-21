@@ -89,12 +89,9 @@
         </div>
     </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top" title="Tornar amunt"><i class="icofont-simple-up"></i></a>
-
     <!-- Vendor JS Files -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendor/jquery-sticky/jquery.sticky.js') }}"></script>
-    <script src="{{ asset('vendor/counterup/counterup.min.js') }}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>

@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="category" class="form-label">Sel·lecciona un curs</label>
-                <select tabindex="3" class="custom-select my-1 mr-sm-2" id="category">
+                <select tabindex="3" class="custom-select my-1 mr-sm-2" id="category" aria-controls="payment">
                     <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -58,7 +58,7 @@
             </script>
             <div class="col-md-6" style="display: none;">
                 <label for="payment" class="form-label">Sel·lecciona un pagament</label>
-                <select tabindex="4" class="custom-select my-1 mr-sm-2" id="payment">
+                <select tabindex="4" class="custom-select my-1 mr-sm-2" id="payment" aria-controls="payment_view">
                     <option selected disabled>Pagament...</option>
                 </select>
             </div>

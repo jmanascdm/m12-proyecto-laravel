@@ -9,11 +9,11 @@
 <!-- ======= Main Section ======= -->
 <div class="mainPagaments container">
     <h1 id="titolPagament">Pagaments INS Camí de Mar</h1>
-    <form id="pagaments">
+    <div id="pagaments">
         <div class="row">
             <div class="col-md-6">
-                <label for="category" class="form-label">Sel·lecciona una categoria</label>
-                <select class="custom-select my-1 mr-sm-2" id="category">
+                <label for="category" class="form-label">Sel·lecciona un curs</label>
+                <select tabindex="3" class="custom-select my-1 mr-sm-2" id="category">
                     <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -58,7 +58,7 @@
             </script>
             <div class="col-md-6" style="display: none;">
                 <label for="payment" class="form-label">Sel·lecciona un pagament</label>
-                <select class="custom-select my-1 mr-sm-2" id="payment">
+                <select tabindex="4" class="custom-select my-1 mr-sm-2" id="payment">
                     <option selected disabled>Pagament...</option>
                 </select>
             </div>
@@ -98,16 +98,16 @@
                 })
             </script>
         </div>
-    </form>
+    </div>
     <div id="payment_view" style="display: none;">
         <div class="row">
             <div class="col">
-                <h2 class="descripcionTitulo" id="title"></h2>
+                <h2 tabindex="5" class="descripcionTitulo" id="title"></h2>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <pre class="descriptionP" id="description"></pre>
+                <pre tabindex="6" class="descriptionP" id="description"></pre>
             </div>
         </div>
         <div class="row">
@@ -115,10 +115,10 @@
                 <p class="import">Import:</p>
             </div>
             <div class="col">
-                <p class="preu" id="price"></p>
+                <p tabindex="7" class="preu" id="price"></p>
             </div>
             <div class="col">
-                <button class="login100-form-btn botonForm btn btn-primary" id="paybtn" style="width: 50%;height: 80px;">
+                <button tabindex="8" class="login100-form-btn botonForm btn btn-primary" id="paybtn" style="width: 50%;height: 80px;">
                     Fer Pagament
                 </button>
             </div>
@@ -132,7 +132,7 @@
     <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="ModalLongTitle">Realitzar un pagament</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Tancar">
         <span aria-hidden="true">&times;</span>
         </button>
     </div>

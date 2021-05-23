@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 
 <head>
     <meta charset="utf-8">
@@ -39,20 +39,20 @@
 
             <div class="logo mr-auto">
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="/" title="Tornar a l'inici"><img src="{{ asset('img/logo.jpg') }}" alt="Web-logo" class="img-fluid"
+                <a  href="{{ route('home') }}" tabindex="1" title="Tornar a l'inici"><img src="{{ asset('img/logo.jpg') }}" alt="Web-logo" class="img-fluid"
                         style="height: 200px"></a>
             </div>
 
             <nav class="nav-menu d-none d-lg-block">
                 @guest
-                    <a href="{{ route('login') }}" class="iniciarSesion" title="Iniciar sessió"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
+                    <a href="{{ route('login') }}" tabindex="2" class="iniciarSesion" title="Iniciar sessió"><i class="fas fa-user-alt iniciarSesion"></i>Iniciar Sessió</a>
                 @else
                 <div class="dropdown">
-                    <span class="dropdown-toggle" id="dropdownMenuButton"
+                    <button class="dropdown-toggle" tabindex="2" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ Auth::user()->name }}
-                    </span>
-                    <div class="dropdown-menu">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header">Zona admin</h6>
                         <a class="dropdown-item" href="{{ route('admin.payments') }}" title="Visualitzar la taula de Pagaments">Pagaments</a>
                         <a class="dropdown-item" href="{{ route('admin.categories') }}" title="Visualitzar la taula de Categories">Categories</a>
@@ -76,6 +76,9 @@
 
     <!-- End #main -->
     <main>
+        <div id="noscript" class="offset-md-3 col-md-6">
+            <noscript>El teu navegador no permet l'execució de fitxers JavaScript. Per continuar utilitzant la pàgina, per favor, revisi la seva configuració.</noscript>
+        </div>
         @yield('content')
     </main>
     <!-- End #main -->

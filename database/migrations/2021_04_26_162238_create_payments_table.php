@@ -17,7 +17,6 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->bigInteger('id_category')->unsigned()->nullable();
             $table->bigInteger('id_account')->unsigned()->nullable();
-            $table->text('level');
             $table->string('order',20);
             $table->string('title',150);
             $table->text('description');

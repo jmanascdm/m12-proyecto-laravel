@@ -16,7 +16,6 @@
             <tr>
                 <th>Categoria</th>
                 <th>Compte</th>
-                <th>Nivell</th>
                 <th>Comanda</th>
                 <th>Títol</th>
                 <th>Descripció</th>
@@ -32,7 +31,6 @@
             <tr id="{{ $item->id }}">
                 <td data-category="{{ $item->id_category }}" data-col="id_category">{!! $item->category !!}</td>
                 <td data-account="{{ $item->id_account }}" data-col="id_account">{!! $item->account !!}</td>
-                <td data-col="level">{{ $item->level }}</td>
                 <td data-col="order">{{ $item->order }}</td>
                 <td data-col="title">{{ $item->title }}</td>
                 <td data-col="description">{{ $item->description }}</td>
@@ -84,12 +82,6 @@
                     <select class="form-control" class="form-control" id="id_account" name="id_account">
                         <option value="" disabled selected>Sel·lecciona un compte</option>
                     </select>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="level" class="col-sm-4 col-form-label">Nivell</label>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" id="level" name="level" required/>
                 </div>
             </div>
             <div class="form-group row">

@@ -121,7 +121,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 1,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -134,7 +133,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 1,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -147,7 +145,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 1,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Lloguer Taquilles",
             'description' => "Fent aquest pagament l'alumne disposarà d'una taquilla durant el curs. ",
@@ -160,7 +157,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 2,
             'id_account' => 2,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -173,7 +169,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 2,
             'id_account' => 2,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -186,7 +181,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 2,
             'id_account' => 2,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Lloguer Taquilles",
             'description' => "Fent aquest pagament l'alumne disposarà d'una taquilla durant el curs. ",
@@ -199,7 +193,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 3,
             'id_account' => 3,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -212,7 +205,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 3,
             'id_account' => 3,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -225,7 +217,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 3,
             'id_account' => 3,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Lloguer Taquilles",
             'description' => "Fent aquest pagament l'alumne disposarà d'una taquilla durant el curs. ",
@@ -238,7 +229,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 4,
             'id_account' => 4,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -251,7 +241,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 4,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -264,7 +253,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 4,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Lloguer Taquilles",
             'description' => "Fent aquest pagament l'alumne disposarà d'una taquilla durant el curs. ",
@@ -277,7 +265,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 5,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -290,7 +277,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 5,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -303,7 +289,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 6,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -316,7 +301,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 6,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -329,7 +313,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 7,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -342,7 +325,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 7,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -355,7 +337,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 8,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -368,7 +349,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 8,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -381,7 +361,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 9,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -394,7 +373,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 9,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -407,7 +385,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 10,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -420,7 +397,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 10,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -433,7 +409,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 11,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -446,7 +421,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 11,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -458,7 +432,6 @@ class DatabaseSeeder extends Seeder
         ]);DB::table('payments')->insert([
             'id_category' => 12,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -471,7 +444,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 12,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",
@@ -484,7 +456,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 13,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Matricula Curs",
             'description' => "Pagament de matriculació al curs.",
@@ -497,7 +468,6 @@ class DatabaseSeeder extends Seeder
         DB::table('payments')->insert([
             'id_category' => 13,
             'id_account' => 1,
-            'level' => Str::random(10),
             'order' => Str::random(10),
             'title' => "Pagament despeses escolars",
             'description' => "Pagament de despeses escolars del alumne.",

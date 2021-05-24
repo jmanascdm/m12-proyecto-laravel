@@ -12,7 +12,7 @@
     <form id="pagaments">
         <div class="row">
             <div class="col-md-6">
-                <label for="category" class="form-label">Sel·lecciona una categoria</label>
+                <label for="category" class="form-label">Sel·lecciona un curs</label>
                 <select class="custom-select my-1 mr-sm-2" id="category">
                     <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)

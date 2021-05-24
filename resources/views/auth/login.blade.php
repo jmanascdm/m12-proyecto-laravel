@@ -16,9 +16,9 @@
             <form method="POST" action="{{ route('login') }}" class="login100-form validate-form flex-sb flex-w">
                 @csrf
 
-                <span class="login100-form-title p-b-53">
+                <h1 class="login100-form-title p-b-53">
                     LOGIN
-                </span>
+                </h1>
 
                 <div class="p-t-13 p-b-9">
                     <label for="email" class="txt1">

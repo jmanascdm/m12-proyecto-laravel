@@ -16,12 +16,12 @@
         <form method="POST" action="{{ route('register') }}"  class="login100-form validate-form flex-sb flex-w">
             @csrf
 
-            <span class="login100-form-title p-b-53">
+            <h1 class="login100-form-title p-b-53">
                 REGISTRE
-            </span>
+            </h1>
 
             <div class="w-100 p-t-13 p-b-9">
-                <label class="w-100 txt1">
+                <label for="name" class="w-100 txt1">
                     Nom d'usuari
                 </label>
             </div>
@@ -61,7 +61,7 @@
             </div>
 
             <div class="w-100 p-t-13 p-b-9">
-                <label for="password" class="w-100 txt1">
+                <label for="password-confirm" class="w-100 txt1">
                 Confirmar contrassenya
                 </label>
             </div>

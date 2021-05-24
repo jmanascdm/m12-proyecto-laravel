@@ -277,3 +277,18 @@ tr:nth-child(even) td{
 .modal-backdrop {
     z-index: 0;
 }
+
+#noscript > * {
+    margin-top: 10px;
+    color: white;
+    background-color: red;
+    font-weight: bold;
+    text-align: justify;
+    padding: .25em;
+    border-radius: .25em;
+}
+
+#dropdownMenuButton {
+    border: none;
+    background-color: unset;
+}

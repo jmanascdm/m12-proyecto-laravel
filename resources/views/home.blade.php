@@ -13,94 +13,19 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="category" class="form-label">Sel·lecciona un curs</label>
-<<<<<<< HEAD
-                <select class="custom-select my-1 mr-sm-2" id="category">
-=======
                 <select tabindex="3" class="custom-select my-1 mr-sm-2" id="category" aria-controls="payment">
->>>>>>> 3935ea70a32c0d18a04506f6f25d081e4ca78b9c
                     <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
                     @endforeach
                 </select>
             </div>
-            <script>
-                $('#category').on("change",function() {
-                    $('#payment_view').hide();
-                    $('#payment').closest("div").show();
-                    $('#payment').html("<option selected disabled>Pagament...</option>");
-                    var id = $(this).val();
-                    const errorNotf = window.createNotification({
-                        theme: 'error',
-                        showDuration: 3000
-                    });
-                    if(isNaN(id)) {
-                        errorNotf({
-                            title: 'Error!',
-                            message: 'ID categoria invàlid',
-                        });
-                    } else {
-                        $.ajax({
-                            type: 'POST',
-                            url: '{{ route("home.payments") }}',
-                            data: {
-                                '_token': "{{ csrf_token() }}",
-                                id: id,
-                            }, success: function(e) {
-                                for(const payment of e) {
-                                    $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
-                                }
-                            }, error: function() {
-                                errorNotf({
-                                    title: 'Error!',
-                                    message: 'No s\'ha pogut processar la petició',
-                                });
-                            }
-                        })
-                    }
-                })
-            </script>
             <div class="col-md-6" style="display: none;">
                 <label for="payment" class="form-label">Sel·lecciona un pagament</label>
                 <select tabindex="4" class="custom-select my-1 mr-sm-2" id="payment" aria-controls="payment_view">
                     <option selected disabled>Pagament...</option>
                 </select>
             </div>
-            <script>
-                $('#payment').on("change",function() {
-                    var id = $(this).val();
-                    const errorNotf = window.createNotification({
-                        theme: 'error',
-                        showDuration: 3000
-                    })
-
-                    if(isNaN(id)) {
-                        errorNotf({
-                            title: 'Error!',
-                            message: 'ID categoria invàlid',
-                        })
-                    } else {
-                        $.ajax({
-                            type: 'POST',
-                            url: '{{ route("home.payment") }}',
-                            data: {
-                                '_token': "{{ csrf_token() }}",
-                                id: id,
-                            }, success: function(e) {
-                                $('#payment_view').show();
-                                $('#title').html(e[0].title);
-                                $('#description').html(e[0].description);
-                                $('#price').html(e[0].price+"€");
-                            }, error: function() {
-                                errorNotf({
-                                    title: 'Error!',
-                                    message: 'No s\'ha pogut processar la petició',
-                                });
-                            }
-                        })
-                    }
-                })
-            </script>
         </div>
     </div>
     <div id="payment_view" style="display: none;">
@@ -167,10 +92,73 @@
 </div>
 </div>
 
-
 @endsection
 
 @push('scripts')
+
+<script>
+    $('#category').on("change",function() {
+        $('#payment_view').hide();
+        $('#payment').closest("div").show();
+        $('#payment').html("<option selected disabled>Pagament...</option>");
+        var id = $(this).val();
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'ID categoria invàlid',
+            });
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("home.payments") }}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    id: id,
+                }, success: function(e) {
+                    for(const payment of e) {
+                        $('#payment').append(`<option value="${payment.id}">${payment.title}</option>`)
+                    }
+                }, error: function() {
+                    errorNotf({
+                        title: 'Error!',
+                        message: 'No s\'ha pogut processar la petició',
+                    });
+                }
+            })
+        }
+    })
+</script>
+
+<script>
+    $('#payment').on("change",function() {
+        var id = $(this).val();
+        if(isNaN(id)) {
+            errorNotf({
+                title: 'Error!',
+                message: 'ID categoria invàlid',
+            })
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '{{ route("home.payment") }}',
+                data: {
+                    '_token': "{{ csrf_token() }}",
+                    id: id,
+                }, success: function(e) {
+                    $('#payment_view').show();
+                    $('#title').html(e[0].title);
+                    $('#description').html(e[0].description);
+                    $('#price').html(e[0].price+"€");
+                }, error: function() {
+                    errorNotf({
+                        title: 'Error!',
+                        message: 'No s\'ha pogut processar la petició',
+                    });
+                }
+            })
+        }
+    })
+</script>
 
 <script>
 $('#paybtn').click(function() {

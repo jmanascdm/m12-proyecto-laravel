@@ -8,12 +8,12 @@
 @section('content')
 <!-- ======= Main Section ======= -->
 <div class="mainPagaments container">
-    <h1 id="titolPagament">Pagaments INS Camí de Mar</h1>
+    <h1 tabindex="3" id="titolPagament">Pagaments INS Camí de Mar</h1>
     <div id="pagaments">
         <div class="row">
             <div class="col-md-6">
                 <label for="category" class="form-label">Sel·lecciona un curs</label>
-                <select tabindex="3" class="custom-select my-1 mr-sm-2" id="category" aria-controls="payment">
+                <select tabindex="4" class="custom-select my-1 mr-sm-2" id="category" aria-controls="payment">
                     <option selected disabled>Categoria...</option>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->category }}</option>
@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-6" style="display: none;">
                 <label for="payment" class="form-label">Sel·lecciona un pagament</label>
-                <select tabindex="4" class="custom-select my-1 mr-sm-2" id="payment" aria-controls="payment_view">
+                <select tabindex="5" class="custom-select my-1 mr-sm-2" id="payment" aria-controls="payment_view">
                     <option selected disabled>Pagament...</option>
                 </select>
             </div>
@@ -31,12 +31,12 @@
     <div id="payment_view" style="display: none;">
         <div class="row">
             <div class="col">
-                <h2 tabindex="5" class="descripcionTitulo" id="title"></h2>
+                <h2 tabindex="6" class="descripcionTitulo" id="title"></h2>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <pre tabindex="6" class="descriptionP" id="description"></pre>
+                <pre tabindex="7" class="descriptionP" id="description"></pre>
             </div>
         </div>
         <div class="row">
@@ -44,10 +44,10 @@
                 <p class="import">Import:</p>
             </div>
             <div class="col">
-                <p tabindex="7" class="preu" id="price"></p>
+                <p tabindex="8" class="preu" id="price"></p>
             </div>
             <div class="col">
-                <button tabindex="8" class="login100-form-btn botonForm btn btn-primary" id="paybtn" style="width: 50%;height: 80px;">
+                <button tabindex="9" class="login100-form-btn botonForm btn btn-primary" id="paybtn" style="width: 50%;height: 80px;">
                     Fer Pagament
                 </button>
             </div>

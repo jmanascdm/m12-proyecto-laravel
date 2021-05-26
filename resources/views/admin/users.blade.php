@@ -74,7 +74,6 @@
     <div class="mr-auto">
         </div>
         <div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
             <button type="button" class="btn btn-success" data-dismiss="modal" id="add">Enviar</button>
         </div>
     </div>
@@ -119,7 +118,6 @@
     <div class="mr-auto">
         </div>
         <div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
             <button type="button" class="btn btn-success" id="save">Enviar</button>
         </div>
     </div>

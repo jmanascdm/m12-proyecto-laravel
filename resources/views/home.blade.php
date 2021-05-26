@@ -82,10 +82,7 @@
         <div class="mr-auto">
             Vols compartir? <span class="socials"></span>
         </div>
-            <input type="hidden" name="Ds_SignatureVersion" value=""/>
-            <input type="hidden" name="Ds_MerchantParameters" value=""/>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
-            <button type="submit" class="btn btn-success" id="save">Continuar</button>
+        <button type="submit" class="btn btn-success" id="save">Continuar</button>
     </div>
     </form>
     </div>

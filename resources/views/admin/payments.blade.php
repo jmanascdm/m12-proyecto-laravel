@@ -127,7 +127,6 @@
     <div class="mr-auto">
         </div>
         <div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tancar</button>
             <button type="button" class="btn btn-success" id="save">Guardar canvis</button>
         </div>
     </div>

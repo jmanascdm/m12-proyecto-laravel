@@ -292,3 +292,7 @@ tr:nth-child(even) td{
     border: none;
     background-color: unset;
 }
+
+.mobile-nav-toggle {
+    z-index: 0;
+}

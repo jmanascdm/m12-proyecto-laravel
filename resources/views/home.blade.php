@@ -165,19 +165,24 @@ $('#paybtn').click(function() {
         var price = $('#price').html();
 
         var content =
-        `<a href="https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat" title="Compartir a Twitter" target="_blank">
+        `<a href="https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat" title="Compartir a Twitter" target="popup"
+        onclick="window.open('https://twitter.com/intent/tweet?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a&hashtags=inscamidemar&url=inscamidemar.cat','popup','width=600,height=400'); return false">
             <i class="fab fa-twitter"></i>
         </a>
-        <a href="https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat" title="Compartir a Whatsapp" target="_blank">
+        <a href="https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat" title="Compartir a Whatsapp" target="popup"
+        onclick="window.open('https://api.whatsapp.com/send?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}%20a%20inscamidemar.cat','popup','width=600,height=400'); return false">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="_blank">
+        <a href="https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat" title="Compartir a telegram" target="popup"
+        onclick="window.open('https://t.me/share/url?text=Fent%20el%20pagament%20de%20${category}%20-%20${title}%20per%20${price}&url=inscamidemar.cat','popup','width=600,height=400'); return false">
             <i class="fab fa-telegram"></i>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat" class="fb-xfbml-parse-ignore" title="Compartir a telegram" target="_blank">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat" class="fb-xfbml-parse-ignore" title="Compartir a telegram" target="popup"
+        onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=pagaments.inscamidemar.cat','popup','width=600,height=400'); return false">
             <i class="fab fa-facebook"></i>
         </a>
-        <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="_blank">
+        <a href="mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!" title="Compartir per correu" target="_blank"target="popup"
+        onclick="window.open('mailto:?subject=Pagament de ${category}&amp;body=Estic realitzant el pagament de ${category} - ${title} per ${price}€!','popup','width=600,height=400'); return false">
             <i class="far fa-envelope"></i>
         </a>`;
         $('.modal-footer .socials').html(content);

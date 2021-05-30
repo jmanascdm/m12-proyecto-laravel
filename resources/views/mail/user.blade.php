@@ -42,7 +42,7 @@
 <body>
     <main>
         <img src="{{ asset('img/logo.jpg') }}" alt="Web-logo">
-        <p>Aquest és tu codi de registre:</p>
+        <p>Aquest és el teu codi de registre:</p>
         <code><strong>{{ $code }}</strong></code>
         <p>Registra't <a href="http://m12proyecto.com/register" title="Registra't a la web" target="_blank">aquí</a>.</p>
     </main>
